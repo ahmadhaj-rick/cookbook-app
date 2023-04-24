@@ -23,7 +23,7 @@ public class Cookbook extends Application {
         Label mysql;
 
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/StarWars?user=tobias&password=abcd1234&useSSL=false");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
             mysql = new Label("Driver found and connected");
 
         } catch (SQLException e) {
