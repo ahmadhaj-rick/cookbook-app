@@ -1,3 +1,15 @@
 {
-    "java.compile.nullAnalysis.mode": "automatic"
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Application",
+            "request": "launch",
+            "mainClass": "Cookbook.Application",
+            "projectName": "Cookbook",
+            "vmArgs": "--module-path=.vscode/extensions/redhat.java-1.17.0-win32-x64/jre/17.0.6-win32-x86_64/lib --add-modules=javafx.controls"
+        }
+    ],
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive",
 }
