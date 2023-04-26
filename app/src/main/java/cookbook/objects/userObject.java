@@ -1,25 +1,25 @@
 package cookbook.objects;
 
 public class userObject {
-  private int Id;
+  private String Id;
   private String name;
   private String username;
   private String pass;
   private Boolean admin;
 
-  public userObject(int ID, String name, String username, String pass, Boolean isAdmin) {
-    setUserId(ID);
+  public userObject(String i, String name, String username, String pass, Boolean isAdmin) {
+    setUserId(i);
     setName(name);
     setUserName(username);
     setPass(pass);
     setAdminPrivelages(isAdmin);
   }
 
-  public int getId() {
+  public String getId() {
     return Id;
   }
 
-  private void setUserId(int inputId) {
+  private void setUserId(String inputId) {
     this.Id = inputId;
   }
 
