@@ -31,6 +31,8 @@ public class Login {
 
     userObject realUser = userController.searchForUser(username, pass);
 
+    // using else-if statements to switch scene if user is found
+
     if(realUser != null) {
       URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
       FXMLLoader loader = new FXMLLoader(url);
