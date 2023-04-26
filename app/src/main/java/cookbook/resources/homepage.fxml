@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.resources.Homepage">
+   <children>
+      <Separator layoutX="208.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="2.0" />
+      <TextField fx:id="search" layoutX="14.0" layoutY="23.0" prefHeight="26.0" prefWidth="186.0" text="Search" />
+      <Label layoutX="225.0" layoutY="27.0" prefHeight="18.0" prefWidth="346.0" text="Recipe Name" />
+      <CheckBox fx:id="favoritecheck" layoutX="14.0" layoutY="59.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="186.0" text="Favorite" />
+      <TableView fx:id="recipeLst" layoutY="80.0" prefHeight="319.0" prefWidth="207.0">
+        <columns>
+          <TableColumn prefWidth="199.19999408721924" text="Recipe" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
