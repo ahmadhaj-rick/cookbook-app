@@ -1,3 +1,5 @@
+// Declaring a package
+
 package cookbook.objects;
 
 public class userObject {
@@ -7,6 +9,7 @@ public class userObject {
   private String pass;
   private Boolean admin;
 
+  // making the constructor for the user project
   public userObject(String i, String name, String username, String pass, Boolean isAdmin) {
     setUserId(i);
     setName(name);
@@ -14,7 +17,7 @@ public class userObject {
     setPass(pass);
     setAdminPrivelages(isAdmin);
   }
-
+  // Using Setters and getters
   public String getId() {
     return Id;
   }
