@@ -12,13 +12,13 @@
    <children>
       <VBox layoutX="-3.0" layoutY="1.0" prefHeight="400.0" prefWidth="118.0">
          <children>
-            <Button fx:id="homebtn" mnemonicParsing="false" prefHeight="51.0" prefWidth="118.0" text="Home" />
-            <Button fx:id="addbutton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" text="Add Recipe" />
-            <Button fx:id="inboxbutton" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="118.0" text="Inbox" />
-            <Button fx:id="weeklistbutton" layoutX="10.0" layoutY="63.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="118.0" text="Weekly list" />
-            <Button fx:id="helpbutton" layoutX="10.0" layoutY="89.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" text="Help" />
-            <Button fx:id="adminPanel" layoutX="10.0" layoutY="116.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="118.0" text="Admin" />
-            <Button fx:id="quitbutton" layoutX="10.0" layoutY="142.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="118.0" text="Quit" />
+            <Button fx:id="homebtn" mnemonicParsing="false" onAction="#homeClick" prefHeight="51.0" prefWidth="118.0" text="Home" />
+            <Button fx:id="addbutton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addClick" prefHeight="50.0" prefWidth="118.0" text="Add Recipe" />
+            <Button fx:id="inboxbutton" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#inboxClick" prefHeight="47.0" prefWidth="118.0" text="Inbox" />
+            <Button fx:id="weeklistbutton" layoutX="10.0" layoutY="63.0" mnemonicParsing="false" onAction="#weeklistClick" prefHeight="52.0" prefWidth="118.0" text="Weekly list" />
+            <Button fx:id="helpbutton" layoutX="10.0" layoutY="89.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="50.0" prefWidth="118.0" text="Help" />
+            <Button fx:id="adminPanel" layoutX="10.0" layoutY="116.0" mnemonicParsing="false" onAction="#adminPanelClick" prefHeight="48.0" prefWidth="118.0" text="Admin" />
+            <Button fx:id="quitbutton" layoutX="10.0" layoutY="142.0" mnemonicParsing="false" onAction="#exitClick" prefHeight="99.0" prefWidth="118.0" text="Quit" />
          </children>
       </VBox>
       <Separator layoutX="115.0" layoutY="1.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="5.0" />
