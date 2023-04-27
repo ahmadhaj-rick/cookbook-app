@@ -16,26 +16,69 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class mainMenu {
+  
+  @FXML 
+  public Button homebtn;
+  @FXML 
+  public Button addbuttom;
+  @FXML 
+  public Button inboxbutton;
+  @FXML 
+  public Button weeklistbutton;
+  @FXML 
+  public Button helpbutton;
+  @FXML 
+  public Button adminPanel;
+  @FXML 
+  public Button quitbutton;
+  
+
+  public void homeClick(ActionEvent event) throws SQLException, IOException {
     
-    @FXML 
-    public Button homebtn;
-    @FXML 
-    public Button addbuttom;
-    @FXML 
-    public Button inboxbutton;
-    @FXML 
-    public Button weeklistbutton;
-    @FXML 
-    public Button helpbutton;
-    @FXML 
-    public Button adminPanel;
-    @FXML 
-    public Button quitbutton;
-
-   public void homePage(ActionEvent event) throws SQLException, IOException {
-
     
+    
+  }
 
+  public void addClick(ActionEvent event) throws SQLException, IOException {
+    
+    
+    
+  }
+  public void inboxClick(ActionEvent event) throws SQLException, IOException {
+    
+    
+    
+  } 
+  public void weeklistClick(ActionEvent event) throws SQLException, IOException {
+    
+    
+    
+  }
+
+  public void helpClick(ActionEvent event) throws SQLException, IOException {
+    
+    
+    
+  }
+
+  public void adminPanelClick(ActionEvent event) throws SQLException, IOException {
+    
+    userObject loggedUser = userController.loggedInUser;
+
+    if (loggedUser.getAdminPrivelages().equals(false)) {
+      Alert error = new Alert(Alert.AlertType.INFORMATION);
+      error.setTitle("Big NoNo");
+      error.setContentText("You are a peasent <3.");
+      error.show();
     }
+    
+    
+  }
 
+  public void exitClick(ActionEvent event) throws SQLException, IOException {
+    
+    
+    
+  }
+  
 }
