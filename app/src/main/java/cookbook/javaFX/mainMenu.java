@@ -70,6 +70,16 @@ public class mainMenu {
       error.setTitle("Big NoNo");
       error.setContentText("You are a peasent <3.");
       error.show();
+    }else {
+      URL url = new File("src/main/java/cookbook/resources/adminpanel.fxml").toURI().toURL();
+      FXMLLoader loader = new FXMLLoader(url);
+      Parent root = loader.load();
+      Scene adminScene = new Scene(root);
+
+      Stage adminStage = (Stage) adminPanel.getScene().getWindow();
+      adminStage.setScene(adminScene);
+      adminStage.show();
+
     }
     
     
