@@ -12,7 +12,7 @@
    <children>
       <TableView fx:id="userlst" layoutY="1.0" prefHeight="400.0" prefWidth="214.0">
         <columns>
-          <TableColumn prefWidth="199.20001220703125" text="Users" />
+          <TableColumn fx:id="usernameslst" prefWidth="199.20001220703125" text="Users" />
         </columns>
       </TableView>
       <Label layoutX="247.0" layoutY="41.0" prefHeight="18.0" prefWidth="261.0" text="User Name" />

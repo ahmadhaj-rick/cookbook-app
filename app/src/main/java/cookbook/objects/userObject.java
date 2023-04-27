@@ -54,7 +54,7 @@ public class userObject {
     if(isAdmin == true) {
       this.admin = isAdmin;
     } else {
-      this.admin = null;
+      this.admin = false;
     }
   }
 
