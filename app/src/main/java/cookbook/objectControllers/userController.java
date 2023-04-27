@@ -89,7 +89,6 @@ public class userController {
     } catch (SQLException x) {
       System.out.println(x);
     }
-    System.out.println(loggedInUser.getId() + loggedInUser.getName() + loggedInUser.getPass() + loggedInUser.getUser_name() + loggedInUser.getAdminPrivelages());
     return loggedInUser;
   }
 
