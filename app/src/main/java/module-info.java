@@ -7,5 +7,5 @@ module cookbook {
 
   exports cookbook;
   opens cookbook to javafx.graphics;
-  exports cookbook.javaFX to javafx.fxml;
+  opens cookbook.javaFX to javafx.fxml;
 }

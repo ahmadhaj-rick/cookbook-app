@@ -51,11 +51,5 @@ public class Login {
     }
   }
 
-  @FXML
-  public void handleLoginButton(ActionEvent event) throws SQLException, IOException {
-    userLogin(event);
-  }
-  
-
 }
  
