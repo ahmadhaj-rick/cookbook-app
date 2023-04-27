@@ -80,7 +80,26 @@ public class mainMenu {
       adminStage.setScene(adminScene);
       adminStage.show();
 
+
+      // Wait for the admin panel to close
+      adminStage.setOnCloseRequest(e -> {
+        try {
+          URL url2 = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
+          FXMLLoader loader2 = new FXMLLoader(url2);
+          Parent root2 = loader2.load();
+          Scene mainMenu = new Scene(root2);
+
+          Stage mainMenuStage = new Stage();
+          mainMenuStage.setScene(mainMenu);
+          mainMenuStage.show();
+
+        } catch (IOException ioException) {
+          ioException.printStackTrace();
+        }
+      });
     }
+
+    
     
     
   }
