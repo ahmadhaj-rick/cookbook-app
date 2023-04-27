@@ -14,6 +14,7 @@ import cookbook.objects.userObject;;
 public class userController {
   
   //Returns a list of the users, This is mainly for the admin screen to edit users information.
+  public static userObject loggedInUser;
 
   public static List<userObject> getUsers() throws SQLException {
     String query = "SELECT * FROM user;";
@@ -69,7 +70,7 @@ public class userController {
     String query = "SELECT * FROM user WHERE username=(?) AND password=(?) LIMIT 1;";
 
     //If theres no user with that information, return null.
-    userObject user = null;
+    loggedInUser = null;
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
     try(PreparedStatement sqlStatement = conn.prepareStatement(query)) {
@@ -77,7 +78,7 @@ public class userController {
       sqlStatement.setString(2, password);
       ResultSet result = sqlStatement.executeQuery();
       if(result.next()) {
-        user = new userObject(
+        loggedInUser = new userObject(
         result.getString("user_id"),
         result.getString("fname"),
         result.getString("username"),
@@ -88,7 +89,8 @@ public class userController {
     } catch (SQLException x) {
       System.out.println(x);
     }
-    return user;
+    System.out.println(loggedInUser.getId() + loggedInUser.getName() + loggedInUser.getPass() + loggedInUser.getUser_name() + loggedInUser.getAdminPrivelages());
+    return loggedInUser;
   }
 
   public static void addUser(String name, String username, String password, Boolean isAdmin) throws SQLException {
