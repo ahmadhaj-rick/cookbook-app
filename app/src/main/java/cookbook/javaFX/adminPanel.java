@@ -29,7 +29,7 @@ public class adminPanel {
   @FXML
   public TextField txtDisplayName;
   @FXML
-  public TextField txtpassword;
+  public TextField txtPassword;
   @FXML
   public TableView<userObject> userlst;
 
@@ -37,7 +37,7 @@ public class adminPanel {
   public void adminCreateUser(ActionEvent event) throws SQLException, IOException {
     String name = txtDisplayName.getText();
     String username = txtUserName.getText();
-    String password = txtpassword.getText();
+    String password = txtPassword.getText();
     try {
       userController.addUser(name, username, password, false);
       Alert success = new Alert(Alert.AlertType.INFORMATION);
