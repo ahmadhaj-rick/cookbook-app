@@ -32,8 +32,10 @@ public class mainMenu {
     @FXML 
     public Button quitbutton;
 
- /*   public void homePage(AtionEvent event) throws SQLException, IOException {
+   public void homePage(ActionEvent event) throws SQLException, IOException {
 
-    }*/
+    
+
+    }
 
 }
