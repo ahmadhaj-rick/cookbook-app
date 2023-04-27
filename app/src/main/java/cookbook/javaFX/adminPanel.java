@@ -31,7 +31,7 @@ public class adminPanel {
   public TextField txtpassword;
 
 
-  public void adminCreateUser() throws SQLException, IOException {
+  public void adminCreateUser(ActionEvent event) throws SQLException, IOException {
     String name = txtDisplayName.getText();
     String username = txtUserName.getText();
     String password = txtpassword.getText();
