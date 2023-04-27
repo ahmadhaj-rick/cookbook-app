@@ -100,7 +100,7 @@ public class userController {
 
     UUID uniqueID = UUID.randomUUID();
     String userID = uniqueID.toString();
-
+  
     try(PreparedStatement sqlStatement = conn.prepareStatement(query)) {
       sqlStatement.setString(1, userID);
       sqlStatement.setString(2, name);

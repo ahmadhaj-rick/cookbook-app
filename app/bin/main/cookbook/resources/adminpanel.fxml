@@ -13,7 +13,7 @@
    <children>
       <TableView fx:id="userlst" layoutY="1.0" prefHeight="400.0" prefWidth="214.0">
         <columns>
-          <TableColumn prefWidth="199.20001220703125" text="Users" />
+          <TableColumn fx:id="usernameslst" prefWidth="199.20001220703125" text="Users" />
         </columns>
       </TableView>
       <Label layoutX="247.0" layoutY="41.0" prefHeight="18.0" prefWidth="261.0" text="User Name" />
@@ -26,7 +26,7 @@
          <children>
             <Button fx:id="modifyuser" mnemonicParsing="false" prefHeight="58.0" prefWidth="126.0" text="Modify" />
             <Button fx:id="deleteuser" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="124.0" text="Delete" />
-            <Button fx:id="createuser" layoutX="116.0" layoutY="10.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="134.0" text="Create New" />
+            <Button fx:id="createuser" layoutX="116.0" layoutY="10.0" mnemonicParsing="false" onAction="#adminCreateUser" prefHeight="58.0" prefWidth="134.0" text="Create New" />
          </children>
       </HBox>
    </children>
