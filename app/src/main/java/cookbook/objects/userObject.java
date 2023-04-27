@@ -1,25 +1,28 @@
+// Declaring a package
+
 package cookbook.objects;
 
 public class userObject {
-  private int Id;
+  private String Id;
   private String name;
   private String username;
   private String pass;
   private Boolean admin;
 
-  public userObject(int ID, String name, String username, String pass, Boolean isAdmin) {
-    setUserId(ID);
+  // making the constructor for the user project
+  public userObject(String i, String name, String username, String pass, Boolean isAdmin) {
+    setUserId(i);
     setName(name);
     setUserName(username);
     setPass(pass);
     setAdminPrivelages(isAdmin);
   }
-
-  public int getId() {
+  // Using Setters and getters
+  public String getId() {
     return Id;
   }
 
-  private void setUserId(int inputId) {
+  private void setUserId(String inputId) {
     this.Id = inputId;
   }
 
@@ -51,7 +54,7 @@ public class userObject {
     if(isAdmin == true) {
       this.admin = isAdmin;
     } else {
-      this.admin = null;
+      this.admin = false;
     }
   }
 

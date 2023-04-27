@@ -1,6 +1,5 @@
 
 package cookbook.javaFX;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -32,8 +31,10 @@ public class Login {
 
     userObject realUser = userController.searchForUser(username, pass);
 
+    // using else-if statements to switch scene if user is found
+
     if(realUser != null) {
-      URL url = new File("src/main/java/cookbook/resources/Mainmenu.fxml").toURI().toURL();
+      URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
       FXMLLoader loader = new FXMLLoader(url);
       Parent root = loader.load();
       Scene mainMenu = new Scene(root);
@@ -49,12 +50,6 @@ public class Login {
 
     }
   }
-
-  @FXML
-  public void handleLoginButton(ActionEvent event) throws SQLException, IOException {
-    userLogin(event);
-  }
-  
 
 }
  
