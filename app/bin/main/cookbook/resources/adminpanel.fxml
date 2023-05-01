@@ -24,7 +24,7 @@
       <TextField fx:id="txtPassword" layoutX="247.0" layoutY="239.0" prefHeight="26.0" prefWidth="226.0" />
       <HBox layoutX="214.0" layoutY="341.0" prefHeight="58.0" prefWidth="384.0">
          <children>
-            <Button fx:id="modifyuser" mnemonicParsing="false" prefHeight="58.0" prefWidth="126.0" text="Modify" />
+            <Button fx:id="modifyuser" mnemonicParsing="false" onAction="#modifyUser" prefHeight="58.0" prefWidth="126.0" text="Modify" />
             <Button fx:id="deleteuser" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction ="#adminDeleteUser" prefHeight="58.0" prefWidth="124.0" text="Delete" />
             <Button fx:id="createuser" layoutX="116.0" layoutY="10.0" mnemonicParsing="false" onAction="#adminCreateUser" prefHeight="58.0" prefWidth="134.0" text="Create New" />
          </children>

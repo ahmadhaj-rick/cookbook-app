@@ -113,6 +113,21 @@ public class userController {
     }
   }
 
+  public static void editUser(String name, String username, String password, String userID) throws SQLException {
+    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
+    String updateQuery = "UPDATE user SET fname=(?), username=(?), password=(?) WHERE user_id=(?)";
+
+    try(PreparedStatement sqlStatement = conn.prepareStatement(updateQuery)) {
+      sqlStatement.setString(1, name);
+      sqlStatement.setString(2, username);
+      sqlStatement.setString(3, password);
+      sqlStatement.setString(4, userID);
+      sqlStatement.executeUpdate();
+    } catch (SQLException x) {
+      System.out.println(x);
+    }
+  }
+
   public static void deleteUser(String name, String username, String password) throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String deleteString = "DELETE FROM user WHERE fname=(?) AND username=(?) AND password=(?);";

@@ -42,6 +42,12 @@ public class adminPanel implements Initializable {
 
   public List<userObject> users;
 
+
+
+  public void refreshData() {
+
+  }
+
   public void adminCreateUser(ActionEvent event) throws SQLException, IOException {
     String name = txtDisplayName.getText();
     String username = txtUserName.getText();
@@ -77,7 +83,18 @@ public class adminPanel implements Initializable {
       failure.setContentText(x.toString());
       failure.show();
     }
+  }
 
+  public void modifyUser(ActionEvent event) throws SQLException, IOException {
+    userObject user = userlst.getSelectionModel().getSelectedItem();
+    if(user == null) {
+      return;
+    }
+    userController.editUser(txtDisplayName.getText(), txtUserName.getText(), txtPassword.getText(), user.getId());
+    Alert success = new Alert(Alert.AlertType.INFORMATION);
+    success.setTitle("Success!");
+    success.setContentText("You successfully modified a user!");
+    success.show();
   }
 
 
