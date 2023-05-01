@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27d26e4e-dfb4-41b6-bb64-81cdf528262d" name="Changes" comment="mainmenu design" />
+    <list default="true" id="27d26e4e-dfb4-41b6-bb64-81cdf528262d" name="Changes" comment="different designs for different scenes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/cookbook/resources/homepage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cookbook/resources/homepage.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,7 +69,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/tnn99/Documents/LinnusUnivesitet years work/Project Course in Computer Science (1DV508)/cookbook-2022",
+    "last_opened_file_path": "C:/Users/tnn99/Documents/LinnusUnivesitet years work/Object Oriented Analysis and Design using UML/a2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
