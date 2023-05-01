@@ -58,9 +58,26 @@ public class adminPanel implements Initializable {
       failure.setContentText(x.toString());
       failure.show();
     }
-    
+  }
 
+  public void adminDeleteUser(ActionEvent event) throws SQLException, IOException{
+    String name = txtDisplayName.getText();
+    String username = txtUserName.getText();
+    String password = txtPassword.getText();
     
+    try{
+      userController.deleteUser(name, username, password);
+      Alert success = new Alert(Alert.AlertType.INFORMATION);
+      success.setTitle("Success!");
+      success.setContentText("You successfully deleted a user!");
+      success.show();
+    } catch (SQLException x) {
+      Alert failure = new Alert(Alert.AlertType.INFORMATION);
+      failure.setTitle("Success!");
+      failure.setContentText(x.toString());
+      failure.show();
+    }
+
   }
 
 
