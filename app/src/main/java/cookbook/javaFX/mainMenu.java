@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+
+import cookbook.Cookbook;
 import cookbook.objectControllers.userController;
 import cookbook.objects.userObject;
 import javafx.event.ActionEvent;
@@ -101,27 +103,18 @@ public class mainMenu {
   }
 
   public void exitClick(ActionEvent event) throws SQLException, IOException {
-    Parent homePage = null;
-    try {
-      URL url = new File("src/main/java/cookbook/resources/login.fxml").toURI().toURL();
-      FXMLLoader loader = new FXMLLoader(url);
-      Parent root = loader.load();
-      Scene loginScene = new Scene(root);
-      Stage appStage = (Stage) quitbutton.getScene().getWindow();
-      appStage.hide();
-      appStage.setScene(loginScene);
-      appStage.show();
-      appStage.setHeight(500);
-      appStage.setWidth(500);
-      appStage.show();
-      appStage.setResizable(true);
-      appStage.centerOnScreen();
-      appStage.setTitle("Sign In");
-     // homePage = FXMLLoader.load(getClass().getResource("src/main/java/cookbook/resources/login.fxml"));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    
-  }
+    URL url = new File("src/main/java/cookbook/resources/login.fxml").toURI().toURL();
+    FXMLLoader loader = new FXMLLoader(url);
+    Parent root = loader.load();
+    Scene loginScene = new Scene(root);
 
+    Stage appStage = (Stage) quitbutton.getScene().getWindow();
+    appStage.setScene(loginScene);
+    appStage.show();
+    appStage.setHeight(500);
+    appStage.setWidth(700);
+    appStage.setResizable(true);
+    appStage.centerOnScreen();
+    appStage.setTitle("Sign In");
+  }
 }
