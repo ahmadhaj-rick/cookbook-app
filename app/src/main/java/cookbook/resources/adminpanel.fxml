@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #008080;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.resources.Adminpanel">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.resources.Adminpanel">
    <children>
       <TableView fx:id="userlst" layoutY="1.0" prefHeight="400.0" prefWidth="214.0" style=" -fx-background-color: #ECF0F1">
          <columns>
@@ -18,9 +18,9 @@
       <TextField fx:id="txtPassword" layoutX="247.0" layoutY="239.0" prefHeight="26.0" prefWidth="226.0" style="-fx-border-color: #000000; -fx-border-style: solid; -fx-border-width: 2.92233;" />
       <HBox layoutX="214.0" layoutY="341.0" prefHeight="58.0" prefWidth="384.0">
          <children>
-            <Button fx:id="modifyuser" mnemonicParsing="false" prefHeight="58.0" prefWidth="126.0" style="-fx-background-color:#FF7D33;" text="Modify" />
-            <Button fx:id="deleteuser" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="124.0" style="-fx-background-color:#FF7D33;" text="Delete" />
-            <Button fx:id="createuser" layoutX="116.0" layoutY="10.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="134.0" style="-fx-background-color:#FF7D33;" text="Create New" />
+            <Button fx:id="modifyuser" mnemonicParsing="false" prefHeight="58.0" prefWidth="126.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000" text="Modify" />
+            <Button fx:id="deleteuser" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="124.0" style="-fx-background-color:#F5B7B1; -fx-border-color: #000000" text="Delete" />
+            <Button fx:id="createuser" layoutX="116.0" layoutY="10.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="134.0" style="-fx-background-color:#F5B7B1; -fx-border-color: #000000" text="Create New" />
          </children>
       </HBox>
    </children>
