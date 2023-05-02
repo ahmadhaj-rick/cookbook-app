@@ -20,21 +20,21 @@ public class databasemn {
       System.out.println("database created");
     } catch(SQLException err) {
       err.printStackTrace();
-    } 
+    }
   }
 
- /*  private void createTableuser() {
+  private void createTableuser() {
     String usertbname = "CREATE TABLE IF NOT EXISTS user ("
-    + "user_id VARCHAR(60) NOT NULL," 
-    + "fname VARCHAR(20) NOT NULL," 
-    + "username VARCHAR(40) NOT NULL," 
-    +  "password VARCHAR(85) NOT NULL," 
-    + "admin_id BOOLEAN not null," 
-    + "PRIMARY KEY (user_id)," 
-    + "UNIQUE (username))"; 
+                        + "user_id VARCHAR(60) NOT NULL," 
+                        + "fname VARCHAR(20) NOT NULL," 
+                        + "username VARCHAR(40) NOT NULL," 
+                        + "password VARCHAR(85) NOT NULL," 
+                        + "admin_id BOOLEAN not null," 
+                        + "PRIMARY KEY (user_id)," 
+                        + "UNIQUE (username))"; 
     try {
-      cnn = DriverManager.getConnection(Db + dbna, user, pass);
-      stm = cnn.createStatement();
+      Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
+      Statement stm = cnn.createStatement();
       stm.executeUpdate(usertbname);
       System.out.println("table created");
     }
@@ -45,15 +45,15 @@ public class databasemn {
 
   private void createTablerecepie() {
     String recepietbname = "CREATE TABLE IF NOT EXISTS recepie ("
-    + "recepie_id VARCHAR(60) NOT NULL," 
-    + "name VARCHAR(50) NOT NULL," 
-    + " description VARCHAR(100) NOT NULL,"
-    + "category VARCHAR(50) NOT NULL," 
-    + " instructions VARCHAR(300) NOT NULL," 
-    + " PRIMARY KEY (recepie_id))";
+                            + "recepie_id VARCHAR(60) NOT NULL," 
+                            + "name VARCHAR(50) NOT NULL," 
+                            + "description VARCHAR(100) NOT NULL,"
+                            + "category VARCHAR(50) NOT NULL," 
+                            + "instructions VARCHAR(300) NOT NULL," 
+                            + "PRIMARY KEY (recepie_id))";
     try {
-      cnn = DriverManager.getConnection(Db + dbna, user, pass);
-      stm = cnn.createStatement();
+      Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
+      Statement stm = cnn.createStatement();
       stm.executeUpdate(recepietbname);
       System.out.println("table created");
     }
@@ -64,12 +64,12 @@ public class databasemn {
 
   private void createTableingredients() {
     String ingredientstbname = "CREATE TABLE IF NOT EXISTS ingredients ("
-    + "ingredient_id VARCHAR(60) NOT NULL," 
-    + "ingredient_name VARCHAR(50) NOT NULL," 
-    +"PRIMARY KEY (ingredient_id))";
+                                + "ingredient_id VARCHAR(60) NOT NULL," 
+                                + "ingredient_name VARCHAR(50) NOT NULL," 
+                                + "PRIMARY KEY (ingredient_id))";
     try {
-      cnn = DriverManager.getConnection(Db + dbna, user, pass);
-      stm = cnn.createStatement();
+      Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
+      Statement stm = cnn.createStatement();
       stm.executeUpdate(ingredientstbname);
       System.out.println("table created");
     }
@@ -82,13 +82,13 @@ public class databasemn {
 
   public void database_mn() {
     try {
-      cnn = DriverManager.getConnection(Db);
-    }
-    catch (SQLException ee) {
-      Main();
+      createDb();
       createTableuser();
       createTablerecepie();
       createTableingredients();
     }
-  } */
+    catch (Exception bread) {
+      System.out.println(bread);
+    }
+  }
 }
