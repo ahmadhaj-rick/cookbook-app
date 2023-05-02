@@ -15,7 +15,7 @@ public class recipeObject {
   private Boolean star;
   
   
-  public recipeObject(String id, String name, String shortDesc, int category, String instructions, String ingredient_id, Boolean Star) {
+  public recipeObject(String id, String name, String description, int category, String instructions, String ingredient_id, Boolean Star) {
     setId(id);
     setName(name);
     setDescription(description);
@@ -45,7 +45,7 @@ public class recipeObject {
     return description;
   }
   
-  public void setDescription(String shortDesc) {
+  public void setDescription(String description) {
     this.description = description;
   }
   
