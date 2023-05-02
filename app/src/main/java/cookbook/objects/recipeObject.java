@@ -7,12 +7,11 @@ public class recipeObject {
     private int category;
     private String instructions;
     private String ingredient_id;
-    private String name_ingredient;
     private String tag;
     private Boolean star;
 
     public recipeObject(String id, String name, String shortDesc, int category, String instructions,
-            String ingredient_id, Boolean star, String name_ingredient, String tag) {
+            String ingredient_id, Boolean star, String tag) {
         setId(id);
         setName(name);
         setDescription(description);
@@ -20,7 +19,6 @@ public class recipeObject {
         setInstructions(instructions);
         setIngredient_id(ingredient_id);
         setStar(star);
-        setName_ingredient(name_ingredient);
         setTag(tag);
 
     }
@@ -71,14 +69,6 @@ public class recipeObject {
 
     public void setIngredient_id(String ingredient_id) {
         this.ingredient_id = ingredient_id;
-    }
-
-    public String getName_ingredient() {
-        return name_ingredient;
-    }
-
-    public void setName_ingredient(String name_ingredient) {
-        this.name_ingredient = name_ingredient;
     }
 
     public String getTag() {
