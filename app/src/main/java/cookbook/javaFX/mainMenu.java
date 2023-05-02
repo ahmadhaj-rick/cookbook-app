@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import cookbook.objects.ingredientObject;
+import cookbook.objects.tagObject;
 import cookbook.objectControllers.userController;
 import cookbook.objects.userObject;
 import javafx.event.ActionEvent;
@@ -14,7 +18,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+import cookbook.objects.recipeObject;
+import cookbook.objectControllers.recipeControler;
 public class mainMenu {
   
   @FXML 
@@ -140,6 +145,26 @@ public class mainMenu {
     
     
     
+  }
+  public void search(String searchStr) throws SQLException, IOException {
+    recipeControler controller = new recipeControler(); // create an instance of recipeControler
+    List<recipeObject> recipes = controller.getRecpies(); // call the getRecpies()
+    List<recipeObject> filteredRecipes = new ArrayList<>();
+    for (recipeObject recipe : recipes) {
+      // check if the recipe name, ingredients, or tags contain the search string
+      if (recipe.getName().toLowerCase().contains(searchStr.toLowerCase())
+              || recipe.getInstructions().toLowerCase().contains(searchStr.toLowerCase())
+              || recipe.getName_ingredient().toLowerCase().contains(searchStr.toLowerCase())
+              || recipe.getTag_name().toLowerCase().contains(searchStr.toLowerCase()) ){
+        if (!filteredRecipes.contains(recipe)) {
+          // add the recipe to the filtered list if it hasn't been added already
+          filteredRecipes.add(recipe);
+        }
+      }
+    }
+
+    // do something with the filtered list of recipes
+    // e.g. display the results in a table or list view
   }
 
   public void exitClick(ActionEvent event) throws SQLException, IOException {

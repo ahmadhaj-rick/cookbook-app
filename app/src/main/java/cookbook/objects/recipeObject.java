@@ -24,7 +24,8 @@ public class recipeObject {
     setStar(star);
     
   }
-  
+
+
   public String getId() {
     return id;
   }
@@ -77,6 +78,14 @@ public class recipeObject {
     return new ArrayList<>(ingredientsList);
   }
 
+  public String tag_name;
+  public String getTag_name() {
+    return tag_name;
+  }
+  public String name_ingredient;
+  public String getName_ingredient() {
+    return name_ingredient;
+  }
   public void addIngredient(ingredientObject ingredient) {
     ingredientsList.add(ingredient);
   }
