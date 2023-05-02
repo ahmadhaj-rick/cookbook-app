@@ -1,5 +1,6 @@
 package cookbook.objects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class recipeObject {
@@ -8,7 +9,8 @@ public class recipeObject {
   private String description;
   private int category;
   private String instructions;
-  private String ingredient_id;
+  private ArrayList<ingredientObject> ingredientsList = new ArrayList<>();
+
   //private List<String> tag;
   private Boolean star;
   
@@ -19,7 +21,6 @@ public class recipeObject {
     setDescription(description);
     setCategory(category);
     setInstructions(instructions);
-    setIngredient_id(ingredient_id);
     setStar(star);
     
   }
@@ -63,14 +64,6 @@ public class recipeObject {
   public void setInstructions(String instructions) {
     this.instructions = instructions;
   }
-  
-  public String getIngredient_id() {
-    return ingredient_id;
-  }
-  
-  public void setIngredient_id(String ingredient_id) {
-    this.ingredient_id = ingredient_id;
-  }
 
   public void setStar(Boolean star) {
     if (star == false) {
@@ -78,6 +71,14 @@ public class recipeObject {
     } else {
      this.star = true; 
     }
+  }
+
+  public ArrayList<ingredientObject> getIngredientsList() {
+    return new ArrayList<>(ingredientsList);
+  }
+
+  public void addIngredient(ingredientObject ingredient) {
+    ingredientsList.add(ingredient);
   }
 
 }
