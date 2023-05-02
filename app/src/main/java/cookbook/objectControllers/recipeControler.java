@@ -8,18 +8,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cookbook.objects.ingredientObject;
 import cookbook.objects.recipeObject;
 
 public class recipeControler {
   
+  // ArrayList with the current recipes
+  public List<recipeObject> currentRecipeObjects = new ArrayList<>();
+
   public List<recipeObject> getRecpies() throws SQLException {
 
-    String query = "SELECT recepie.recepie_id, recepie.name, recepie.description, recepie.category, recepie.instructions, ingredients.ingredient_name
-    FROM recepie
-    JOIN recepie_ingredients ON recepie_ingredients.recepie_id = recepie.recepie_id
-    JOIN ingredients ON recepie_ingredients.ingredient_id = ingredients.ingredient_id
-    WHERE recepie.recepie_id = <your_recipe_id>;";
-    List<recipeObject> allRecipes = new ArrayList<>();
+    String query = "SELECT * FROM recipe";
+    ArrayList<recipeObject> allRecipes = new ArrayList<>();
 
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
@@ -36,7 +36,37 @@ public class recipeControler {
           result.getBoolean("star"));
 
         allRecipes.add(newRecipe);
+
       }
+
+      // adding ingredients for each recipe.
+      for (recipeObject recipeObject : allRecipes) {
+        String id = recipeObject.getId();
+        String ingQuery = "SELECT ingredients.ingredient_id, ingredients.ingredient_name " +
+                          "FROM recepie " +
+                          "JOIN recepie_ingredients ON recepie_ingredients.recepie_id = recepie.recepie_id " +
+                          "JOIN ingredients ON recepie_ingredients.ingredient_id = ingredients.ingredient_id " +
+                          "WHERE recepie.recepie_id = ?";
+        try (PreparedStatement ingStatement = conn.prepareStatement(ingQuery)) {
+          ingStatement.setString(1, id);
+          ResultSet ingResultSet = ingStatement.executeQuery();
+          while (ingResultSet.next()) {
+            ingredientObject newIng = new ingredientObject(
+              ingResultSet.getString("ingredient_id"),
+              ingResultSet.getString("name_ingredient")
+            );
+            recipeObject.addIngredient(newIng);
+          }
+
+          // we can add tag to the object here.
+
+        } catch (SQLException e) {
+          System.out.println( "Adding ingredients query" + e);
+        }
+      }
+
+
+
       result.close();
     } catch (SQLException e) {
       System.out.println(e);
