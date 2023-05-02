@@ -29,6 +29,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import cookbook.dbTools.databasemn;
+import cookbook.dbTools.dbseeder;
 import cookbook.javaFX.Login;
 import javafx.util.Duration;
 import javafx.scene.Parent;
@@ -88,6 +90,9 @@ public class Cookbook extends Application {
 
     databasemn initiatedatabase = new databasemn();
     initiatedatabase.database_mn();
+
+    dbseeder seed = new dbseeder();
+    seed.seed();
     
     // Connect to the MySQL database and display the connection status
   
