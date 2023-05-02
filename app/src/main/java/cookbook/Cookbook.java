@@ -83,16 +83,11 @@ public class Cookbook extends Application {
     },
     5000
     );
-    
+    databasemn initiatedatabase = new databasemn();
+    initiatedatabase.database_mn();
     
     // Connect to the MySQL database and display the connection status
-    Label mysqlLabel;
-    try {
-      Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
-      mysqlLabel = new Label("Driver found and connected");
-    } catch (SQLException e) {
-      mysqlLabel = new Label("An error has occurred: " + e.getMessage());
-    }
+  
     
     primaryStage.setTitle("My JavaFX App");
 
@@ -101,8 +96,7 @@ public class Cookbook extends Application {
 
 
   }
-  
-  
+ 
   public static void main(String[] args) {
     launch(args);
   }
