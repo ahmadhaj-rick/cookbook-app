@@ -14,12 +14,11 @@ import cookbook.objects.recipeObject;
 public class recipeControler {
   
   // ArrayList with the current recipes
-  public List<recipeObject> currentRecipeObjects = new ArrayList<>();
+  public ArrayList<recipeObject> currentRecipeObjects = new ArrayList<>();
 
   public List<recipeObject> getRecpies() throws SQLException {
 
     String query = "SELECT * FROM recipe";
-    ArrayList<recipeObject> allRecipes = new ArrayList<>();
 
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
@@ -34,13 +33,14 @@ public class recipeControler {
           result.getString("instructions"),
           result.getString("ingredient_id"),
           result.getBoolean("star"));
-
-        allRecipes.add(newRecipe);
+        
+        // this will upade the class ArrayList.
+        currentRecipeObjects.add(newRecipe);
 
       }
 
       // adding ingredients for each recipe.
-      for (recipeObject recipeObject : allRecipes) {
+      for (recipeObject recipeObject : currentRecipeObjects) {
         String id = recipeObject.getId();
         String ingQuery = "SELECT ingredients.ingredient_id, ingredients.ingredient_name " +
                           "FROM recepie " +
@@ -71,10 +71,10 @@ public class recipeControler {
     } catch (SQLException e) {
       System.out.println(e);
     }
-    return allRecipes;
+    return currentRecipeObjects;
   }
 
-
+  
   
 
 }
