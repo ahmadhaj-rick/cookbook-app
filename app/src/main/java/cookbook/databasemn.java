@@ -7,28 +7,23 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class databasemn {
-  private String Db = "dbc:mysql://localhost:3306/";
-  private String dbna = "cookbook";
-  private String user = "root";
-  private String pass = "";
-  private String userpass = "?user=root&password=";
-  private Connection cnn;
-  private Statement stm;
-  private ResultSet result;
+  private static String dbUrl = "jdbc:mysql://localhost:3306/";
+  private String creds = "?user=root&password=root";
+  private static String dbna = "cookbook";
 
 
-  public void Main() {
+  public void createDb() {
     try {
-      Connection cnn = DriverManager.getConnection(Db + userpass);
+      Connection cnn = DriverManager.getConnection(dbUrl + creds);
       Statement stm = cnn.createStatement();
-      int myR = stm.executeUpdate("CREATE DATABASE IF NOT EXISTS" + dbna);
+      int myR = stm.executeUpdate("CREATE DATABASE IF NOT EXISTS " + dbna);
       System.out.println("database created");
     } catch(SQLException err) {
       err.printStackTrace();
     } 
   }
 
-  private void createTableuser() {
+ /*  private void createTableuser() {
     String usertbname = "CREATE TABLE IF NOT EXISTS user ("
     + "user_id VARCHAR(60) NOT NULL," 
     + "fname VARCHAR(20) NOT NULL," 
@@ -95,5 +90,5 @@ public class databasemn {
       createTablerecepie();
       createTableingredients();
     }
-  }
+  } */
 }

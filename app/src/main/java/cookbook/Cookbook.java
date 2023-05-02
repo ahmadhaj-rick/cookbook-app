@@ -84,7 +84,7 @@ public class Cookbook extends Application {
     5000
     );
     databasemn initiatedatabase = new databasemn();
-    initiatedatabase.database_mn();
+    initiatedatabase.createDb();
     
     // Connect to the MySQL database and display the connection status
   
