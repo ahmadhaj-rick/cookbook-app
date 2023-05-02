@@ -112,7 +112,7 @@ public class mainMenu {
     appStage.setScene(loginScene);
     appStage.show();
     appStage.setHeight(500);
-    appStage.setWidth(700);
+    appStage.setWidth(650);
     appStage.setResizable(true);
     appStage.centerOnScreen();
     appStage.setTitle("Sign In");
