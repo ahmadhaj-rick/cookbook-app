@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+
+import cookbook.Cookbook;
 import cookbook.objectControllers.userController;
 import cookbook.objects.userObject;
 import javafx.event.ActionEvent;
@@ -135,17 +137,22 @@ public class mainMenu {
           ioException.printStackTrace();
         }
       });
-    }
-
-    
-    
-    
+    } 
   }
 
   public void exitClick(ActionEvent event) throws SQLException, IOException {
-    
-    
-    
+    URL url = new File("src/main/java/cookbook/resources/login.fxml").toURI().toURL();
+    FXMLLoader loader = new FXMLLoader(url);
+    Parent root = loader.load();
+    Scene loginScene = new Scene(root);
+
+    Stage appStage = (Stage) quitbutton.getScene().getWindow();
+    appStage.setScene(loginScene);
+    appStage.show();
+    appStage.setHeight(500);
+    appStage.setWidth(650);
+    appStage.setResizable(true);
+    appStage.centerOnScreen();
+    appStage.setTitle("Sign In");
   }
-  
 }
