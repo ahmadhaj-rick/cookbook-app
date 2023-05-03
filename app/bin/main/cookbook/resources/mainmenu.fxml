@@ -29,7 +29,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="inboxbutton" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#inboxCLick" prefHeight="100.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+            <Button fx:id="inboxbutton" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#inboxClick" prefHeight="100.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -73,7 +73,7 @@ public class mainMenu {
   }
   public void inboxClick(ActionEvent event) throws SQLException, IOException {
     
-    // Go to the inbox screen
+  /*   // Go to the inbox screen
   URL url = new File("src/main/java/cookbook/resources/inbox.fxml").toURI().toURL();
   FXMLLoader loader = new FXMLLoader(url);
   Parent root = loader.load();
@@ -81,12 +81,12 @@ public class mainMenu {
 
   Stage inboxStage = (Stage) inboxbutton.getScene().getWindow();
   inboxStage.setScene(inboxScene);
-  inboxStage.show();
+  inboxStage.show(); */
     
   } 
   public void weeklistClick(ActionEvent event) throws SQLException, IOException {
     
-    // Go to the week list screen
+  /*   // Go to the week list screen
   URL url = new File("src/main/java/cookbook/resources/weeklist.fxml").toURI().toURL();
   FXMLLoader loader = new FXMLLoader(url);
   Parent root = loader.load();
@@ -94,19 +94,19 @@ public class mainMenu {
 
   Stage weeklistStage = (Stage) weeklistbutton.getScene().getWindow();
   weeklistStage.setScene(weeklistScene);
-  weeklistStage.show();
+  weeklistStage.show(); */
     
   }
 
   public void helpClick(ActionEvent event) throws SQLException, IOException {
     
-    // Show a help dialog
+/*     // Show a help dialog
   Alert alert = new Alert(Alert.AlertType.INFORMATION);
   alert.setTitle("Help");
   alert.setHeaderText("How to use this app");
   alert.setContentText("You can use this app to browse, create and share recipes. You can also plan your weekly meals and get notifications from other users. For more details, please visit our website.");
   
-  alert.showAndWait();
+  alert.showAndWait(); */
     
   }
 
