@@ -10,12 +10,15 @@ import cookbook.objects.ingredientObject;
 import cookbook.objects.tagObject;
 import cookbook.objectControllers.userController;
 import cookbook.objects.userObject;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import cookbook.objects.recipeObject;
@@ -36,7 +39,11 @@ public class mainMenu {
   public Button adminPanel;
   @FXML 
   public Button quitbutton;
-  
+
+  @FXML
+  public TextField search;
+  @FXML
+  public TableView<recipeObject> recipeLists;
 
   public void homeClick(ActionEvent event) throws SQLException, IOException {
     
@@ -146,25 +153,26 @@ public class mainMenu {
     
     
   }
-  public void search(String searchStr) throws SQLException, IOException {
+  public void searchMethod() throws SQLException, IOException {
+    String searchTxt = search.getText();
     recipeControler controller = new recipeControler(); // create an instance of recipeControler
     List<recipeObject> recipes = controller.getRecpies(); // call the getRecpies()
     List<recipeObject> filteredRecipes = new ArrayList<>();
     for (recipeObject recipe : recipes) {
       // check if the recipe name, ingredients, or tags contain the search string
-      if (recipe.getName().toLowerCase().contains(searchStr.toLowerCase())
-              || recipe.getInstructions().toLowerCase().contains(searchStr.toLowerCase())
-              || recipe.getName_ingredient().toLowerCase().contains(searchStr.toLowerCase())
-              || recipe.getTag_name().toLowerCase().contains(searchStr.toLowerCase()) ){
+      if (recipe.getName().toLowerCase().contains(searchTxt.toLowerCase())
+              || recipe.getInstructions().toLowerCase().contains(searchTxt.toLowerCase())
+              || recipe.getName_ingredient().toLowerCase().contains(searchTxt.toLowerCase())
+              || recipe.getTag_name().toLowerCase().contains(searchTxt.toLowerCase()) ){
         if (!filteredRecipes.contains(recipe)) {
           // add the recipe to the filtered list if it hasn't been added already
           filteredRecipes.add(recipe);
         }
       }
     }
-
-    // do something with the filtered list of recipes
-    // e.g. display the results in a table or list view
+    // set the items of the TableView to the filtered list of recipes
+    ObservableList<recipeObject> observableFilteredRecipes = FXCollections.observableArrayList(filteredRecipes);
+    recipeLists.setItems(observableFilteredRecipes);
   }
 
   public void exitClick(ActionEvent event) throws SQLException, IOException {
