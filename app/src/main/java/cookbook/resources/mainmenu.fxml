@@ -3,79 +3,22 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.mainMenu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox layoutX="-3.0" layoutY="1.0" prefHeight="400.0" prefWidth="118.0">
          <children>
-            <Button fx:id="homebtn" mnemonicParsing="false" onAction="#homeClick" prefHeight="51.0" prefWidth="118.0" style="-fx-background-color: transparent;" text="Hom" >
-            <graphic>
-            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/Hom.png"/>
-               </image>
-            </ImageView>
-         </graphic>
-         </Button>
-            <Button fx:id="addbutton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addClick" prefHeight="50.0" prefWidth="118.0" text="Recipe" >
-            <graphic>
-            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/AddRecipe.png"/>
-               </image>
-            </ImageView>
-         </graphic>
-         </Button>
-            <Button fx:id="inboxbutton" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#inboxClick" prefHeight="47.0" prefWidth="118.0" text="Inbox" >
-            <graphic>
-            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/inbox.png"/>  
-               </image>
-            </ImageView>
-         </graphic>
-         </Button>
-            <Button fx:id="weeklistbutton" layoutX="10.0" layoutY="63.0" mnemonicParsing="false" onAction="#weeklistClick" prefHeight="52.0" prefWidth="118.0" text="Weeklist" >
-            <graphic>
-            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/WList.png"/>   
-               </image>
-            </ImageView>
-         </graphic>
-         </Button>
-            <Button fx:id="helpbutton" layoutX="10.0" layoutY="89.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="50.0" prefWidth="118.0" text="Help" >
-            <graphic>
-            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/Help.png"/>   
-               </image>
-            </ImageView>
-         </graphic>
-         </Button>
-            <Button fx:id="adminPanel" layoutX="10.0" layoutY="116.0" mnemonicParsing="false" onAction="#adminPanelClick" prefHeight="48.0" prefWidth="118.0" text="Admin" >
-            <graphic>
-            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/Admin.png"/> 
-               </image>
-            </ImageView>
-         </graphic>
-         </Button>
-            <Button fx:id="quitbutton" layoutX="10.0" layoutY="142.0" mnemonicParsing="false" onAction="#exitClick" prefHeight="99.0" prefWidth="118.0" text="Quit" >
-            <graphic>
-            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/Quit.png"/> 
-               </image>
-            </ImageView>
-         </graphic>
-         </Button>
+            <Button fx:id="homebtn" mnemonicParsing="false"  prefHeight="51.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000" text="Home" />
+            <Button fx:id="addbutton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"  prefHeight="50.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000" text="Add Recipe" />
+            <Button fx:id="inboxbutton" layoutX="10.0" layoutY="36.0" mnemonicParsing="false"  prefHeight="47.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000" text="Inbox" />
+            <Button fx:id="weeklistbutton" layoutX="10.0" layoutY="63.0" mnemonicParsing="false"  prefHeight="52.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000" text="Weekly list" />
+            <Button fx:id="helpbutton" layoutX="10.0" layoutY="89.0" mnemonicParsing="false"  prefHeight="50.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000" text="Help" />
+            <Button fx:id="adminPanel" layoutX="10.0" layoutY="116.0" mnemonicParsing="false"  prefHeight="48.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000" text="Admin" />
+            <Button fx:id="quitbutton" layoutX="10.0" layoutY="142.0" mnemonicParsing="false"  prefHeight="99.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000" text="Quit" />
          </children>
       </VBox>
       <Separator layoutX="115.0" layoutY="1.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="5.0" />
