@@ -29,6 +29,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import cookbook.dbTools.databasemn;
+import cookbook.dbTools.dbseeder;
 import cookbook.javaFX.Login;
 import javafx.util.Duration;
 import javafx.scene.Parent;
@@ -83,16 +85,17 @@ public class Cookbook extends Application {
     },
     5000
     );
-    
+
+    // init the database
+
+    databasemn initiatedatabase = new databasemn();
+    initiatedatabase.database_mn();
+
+    dbseeder seed = new dbseeder();
+    seed.seed();
     
     // Connect to the MySQL database and display the connection status
-    Label mysqlLabel;
-    try {
-      Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
-      mysqlLabel = new Label("Driver found and connected");
-    } catch (SQLException e) {
-      mysqlLabel = new Label("An error has occurred: " + e.getMessage());
-    }
+  
     
     primaryStage.setTitle("My JavaFX App");
 
@@ -101,8 +104,7 @@ public class Cookbook extends Application {
 
 
   }
-  
-  
+ 
   public static void main(String[] args) {
     launch(args);
   }
