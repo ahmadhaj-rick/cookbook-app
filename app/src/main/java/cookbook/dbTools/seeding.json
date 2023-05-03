@@ -1,5 +1,5 @@
 {
-    "users": [
+    "user": [
         {
             "user_id": "d290f1ee-6c54-4b01-90e6-d701748f0851",
             "fname": "John",
@@ -16,16 +16,16 @@
         }
     ],
 
-    "recipes": [
+    "recipe": [
         {
-            "recepie_id": "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
+            "recipe_id": "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
             "name": "Spaghetti Bolognese",
             "description": "A classic Italian dish",
             "category": "Pasta",
             "instructions": "Cook the spaghetti according to the package instructions. In a separate pan, cook the ground beef and tomato sauce. Serve the spaghetti with the sauce on top."
         },
         {
-            "recepie_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
+            "recipe_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
             "name" : " Chicken Alfredo",
             "description" : " A creamy pasta dish",
             "category" : " Pasta",
@@ -62,27 +62,27 @@
 
     "recipe_ingredients" : [
         {
-            " recepie_id" : " d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
+            " recipe_id" : " d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
             " ingredient_id" : " f6c0d8ef-6225-49cb-bb3e-f7b5cf9ab4a7"
         },
         {
-            " recepie_id" : " d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
+            " recipe_id" : " d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
             " ingredient_id" : " cdb63720-9628-47f1-a0fe-4ddf28a7a655"
         },
         {
-            " recepie_id" : " d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
+            " recipe_id" : " d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
             " ingredient_id" : "a6b68b08-4507-423e-bd03-dce230bddb58"
         },
         {
-            " recepie_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
+            " recipe_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
             " ingredient_id" : "c1f0c3a1-37a4-4b5d-83f6-2b4c1e9e55eb"
         },
         {
-            " recepie_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
+            " recipe_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
             " ingredient_id" : "2d6e17c5-3e6d-4f90-bf89-ea2e2f8dd0e8"
         },
         {
-            " recepie_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
+            " recipe_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
             " ingredient_id" : "9d3f0e3a-7a6c-4f07-bd6b-20c9a7b10a27"
         }
     ]
