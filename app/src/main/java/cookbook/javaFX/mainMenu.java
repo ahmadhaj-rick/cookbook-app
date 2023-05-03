@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -33,7 +34,15 @@ public class mainMenu {
   public Button adminPanel;
   @FXML 
   public Button quitbutton;
+  @FXML
+  public Label UserNameMain;
   
+  
+  
+  public void setUserName(ActionEvent event) throws IOException {
+    userObject loggedUser = userController.loggedInUser;
+    UserNameMain.setText("Welcome: " + loggedUser.getName());
+  }
 
   public void homeClick(ActionEvent event) throws SQLException, IOException {
     

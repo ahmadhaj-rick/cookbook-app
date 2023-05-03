@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.mainMenu">
    <children>
       <VBox prefHeight="700.0" prefWidth="94.0">
          <children>
-            <Button fx:id="homebtn" mnemonicParsing="false" prefHeight="100.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+            <Button fx:id="homebtn" mnemonicParsing="false" onAction="#homeClick" prefHeight="100.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -21,7 +21,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="addbutton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+            <Button fx:id="addbutton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addClick" prefHeight="100.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -29,7 +29,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="inboxbutton" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+            <Button fx:id="inboxbutton" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#inboxCLick" prefHeight="100.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -37,7 +37,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="weeklistbutton" layoutX="10.0" layoutY="63.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+            <Button fx:id="weeklistbutton" layoutX="10.0" layoutY="63.0" mnemonicParsing="false" onAction="#weeklistClick" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -45,7 +45,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="helpbutton" layoutX="10.0" layoutY="89.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+            <Button fx:id="helpbutton" layoutX="10.0" layoutY="89.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -53,7 +53,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="adminPanel" layoutX="10.0" layoutY="116.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+            <Button fx:id="adminPanel" layoutX="10.0" layoutY="116.0" mnemonicParsing="false" onAction="#adminPanelClick" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,7 +61,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="quitbutton" layoutX="10.0" layoutY="142.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+            <Button fx:id="quitbutton" layoutX="10.0" layoutY="142.0" mnemonicParsing="false" onAction="#exitClick" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -76,7 +76,7 @@
          <children>
             <Pane layoutX="14.0" layoutY="14.0" prefHeight="47.0" prefWidth="399.0">
                <children>
-                  <Label fx:id="UserName" layoutX="19.0" layoutY="15.0" prefHeight="17.0" prefWidth="305.0" text="name of the one who is signed" textAlignment="CENTER" />
+                  <Label fx:id="UserNameMain" layoutX="19.0" layoutY="15.0" prefHeight="17.0" prefWidth="305.0" textAlignment="CENTER" />
                </children>
             </Pane>
             <ImageView fitHeight="617.0" fitWidth="879.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
