@@ -6,8 +6,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
+import cookbook.objects.recipeObject;
 import cookbook.objects.ingredientObject;
 import cookbook.objects.tagObject;
+import cookbook.objectControllers.recipeControler;
 import cookbook.objectControllers.userController;
 import cookbook.objects.userObject;
 import javafx.collections.FXCollections;
@@ -16,14 +19,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import cookbook.objects.recipeObject;
 import cookbook.objectControllers.recipeControler;
-public class mainMenu {
+
+public class mainMenu implements Initializable {
   
   @FXML 
   public Button homebtn;
@@ -40,22 +42,18 @@ public class mainMenu {
   @FXML 
   public Button quitbutton;
 
-  @FXML
-  public TextField search;
-  @FXML
-  public TableView<recipeObject> recipeLists;
 
   public void homeClick(ActionEvent event) throws SQLException, IOException {
     
     // Go back to the home screen
-  /**URL url = new File("src/main/java/cookbook/resources/home.fxml").toURI().toURL();
+ URL url = new File("src/main/java/cookbook/resources/homepage.fxml").toURI().toURL();
   FXMLLoader loader = new FXMLLoader(url);
   Parent root = loader.load();
   Scene homeScene = new Scene(root);
 
   Stage homeStage = (Stage) homebtn.getScene().getWindow();
   homeStage.setScene(homeScene);
-  homeStage.show();*/
+  homeStage.show();
     
   }
 
@@ -153,32 +151,11 @@ public class mainMenu {
     
     
   }
-  public void searchMethod() throws SQLException, IOException {
-    String searchTxt = search.getText();
-    recipeControler controller = new recipeControler(); // create an instance of recipeControler
-    List<recipeObject> recipes = controller.getRecpies(); // call the getRecpies()
-    List<recipeObject> filteredRecipes = new ArrayList<>();
-    for (recipeObject recipe : recipes) {
-      // check if the recipe name, ingredients, or tags contain the search string
-      if (recipe.getName().toLowerCase().contains(searchTxt.toLowerCase())
-              || recipe.getInstructions().toLowerCase().contains(searchTxt.toLowerCase())
-              || recipe.getName_ingredient().toLowerCase().contains(searchTxt.toLowerCase())
-              || recipe.getTag_name().toLowerCase().contains(searchTxt.toLowerCase()) ){
-        if (!filteredRecipes.contains(recipe)) {
-          // add the recipe to the filtered list if it hasn't been added already
-          filteredRecipes.add(recipe);
-        }
-      }
-    }
-    // set the items of the TableView to the filtered list of recipes
-    ObservableList<recipeObject> observableFilteredRecipes = FXCollections.observableArrayList(filteredRecipes);
-    recipeLists.setItems(observableFilteredRecipes);
-  }
 
   public void exitClick(ActionEvent event) throws SQLException, IOException {
     
     
     
   }
-  
+
 }

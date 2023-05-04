@@ -14,10 +14,10 @@ import cookbook.objects.recipeObject;
 public class recipeControler {
   
   // ArrayList with the current recipes
-  public ArrayList<recipeObject> currentRecipeObjects = new ArrayList<>();
+  public ArrayList<recipeObject> allRecipes = new ArrayList<>();
 
-  public List<recipeObject> getRecpies() throws SQLException {
-
+  public static List<recipeObject> getRecpies() throws SQLException {
+    ArrayList<recipeObject> currentRecipeObjects = new ArrayList<>();
     String query = "SELECT * FROM recipe";
 
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
