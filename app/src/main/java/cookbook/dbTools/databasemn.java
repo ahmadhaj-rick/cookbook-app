@@ -45,13 +45,13 @@ public class databasemn {
   
   private void createTablerecipe() {
     String recipetbname = "CREATE TABLE IF NOT EXISTS recipe ("
-    + "recipe_id VARCHAR(60) NOT NULL," 
-    + "name VARCHAR(50) NOT NULL," 
-    + "description VARCHAR(100) NOT NULL,"
-    + "category VARCHAR(50) NOT NULL," 
-    + "instructions VARCHAR(300) NOT NULL,"
-    + "star BOOLEAN NOT NULL," 
-    + "PRIMARY KEY (recipe_id))";
+                            + "recipe_id VARCHAR(60) NOT NULL," 
+                            + "name VARCHAR(50) NOT NULL," 
+                            + "description VARCHAR(100) NOT NULL,"
+                            + "category VARCHAR(50) NOT NULL," 
+                            + "instructions VARCHAR(300) NOT NULL,"
+                            + "star BOOLEAN NOT NULL," 
+                            + "PRIMARY KEY (recipe_id))";
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
       Statement stm = cnn.createStatement();

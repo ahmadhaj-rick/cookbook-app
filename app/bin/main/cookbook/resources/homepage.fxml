@@ -16,13 +16,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.resources.Homepage">
+<AnchorPane fx:id="root" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.homePage">
    <children>
       <Separator layoutX="210.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="2.0" />
-      <TextField fx:id="search" layoutX="11.0" layoutY="13.0" prefHeight="26.0" prefWidth="186.0" style="-fx-border-style: solid; -fx-background-color: #FDFEFE; -fx-border-color: #5499C7;" text="Search" />
+      <TextField fx:id="search" layoutX="11.0" layoutY="13.0" prefHeight="27.0" prefWidth="131.0" style="-fx-border-style: solid; -fx-background-color: #FDFEFE; -fx-border-color: #5499C7;" text="Search" />
       <Label layoutX="225.0" layoutY="27.0" prefHeight="51.0" prefWidth="346.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Recipe Name" />
       <CheckBox fx:id="favoritecheck" layoutX="11.0" layoutY="45.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="186.0" style=" -fx-background-color: #FDFEFE; -fx-border-style: solid; -fx-border-color: #5499C7" text="Favorite Only" />
-      <TableView fx:id="recipeLst" layoutX="-2.0" layoutY="78.0" prefHeight="622.0" prefWidth="212.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;">
+      <TableView fx:id="recipeLists" layoutX="-2.0" layoutY="78.0" prefHeight="622.0" prefWidth="212.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;">
         <columns>
           <TableColumn prefWidth="207.19998168945312" text="Recipe" />
         </columns>
@@ -62,7 +62,7 @@
                         <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="52.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="+" />
                      </children>
                   </HBox>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="ingredients field" wrappingWidth="172.13671875">
+                  <Text fx:id="IngField" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="ingredients field" wrappingWidth="172.13671875">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -122,5 +122,6 @@
             </VBox>
          </content>
       </ScrollPane>
+      <Button fx:id="searchButton" layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchMethod" text="Search" />
    </children>
 </AnchorPane>

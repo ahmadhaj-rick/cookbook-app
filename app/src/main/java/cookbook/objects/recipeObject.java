@@ -7,7 +7,7 @@ public class recipeObject {
   private String id;
   private String name;
   private String description;
-  private int category;
+  private String category;
   private String instructions;
   private ArrayList<ingredientObject> ingredientsList = new ArrayList<>();
 
@@ -15,7 +15,7 @@ public class recipeObject {
   private Boolean star;
   
   
-  public recipeObject(String id, String name, String description, int category, String instructions, String ingredient_id, Boolean Star) {
+  public recipeObject(String id, String name, String description, String category, String instructions, Boolean Star) {
     setId(id);
     setName(name);
     setDescription(description);
@@ -24,7 +24,8 @@ public class recipeObject {
     setStar(star);
     
   }
-  
+
+
   public String getId() {
     return id;
   }
@@ -49,11 +50,11 @@ public class recipeObject {
     this.description = description;
   }
   
-  public int getCategory() {
+  public String getCategory() {
     return category;
   }
   
-  public void setCategory(int category) {
+  public void setCategory(String category) {
     this.category = category;
   }
   
@@ -66,11 +67,7 @@ public class recipeObject {
   }
 
   public void setStar(Boolean star) {
-    if (star == false) {
-      this.star = false;
-    } else {
-     this.star = true; 
-    }
+    this.star = star;
   }
 
   public ArrayList<ingredientObject> getIngredientsList() {
