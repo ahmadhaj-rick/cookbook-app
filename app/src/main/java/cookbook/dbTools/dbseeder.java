@@ -83,7 +83,7 @@ public class dbseeder {
           }
         }
       }
-
+      
       // Insert the ingredients into the database
       Object ingredientsObj = data.get("ingredients");
       if (ingredientsObj instanceof List) {
@@ -122,7 +122,7 @@ public class dbseeder {
           }
         }
       }
-
+      
       
     } catch (IOException | SQLException e) {
       // Handle the exception here
