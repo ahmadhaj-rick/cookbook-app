@@ -49,7 +49,8 @@ public class databasemn {
                             + "name VARCHAR(50) NOT NULL," 
                             + "description VARCHAR(100) NOT NULL,"
                             + "category VARCHAR(50) NOT NULL," 
-                            + "instructions VARCHAR(300) NOT NULL," 
+                            + "instructions VARCHAR(300) NOT NULL,"
+                            + "star BOOLEAN NOT NULL," 
                             + "PRIMARY KEY (recipe_id))";
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
