@@ -29,9 +29,8 @@ public class recipeControler {
           result.getString("recipe_id"),
           result.getString("name"),
           result.getString("description"),
-          result.getInt("category"),
+          result.getString("category"),
           result.getString("instructions"),
-          result.getString("ingredient_id"),
           result.getBoolean("star"));
         
         // this will upade the class ArrayList.
@@ -43,17 +42,16 @@ public class recipeControler {
       for (recipeObject recipeObject : currentRecipeObjects) {
         String id = recipeObject.getId();
         String ingQuery = "SELECT ingredients.ingredient_id, ingredients.ingredient_name " +
-                          "FROM recepie " +
-                          "JOIN recepie_ingredients ON recepie_ingredients.recepie_id = recepie.recepie_id " +
-                          "JOIN ingredients ON recepie_ingredients.ingredient_id = ingredients.ingredient_id " +
-                          "WHERE recepie.recepie_id = ?";
+                          "FROM ingredients " +
+                          "JOIN recipe_ingredients ON recipe_ingredients.ingredient_id = ingredients.ingredient_id " +
+                          "WHERE recipe_ingredients.recipe_id = ?";
         try (PreparedStatement ingStatement = conn.prepareStatement(ingQuery)) {
           ingStatement.setString(1, id);
           ResultSet ingResultSet = ingStatement.executeQuery();
           while (ingResultSet.next()) {
             ingredientObject newIng = new ingredientObject(
               ingResultSet.getString("ingredient_id"),
-              ingResultSet.getString("name_ingredient")
+              ingResultSet.getString("ingredient_name")
             );
             recipeObject.addIngredient(newIng);
           }
