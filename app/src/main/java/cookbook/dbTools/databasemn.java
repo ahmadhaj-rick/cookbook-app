@@ -10,8 +10,8 @@ public class databasemn {
   private static String dbUrl = "jdbc:mysql://localhost:3306/";
   private String creds = "?user=root&password=root";
   private static String dbna = "cookbook";
-
-
+  
+  
   public void createDb() {
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + creds);
@@ -22,16 +22,16 @@ public class databasemn {
       err.printStackTrace();
     }
   }
-
+  
   private void createTableuser() {
     String usertbname = "CREATE TABLE IF NOT EXISTS user ("
-                        + "user_id VARCHAR(60) NOT NULL," 
-                        + "fname VARCHAR(20) NOT NULL," 
-                        + "username VARCHAR(40) NOT NULL," 
-                        + "password VARCHAR(85) NOT NULL," 
-                        + "admin_id BOOLEAN not null," 
-                        + "PRIMARY KEY (user_id)," 
-                        + "UNIQUE (username))"; 
+    + "user_id VARCHAR(60) NOT NULL," 
+    + "fname VARCHAR(20) NOT NULL," 
+    + "username VARCHAR(40) NOT NULL," 
+    + "password VARCHAR(85) NOT NULL," 
+    + "admin_id BOOLEAN not null," 
+    + "PRIMARY KEY (user_id)," 
+    + "UNIQUE (username))"; 
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
       Statement stm = cnn.createStatement();
@@ -42,15 +42,16 @@ public class databasemn {
       System.out.println("error creating user table");
     }
   }
-
+  
   private void createTablerecipe() {
     String recipetbname = "CREATE TABLE IF NOT EXISTS recipe ("
-                            + "recipe_id VARCHAR(60) NOT NULL," 
-                            + "name VARCHAR(50) NOT NULL," 
-                            + "description VARCHAR(100) NOT NULL,"
-                            + "category VARCHAR(50) NOT NULL," 
-                            + "instructions VARCHAR(300) NOT NULL," 
-                            + "PRIMARY KEY (recipe_id))";
+    + "recipe_id VARCHAR(60) NOT NULL," 
+    + "name VARCHAR(50) NOT NULL," 
+    + "description VARCHAR(100) NOT NULL,"
+    + "category VARCHAR(50) NOT NULL," 
+    + "instructions VARCHAR(300) NOT NULL,"
+    + "star BOOLEAN NOT NULL," 
+    + "PRIMARY KEY (recipe_id))";
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
       Statement stm = cnn.createStatement();
@@ -61,12 +62,12 @@ public class databasemn {
       System.out.println("error creating recipe table");
     } 
   }
-
+  
   private void createTableingredients() {
     String ingredientstbname = "CREATE TABLE IF NOT EXISTS ingredients ("
-                                + "ingredient_id VARCHAR(60) NOT NULL," 
-                                + "ingredient_name VARCHAR(50) NOT NULL," 
-                                + "PRIMARY KEY (ingredient_id))";
+    + "ingredient_id VARCHAR(60) NOT NULL," 
+    + "ingredient_name VARCHAR(50) NOT NULL," 
+    + "PRIMARY KEY (ingredient_id))";
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
       Statement stm = cnn.createStatement();
@@ -77,14 +78,14 @@ public class databasemn {
       System.out.println("error creating ingredients table created");
     }
   }
-
+  
   private void createTableRecipeIngredients () {
     String recipeIngredientsTbName =    "CREATE TABLE IF NOT EXISTS recipe_ingredients ("
-                                      + "recipe_id varchar(60) not null,"
-                                      + "ingredient_id varchar(60) not null,"
-                                      + "PRIMARY KEY (recipe_id, ingredient_id),"
-                                      + "FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id),"
-                                      + "FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id))";
+    + "recipe_id varchar(60) not null,"
+    + "ingredient_id varchar(60) not null,"
+    + "PRIMARY KEY (recipe_id, ingredient_id),"
+    + "FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id),"
+    + "FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id))";
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
       Statement stm = cnn.createStatement();
@@ -94,13 +95,13 @@ public class databasemn {
       System.out.println("Error Creating Recipe_Ingredients table\n" + e);
     }
   }
-
+  
   public void createStarred() {
     String starred = "CREATE TABLE IF NOT EXISTS starred ("
-                    +"user_id varchar(60) NOT NULL,"
-                    +"recipe_id varchar(60) NOT NULL,"
-                    +"FOREIGN KEY (user_id) REFERENCES user(user_id),"
-                    +"FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id))";
+    +"user_id varchar(60) NOT NULL,"
+    +"recipe_id varchar(60) NOT NULL,"
+    +"FOREIGN KEY (user_id) REFERENCES user(user_id),"
+    +"FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id))";
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
       Statement stm = cnn.createStatement();
@@ -110,9 +111,9 @@ public class databasemn {
       System.out.println("Error Creating starred table");
     }
   }
-
- 
-
+  
+  
+  
   public void database_mn() {
     try {
       createDb();
