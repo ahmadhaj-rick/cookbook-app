@@ -11,7 +11,7 @@ public class recipeObject {
   private String instructions;
   private ArrayList<ingredientObject> ingredientsList = new ArrayList<>();
 
-  //private List<String> tag;
+  private ArrayList<tagObject> tagList = new ArrayList<>();
   private Boolean star;
   
   
@@ -76,6 +76,11 @@ public class recipeObject {
 
   public void addIngredient(ingredientObject ingredient) {
     ingredientsList.add(ingredient);
+  }
+
+  public ArrayList<tagObject> getTagList() {return new ArrayList<>(tagList);}
+
+  public void addTag(tagObject tag) {tagList.add(tag);
   }
 
 }
