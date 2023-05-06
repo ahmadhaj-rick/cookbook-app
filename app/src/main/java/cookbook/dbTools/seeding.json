@@ -31,6 +31,27 @@
             "description" : " A creamy pasta dish",
             "category" : " Pasta",
             "instructions" : " Cook the fettuccine according to the package instructions. In a separate pan, cook the chicken and Alfredo sauce. Serve the fettuccine with the sauce and chicken on top."
+        },
+        {
+            "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
+            "name": "Margherita Pizza",
+            "description": "A classic Italian pizza with tomatoes, mozzarella, and fresh basil",
+            "category": "Pizza",
+            "instructions": "Preheat the oven to 450 degrees F (230 degrees C). Roll out the pizza dough and place it on a pizza pan. Spread tomato sauce over the dough. Add slices of fresh mozzarella cheese on top of the tomato sauce. Bake for 10-12 minutes or until the crust is golden brown and the cheese is melted. Remove from oven and garnish with fresh basil leaves."
+        },
+        {
+            "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
+            "name": "Pepperoni Pizza",
+            "description": "A classic pizza topped with pepperoni slices",
+            "category": "Pizza",
+            "instructions": "Preheat the oven to 450 degrees F (230 degrees C). Roll out the pizza dough and place it on a pizza pan. Spread tomato sauce over the dough. Add slices of pepperoni on top of the tomato sauce. Bake for 10-12 minutes or until the crust is golden brown and the cheese is melted. Remove from oven and let cool for a few minutes before slicing and serving."
+        },
+        {
+            "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "name": "Grilled Ribeye Steak",
+            "description": "A juicy and flavorful grilled ribeye steak",
+            "category": "Steak",
+            "instructions": "1. Preheat grill to high heat.\n2. Season the steak generously with salt and pepper on both sides.\n3. Place the steak on the grill and cook for 4-5 minutes on each side for medium-rare, or until desired doneness is reached.\n4. Remove from the grill and let it rest for a few minutes before slicing and serving."
         }
     ],
 
@@ -58,6 +79,42 @@
         {
             "ingredient_id": "9d3f0e3a-7a6c-4f07-bd6b-20c9a7b10a27",
             "ingredient_name": "Alfredo Sauce"
+        },
+        {
+            "ingredient_id": "d7fbcb6a-5b11-453a-a982-4b5e2f7033d9",
+            "ingredient_name": "Pizza Dough"
+        },
+        {
+            "ingredient_id": "c506de28-0e1a-4d75-98a2-50fcb3d845fb",
+            "ingredient_name": "Fresh Mozzarella Cheese"
+        },
+        {
+            "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22",
+            "ingredient_name": "Fresh Basil Leaves"
+        },
+        {
+            "ingredient_id": "e3f6725b-647a-4d99-b1d1-98be71d67e39",
+            "ingredient_name": "Pepperoni Slices"
+        },
+        {
+            "ingredient_id": "8dca60f8-ee03-4f56-b8dc-2b56270a8b09",
+            "ingredient_name": "Ribeye Steak"
+        },
+        {
+            "ingredient_id": "eab37f8d-6b48-4e22-9d5f-6a3c77d56f3a",
+            "ingredient_name": "Salt"
+        },
+        {
+            "ingredient_id": "d3f43e5f-9138-43d2-b891-67896d775c35",
+            "ingredient_name": "Black Pepper"
+        },
+        {
+            "ingredient_id": "70b3010f-2c17-4db7-9679-0893d8d9f75c",
+            "ingredient_name": "Olive Oil"
+        },
+        {
+            "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22",
+            "ingredient_name": "Fresh Thyme Leaves"
         }
     ],
 
@@ -85,7 +142,60 @@
         {
             "recipe_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
             "ingredient_id" : "9d3f0e3a-7a6c-4f07-bd6b-20c9a7b10a27"
+        },
+        {
+            "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
+            "ingredient_id": "d7fbcb6a-5b11-453a-a982-4b5e2f7033d9"
+        },
+        {
+            "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
+            "ingredient_id": "a6b68b08-4507-423e-bd03-dce230bddb58"
+        },
+        {
+            "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
+            "ingredient_id": "c506de28-0e1a-4d75-98a2-50fcb3d845fb"
+        },
+        {
+            "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
+            "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22"
+        },
+        {
+            "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
+            "ingredient_id": "d7fbcb6a-5b11-453a-a982-4b5e2f7033d9"
+        },
+        {
+            "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
+            "ingredient_id": "c506de28-0e1a-4d75-98a2-50fcb3d845fb"
+        },
+        {
+            "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
+            "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22"
+        },
+        {
+            "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
+            "ingredient_id": "e3f6725b-647a-4d99-b1d1-98be71d67e39"
+        },
+        {
+            "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "ingredient_id": "8dca60f8-ee03-4f56-b8dc-2b56270a8b09"
+        },
+        {
+            "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "ingredient_id": "eab37f8d-6b48-4e22-9d5f-6a3c77d56f3a"
+        },
+        {
+            "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "ingredient_id": "d3f43e5f-9138-43d2-b891-67896d775c35"
+        },
+        {
+            "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "ingredient_id": "70b3010f-2c17-4db7-9679-0893d8d9f75c"
+        },
+        {
+            "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22"
         }
+
     ]
 
 }
