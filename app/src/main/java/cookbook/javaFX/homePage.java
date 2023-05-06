@@ -82,21 +82,20 @@ public class homePage implements Initializable {
 
   }
 
-
   public void searchMethod() throws SQLException, IOException {
     String searchTxt = search.getText();
     recipeControler controller = new recipeControler(); // create an instance of recipeControler
     List<recipeObject> recipes = controller.getRecpies(); // call the getRecpies()
     List<recipeObject> filteredRecipes = new ArrayList<>();
-
-    String[] tagToSearch = searchTxt.split(",");
+    
+    String[] ingredientsToSearch = searchTxt.split(","); // assuming ingredients are separated by commas
+    
     for (recipeObject recipe : recipes) {
-      List<tagObject> tags = recipe.getTagList();
-      for (String tgToSearch : tagToSearch) {
-        for (tagObject tag : tags) {
-
-          // check if the recipe name, ingredients, or tags contain the search string
-          if (tag.getTag_name().toLowerCase().contains(tgToSearch.trim().toLowerCase())) {
+      List<ingredientObject> ingredients = recipe.getIngredientsList();
+      for (String ingToSearch : ingredientsToSearch) {
+        for (ingredientObject ing : ingredients) {
+          // check if the ingredient name contains the search string
+          if (ing.getName().toLowerCase().contains(ingToSearch.trim().toLowerCase())){
             if (!filteredRecipes.contains(recipe)) {
               // add the recipe to the filtered list if it hasn't been added already
               filteredRecipes.add(recipe);
