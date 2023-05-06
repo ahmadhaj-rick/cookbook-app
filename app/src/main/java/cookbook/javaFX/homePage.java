@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import cookbook.objects.tagObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,16 +44,16 @@ public class homePage implements Initializable {
     }
     System.out.println(recipes.size() + "Size of elements");
     ObservableList<recipeObject> recipeList = FXCollections.observableArrayList(recipes);
-    
+
     recipeLists.getColumns().clear();
 
     TableColumn<recipeObject, String> recipeNameColumn = new TableColumn<>("Name");
     recipeNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-    
+
     recipeLists.getColumns().add(recipeNameColumn);
     recipeLists.getItems().clear();
     recipeLists.setItems(recipeList);
-    
+
     recipeLists.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
@@ -82,26 +83,30 @@ public class homePage implements Initializable {
   }
 
 
-
- public void searchMethod() throws SQLException, IOException {
+  public void searchMethod() throws SQLException, IOException {
     String searchTxt = search.getText();
     recipeControler controller = new recipeControler(); // create an instance of recipeControler
     List<recipeObject> recipes = controller.getRecpies(); // call the getRecpies()
     List<recipeObject> filteredRecipes = new ArrayList<>();
+
+    String[] tagToSearch = searchTxt.split(",");
     for (recipeObject recipe : recipes) {
-      // check if the recipe name, ingredients, or tags contain the search string
-      if (recipe.getName().toLowerCase().contains(searchTxt.toLowerCase())){
-        if (!filteredRecipes.contains(recipe)) {
-          // add the recipe to the filtered list if it hasn't been added already
-          filteredRecipes.add(recipe);
+      List<tagObject> tags = recipe.getTagList();
+      for (String tgToSearch : tagToSearch) {
+        for (tagObject tag : tags) {
+
+          // check if the recipe name, ingredients, or tags contain the search string
+          if (tag.getTag_name().toLowerCase().contains(tgToSearch.trim().toLowerCase())) {
+            if (!filteredRecipes.contains(recipe)) {
+              // add the recipe to the filtered list if it hasn't been added already
+              filteredRecipes.add(recipe);
+            }
+          }
         }
       }
     }
     // set the items of the TableView to the filtered list of recipes
     ObservableList<recipeObject> observableFilteredRecipes = FXCollections.observableArrayList(filteredRecipes);
     recipeLists.setItems(observableFilteredRecipes);
-
-
-
-}
+  }
 }
