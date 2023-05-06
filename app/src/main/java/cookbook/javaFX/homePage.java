@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import cookbook.objects.tagObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,16 +44,16 @@ public class homePage implements Initializable {
     }
     System.out.println(recipes.size() + "Size of elements");
     ObservableList<recipeObject> recipeList = FXCollections.observableArrayList(recipes);
-    
+
     recipeLists.getColumns().clear();
 
     TableColumn<recipeObject, String> recipeNameColumn = new TableColumn<>("Name");
     recipeNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-    
+
     recipeLists.getColumns().add(recipeNameColumn);
     recipeLists.getItems().clear();
     recipeLists.setItems(recipeList);
-    
+
     recipeLists.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
