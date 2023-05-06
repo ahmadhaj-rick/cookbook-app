@@ -111,6 +111,55 @@ public class databasemn {
       System.out.println("Error Creating starred table");
     }
   }
+
+  public void createtag() {
+    String starred = "CREATE TABLE IF NOT EXISTS tag ("
+    +"tag_id varchar(60) NOT NULL,"
+    +"name varchar(60) NOT NULL,";
+    try {
+      Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
+      Statement stm = cnn.createStatement();
+      stm.executeUpdate(starred);
+      System.out.println("tag table created");
+    } catch (Exception e) {
+      System.out.println("Error Creating tag table");
+    }
+  }
+
+  public void createRecipe_tag() {
+    String starred = "CREATE TABLE IF NOT EXISTS recipe_tag ("
+    +"tag_id varchar(60) NOT NULL,"
+    +"recipe_id varchar(60) NOT NULL,"
+    +"FOREIGN KEY (tag_id) REFERENCES tag(tag_id),"
+    +"FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id))";
+    try {
+      Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
+      Statement stm = cnn.createStatement();
+      stm.executeUpdate(starred);
+      System.out.println("recipe_tag table created");
+    } catch (Exception e) {
+      System.out.println("Error Creating recipe_tag table");
+    }
+  }
+
+  public void createMessage() {
+    String starred = "CREATE TABLE IF NOT EXISTS message ("
+    +"to_user varchar(60) NOT NULL,"
+    +"from_user varchar(60) NOT NULL,"
+    +"recipe_id varchar(60) NOT NULL,"
+    +"body varchar(60) NOT NULL,"
+    +"created_at varchar(60) NOT NULL,"
+    +"FOREIGN KEY (tag_id) REFERENCES tag(tag_id),"
+    +"FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id))";
+    try {
+      Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
+      Statement stm = cnn.createStatement();
+      stm.executeUpdate(starred);
+      System.out.println("message table created");
+    } catch (Exception e) {
+      System.out.println("Error Creating message table");
+    }
+  }
   
   
   
@@ -122,6 +171,9 @@ public class databasemn {
       createTableingredients();
       createTableRecipeIngredients();
       createStarred();
+      createtag();
+      createRecipe_tag();
+      createMessage();
     }
     catch (Exception bread) {
       System.out.println(bread);
