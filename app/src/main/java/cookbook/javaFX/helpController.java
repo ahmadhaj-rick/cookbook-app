@@ -60,12 +60,14 @@ private void showSearchresults() {
   String[] searchTerms = searchField.getText().split(" ");
   List<HelpMain> filteredInfo = Info.stream().filter(Info -> {
     for (String searchTerm : searchTerms) {
-      if (!Info.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
-        return false;
+      if (Info.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
+        return true;
       }
     }
-    return true;
+    return false;
   }).collect(Collectors.toList());
+
+  helpContainer.getChildren().clear();
 
   for (HelpMain Info :filteredInfo)
   {
@@ -80,7 +82,7 @@ private void showSearchresults() {
     Text bodyElement = new Text(editedBody);
     bodyElement.setStyle("-fx-font-size: 14;");
 
-    helpContainer.getChildren().add(container);
+
     VBox.setMargin(container, new Insets(0, 0, 30, 0));
 
     if (editedBody.length() < bodyTxt.length()) {
@@ -108,14 +110,17 @@ private void showSearchresults() {
       textFlow.setPadding(new Insets(10, 0, 0, 0));
       container.getChildren().add(textFlow);
     }
+
+    helpContainer.getChildren().add(container);
+    VBox.setMargin(container, new Insets(0, 0, 30, 0));
   }
 
   }
-
 
   @FXML
   void searchAction(ActionEvent event) {
     showSearchresults();
+    System.out.println("We r here");
   }
 
   @Override
