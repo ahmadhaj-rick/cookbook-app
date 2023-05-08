@@ -32,27 +32,27 @@ public class helpController implements Initializable {
 
 private final List<HelpMain> Info = Arrays.asList(
         new HelpMain("How to add a new recipe?",
-                "From the Home Screen Menu: \nClick the Add Menu option (Plus Icon). Fill in the recipe name, long description, short description and tags (either existing or custom). Click the 'Add new recipe' button and you're finished."),
+                "To add a new recipe, \n click on the add recipe option from the main menu, which will navigate you to the adding recipe menu, you will be then able to provide all the relevant information for the desired recipe you want to add. When done, click on add recipe to save the recipe you added to your cookbook."),
         new HelpMain("How do I send a recipe to another person?",
-                "From the Home Screen Menu: \nClick the Home icon. this takes you to a menu of your existing recipes. Click the recipe you would like to send, then click the Mail icon on the botton left. From here, click on the user you want to send a recipe to, and fill in an optional message. Once done, click 'Send' and you are finished."),
+                "To send a recipe: \n Click on the recipe you would like to send, then click the Mail icon on the bottom. Then, click on the user you would like to send the recipe to, and fill in an optional message. Once done, click 'Send' and you are finished."),
         new HelpMain("How do I check my messages?",
-                "From the Home Screen Menu: \nClick the Messages icon. This takes you to your messages. Click the user you'd like to see your messages from, and they will then be shown in the 'Inbox'. Select the message you'd like to view, and it will appear in full in the 'Messages'."),
-        new HelpMain("How do I add a recipe to my favorites?",
-                "From the Recipes Menu: \nClick the recipe you'd like to Favourite, then click the Favouyrite button on the bottom of the recipes list (Heart Icon). This adds that recipe to your favourites."),
-        new HelpMain("How do I see my favorite recipes?",
-                "Favourited recipes can be viewed from the Recipes Menu by checking the 'Favourites only' checkbox."),
+                "To check your messages: \\nClick the Messages icon. Which takes you to your messages menu. Click the user you'd like to see your messages from, which shows your inbox from them."),
+        new HelpMain("How do I favorite a recipe?",
+                "To favorite a recipe: \\nClick on the recipe you want to Favourite, then click the favorite button on the bottom of the recipes list."),
+        new HelpMain("How do I see the recipes I have favorited?",
+                "Favorite recipes can be inspected from the recipes menu by clicking the 'Favourites only' checkbox."),
         new HelpMain("How do I search for a given ingredient?",
-                "Recipes with a given ingredient can be searched for in the Recipes Menu. Simply type the ingredient name into the search box above the list of recipes and press Enter."),
+                "To search for a specific ingredient: \n Simply type the ingredient name into the search box above the list of recipes and press the search button."),
         new HelpMain("How do I check my weekly list?",
-                "From the Home Screen Menu: \nClick the Week List Menu option (Calendar Icon). This takes you to the Week List menu. From here, select the week you would like to view the meals for."),
+                "To check your weekly list: \nSimply click on the Week List Menu option. This takes you to the Week List menu. From here, select the week you would like to view."),
         new HelpMain("How do I add a recipe to the weekly list?",
-                "A recipe can be added to the Weekly List from the Recipes Menu.\nIn the Recipes Menu: \nSelect the recipe you would like to add, then click the 'WeekList' button. From here, select the date you would like to plan this meal on."),
+                "In the recipes menu.\nSelect the recipe you would like to add, then click the 'WeekList' button. Then, select the date you would like to plan this meal for."),
         new HelpMain("How do I search by tag?",
-                "Recipes with a given tag can be searched for in the Recipes Menu. Simply type the tag name into the search box above the list of recipes and press Enter."),
+                "Simply type the tag name into the search bar above the list of recipes and press the search button."),
         new HelpMain("How do I create a new user?",
-                "NOTE: Only Admins are able to create new Users.\nAs an admin, access the Admin Menu Option from the Home Screen Menu. From here, specify the name, username and password of the new user you want to create. Once done, hit the 'Add' button."),
+                "ADMIN ONLY:\nAs an admin, access the Admin Menu Option from the Home Screen Menu. From here, you can add a new user"),
         new HelpMain("How do I modify a user?",
-                "NOTE: Only Admins can modify Users.\nAs an admin, click on the Admin Menu from the Home page. Select the user you want to modify and their details should appear in the respective text boxes. You can now edit these details and click 'Add' ")
+                "ADMIN ONLY:\nAs an admin, click on the Admin Menu from the Home page. There, you are allowed to select users and modify them as you wish.")
 
 );
 
