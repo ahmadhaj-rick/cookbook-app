@@ -127,5 +127,13 @@ public class homePage implements Initializable {
     recipeLists.setItems(observableFilteredRecipes);
   }
 
+
+  public void updateFavorite() throws SQLException {
+    recipeControler recipeController = new recipeControler();
+    recipeObject selectedRecipe = recipeLists.getSelectionModel().getSelectedItem();
+    recipeController.updateFavoriteStatus(selectedRecipe);
+    System.out.println(selectedRecipe.getStar());
+  }
+
 }
 

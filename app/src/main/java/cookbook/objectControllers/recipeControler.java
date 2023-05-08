@@ -10,6 +10,7 @@ import java.util.List;
 
 import cookbook.objects.ingredientObject;
 import cookbook.objects.recipeObject;
+import cookbook.objects.userObject;
 
 public class recipeControler {
   
@@ -73,6 +74,44 @@ public class recipeControler {
   }
 
   
-  
+  public boolean updateFavoriteStatus(recipeObject selectedRecipeObject) throws SQLException {
+    userObject loggedUser = userController.loggedInUser;
+    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
+    String sqlQuery = "SELECT * FROM starred WHERE user_id=(?) AND recipe_id=(?); ";
+    String user_id = loggedUser.getId();
+    String recipe_id = selectedRecipeObject.getId();
+    try (PreparedStatement sqlStatement = conn.prepareStatement(sqlQuery)) {
+      sqlStatement.setString(1, user_id);
+      sqlStatement.setString(2, recipe_id);
+      ResultSet result = sqlStatement.executeQuery();
+
+      if (result.next()) {
+        String deleteDuplicate = "DELETE FROM starred WHERE user_id=(?) AND recipe_id=(?); ";
+        try (PreparedStatement sqlStatement2 = conn.prepareStatement(deleteDuplicate)) {
+          sqlStatement2.setString(1, user_id);
+          sqlStatement2.setString(2, recipe_id);
+          sqlStatement2.executeUpdate();
+          selectedRecipeObject.setStar(false);
+          return true;
+        } catch (SQLException e) {
+          System.out.println(e + "Delete catch");
+        }
+      } else {
+        String insertStarred = "INSERT INTO starred (user_id, recipe_id) VALUES(?,?); ";
+        try (PreparedStatement sqlStatement2 = conn.prepareStatement(insertStarred)) {
+          sqlStatement2.setString(1, user_id);
+          sqlStatement2.setString(2, recipe_id);
+          sqlStatement2.executeUpdate();
+          selectedRecipeObject.setStar(true);
+          return true;
+        } catch (SQLException e) {
+          System.out.println(e + "Add catch");
+        }
+      }
+    } catch (SQLException e) {
+      System.out.println(e + "Main SQL catch");
+    }
+    return false;
+  }
 
 }
