@@ -34,6 +34,7 @@ public class homePage implements Initializable {
   public TableView<recipeObject> recipeLists;
   
   public List<recipeObject> recipes;
+
   
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -133,6 +134,16 @@ public class homePage implements Initializable {
     recipeObject selectedRecipe = recipeLists.getSelectionModel().getSelectedItem();
     recipeController.updateFavoriteStatus(selectedRecipe);
     System.out.println(selectedRecipe.getStar());
+  }
+
+  
+  public void favoriteRecipeList() throws SQLException {
+    try {
+      recipes = recipeControler.favoriteObjects();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    
   }
 
 }
