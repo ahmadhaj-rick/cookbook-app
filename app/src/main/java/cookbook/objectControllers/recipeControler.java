@@ -175,4 +175,11 @@ public class recipeControler {
     return favoriteRecipies;
   }
 
+  public List<recipeObject> getFilteredRecipes(boolean showFavorites) throws SQLException {
+    if (showFavorites) {
+      return favoriteObjects();
+    } else {
+      return getRecpies();
+    }
+  }
 }
