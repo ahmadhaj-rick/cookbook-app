@@ -70,6 +70,10 @@ public class recipeObject {
     this.star = star;
   }
 
+  public boolean getStar() {
+    return star;
+  }
+
   public ArrayList<ingredientObject> getIngredientsList() {
     return new ArrayList<>(ingredientsList);
   }

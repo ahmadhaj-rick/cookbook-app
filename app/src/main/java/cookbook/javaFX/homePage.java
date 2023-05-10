@@ -6,9 +6,11 @@ import cookbook.objects.recipeObject;
 import cookbook.objects.userObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -32,8 +34,11 @@ public class homePage implements Initializable {
   public Text IngField;
   @FXML
   public TableView<recipeObject> recipeLists;
+  @FXML
+  public CheckBox favoritecheck;
   
   public List<recipeObject> recipes;
+
   
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -125,6 +130,35 @@ public class homePage implements Initializable {
     // set the items of the TableView to the filtered list of recipes
     ObservableList<recipeObject> observableFilteredRecipes = FXCollections.observableArrayList(filteredRecipes);
     recipeLists.setItems(observableFilteredRecipes);
+  }
+
+
+  public void updateFavorite() throws SQLException {
+    recipeControler recipeController = new recipeControler();
+    recipeObject selectedRecipe = recipeLists.getSelectionModel().getSelectedItem();
+    recipeController.updateFavoriteStatus(selectedRecipe);
+    System.out.println(selectedRecipe.getStar());
+  }
+
+  
+  /*public void favoriteRecipeList() throws SQLException {
+    List<recipeObject> faveList = recipeControler.favoriteObjects();
+    ObservableList<recipeObject> observableFavList = FXCollections.observableArrayList(faveList);
+    recipeLists.setItems(observableFavList);
+
+  }*/
+
+  public void getFilteredRecipes(ActionEvent event) throws SQLException {
+    CheckBox favoritecheck = (CheckBox) event.getSource();
+    if (favoritecheck.isSelected()) {
+      List<recipeObject> faveList = recipeControler.favoriteObjects();
+      ObservableList<recipeObject> observableFavList = FXCollections.observableArrayList(faveList);
+      recipeLists.setItems(observableFavList);
+    } else {
+      List<recipeObject> normalList = recipeControler.getRecpies();
+      ObservableList<recipeObject> observablenormList = FXCollections.observableArrayList(normalList);
+      recipeLists.setItems(observablenormList);
+    }
   }
 
 }
