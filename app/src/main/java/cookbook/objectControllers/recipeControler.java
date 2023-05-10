@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import cookbook.objects.ingredientObject;
 import cookbook.objects.recipeObject;
@@ -73,7 +74,22 @@ public class recipeControler {
     return currentRecipeObjects;
   }
 
-  
-  
+  public static void addRecipe(String name, String description, String category, String instructions) throws SQLException {
+    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
+    String query = "INSERT into recipe VALUES(?,?,?,?,?);";
+    UUID uniqueID = UUID.randomUUID();
+    String recipeID = uniqueID.toString();
+    try(PreparedStatement sqlStatement = conn.prepareStatement(query)) {
+      sqlStatement.setString(1, recipeID);
+      sqlStatement.setString(2, name);
+      sqlStatement.setString(3, description);
+      sqlStatement.setString(4, category);
+      sqlStatement.setString(5, instructions);
+      sqlStatement.setBoolean(6, false);
+      sqlStatement.executeUpdate();
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+  }
 
 }
