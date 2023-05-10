@@ -21,7 +21,7 @@
       <Separator layoutX="210.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="2.0" />
       <TextField fx:id="search" layoutX="11.0" layoutY="13.0" prefHeight="27.0" prefWidth="131.0" style="-fx-border-style: solid; -fx-background-color: #FDFEFE; -fx-border-color: #5499C7;" text="Search" />
       <Label layoutX="225.0" layoutY="27.0" prefHeight="51.0" prefWidth="346.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Recipe Name" />
-      <CheckBox fx:id="favoritecheck" layoutX="11.0" layoutY="45.0" mnemonicParsing="false" onAction="#favoriteRecipeList" prefHeight="27.0" prefWidth="186.0" style=" -fx-background-color: #FDFEFE; -fx-border-style: solid; -fx-border-color: #5499C7" text="Favorite Only" />
+      <CheckBox fx:id="favoritecheck" layoutX="11.0" layoutY="45.0" mnemonicParsing="false" onAction="#getFilteredRecipes" prefHeight="27.0" prefWidth="186.0" style=" -fx-background-color: #FDFEFE; -fx-border-style: solid; -fx-border-color: #5499C7" text="Favorite Only" />
       <TableView fx:id="recipeLists" layoutX="-2.0" layoutY="78.0" prefHeight="622.0" prefWidth="212.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;">
         <columns>
           <TableColumn prefWidth="207.19998168945312" text="Recipe" />

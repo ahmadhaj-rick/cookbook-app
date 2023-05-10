@@ -121,9 +121,9 @@ public class recipeControler {
     userObject loggedInUser = userController.loggedInUser;
     String user_id = loggedInUser.getId();
 
-    String searchQuery = "SELECT * FROM Recipe R "
-          + "JOIN starred S ON S.recipe_id = R.recipe_id "
-          + "JOIN starred S ON S.user_id = user.user_id "
+    String searchQuery = "SELECT * FROM Recipe "
+          + "JOIN starred ON starred.recipe_id = recipe.recipe_id "
+          + "JOIN user ON user.user_id = starred.user_id "
           + "WHERE user.user_id =(?)";
 
     try (PreparedStatement SQLstatement = conn.prepareStatement(searchQuery)) {
@@ -173,13 +173,5 @@ public class recipeControler {
   }
 
     return favoriteRecipies;
-  }
-
-  public List<recipeObject> getFilteredRecipes(boolean showFavorites) throws SQLException {
-    if (showFavorites) {
-      return favoriteObjects();
-    } else {
-      return getRecpies();
-    }
   }
 }
