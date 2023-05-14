@@ -80,7 +80,8 @@ public class recipeObject {
 
   public ArrayList<tagObject> getTagList() {return new ArrayList<>(tagList);}
 
-  public void addTag(tagObject tag) {tagList.add(tag);
+  public void addTag(tagObject tag) {
+    tagList.add(tag);
   }
 
 }

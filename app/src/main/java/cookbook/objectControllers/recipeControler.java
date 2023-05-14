@@ -76,7 +76,7 @@ public class recipeControler {
 
   public static void addRecipe(String name, String description, String category, String instructions) throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
-    String query = "INSERT into recipe VALUES(?,?,?,?,?);";
+    String query = "INSERT into recipe VALUES(?,?,?,?,?,?);";
     UUID uniqueID = UUID.randomUUID();
     String recipeID = uniqueID.toString();
     try(PreparedStatement sqlStatement = conn.prepareStatement(query)) {

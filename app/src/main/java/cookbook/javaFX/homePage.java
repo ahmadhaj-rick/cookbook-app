@@ -127,5 +127,11 @@ public class homePage implements Initializable {
     recipeLists.setItems(observableFilteredRecipes);
   }
 
+  /*public void getFavorite() {
+    recipeControler control = new recipeControler(); 
+    List<recipeObject> favoriterecepies = new ArrayList<>();
+    for (recipeObject recipie : )
+  }*/
+
 }
 
