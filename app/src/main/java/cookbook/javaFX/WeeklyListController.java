@@ -1,10 +1,13 @@
 package cookbook.javaFX;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -57,5 +60,36 @@ public class WeeklyListController {
     fridayListView.getItems().clear();
     saturdayListView.getItems().clear();
     sundayListView.getItems().clear();
+  }
+
+  public void weekChanged(String newValue) {
+    clearAll();
+    initialDateGlobal = LocalDate.parse(newValue.split(" - ")[0]);
+    LocalDate endingDate = LocalDate.parse(newValue.split(" - ")[1]);
+    List<LocalDate> datesInBetween = getDatesBetween(initialDateGlobal, endingDate);
+
+    for (LocalDate date : datesInBetween) {
+      String str = String.valueOf(date);
+      LocalDate localDate = LocalDate.parse(str.toString());
+      String day = String.valueOf(localDate.getDayOfWeek());
+      ListView<String> currentListView;
+
+      if (day.equals("MONDAY")) {
+        currentListView = mondayListView;
+      } else if (day.equals("TUESDAY")) {
+        currentListView = tuesdayListView;
+      } else if (day.equals("WEDNESDAY")) {
+        currentListView = WednesdayListView;
+      } else if (day.equals("THURSDAY")) {
+        currentListView = thursdayListView;
+      } else if (day.equals("FRIDAY")) {
+        currentListView = fridayListView;
+      } else if (day.equals("SATURDAY")) {
+        currentListView = saturdayListView;
+      } else {
+        currentListView = sundayListView;
+      }
+
+    }
   }
 }
