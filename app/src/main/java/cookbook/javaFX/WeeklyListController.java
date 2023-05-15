@@ -1,13 +1,14 @@
 package cookbook.javaFX;
-import javafx.event.ActionEvent;
+import cookbook.objectControllers.ScheduledRecipeController;
+import cookbook.objects.QuanitityIngredients;
+import cookbook.objects.ScheduledRecipeObject;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
 
-import java.io.IOException;
+import java.sql.Date;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -39,6 +40,7 @@ public class WeeklyListController {
   @FXML
   private ComboBox<String> weeksComboxBox;
 
+  private ObservableList<QuanitityIngredients> shoppingList = FXCollections.observableArrayList();
   private LocalDate initialDateGlobal;
 
   public static List<LocalDate> getDatesBetween(
@@ -61,6 +63,22 @@ public class WeeklyListController {
     saturdayListView.getItems().clear();
     sundayListView.getItems().clear();
   }
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    ObservableList<String> weekList = FXCollections.observableArrayList(WeekListServices.getNextWeeks(11));
+    //ListView<String> weeks = new ListView<>(weekList);
+    weeksComboxBox.setItems(weekList);
+
+
+
+    weeksComboxBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+      public void changed(ObservableValue<? extends String> ov,
+                          final String oldvalue, final String newvalue) {
+        weekChanged(newvalue);
+        Weeklabel.setText(newvalue);
+      }
+    });
 
   public void weekChanged(String newValue) {
     clearAll();
@@ -90,6 +108,25 @@ public class WeeklyListController {
         currentListView = sundayListView;
       }
 
+      List<ScheduledRecipeObject> dateSchedule = ScheduledRecipeController.getDateSchedule(Date.valueOf(date));
+      if (dateSchedule == null) {
+        ;
+      } else {
+        for (ScheduledRecipeObject entity : dateSchedule) {
+          currentListView.getItems().add(entity.getRecipeName());
+          for (QuanitityIngredients qe : entity.getIngredients()) {
+            if (shoppingList.contains(qe)) {
+              int index = shoppingList.indexOf(qe);
+              shoppingList.get(index).addAmount(qe.getAmount());
+            } else {
+              shoppingList.add(qe);
+            }
+          }
+        }
+      }
+    }
+
     }
   }
 }
+
