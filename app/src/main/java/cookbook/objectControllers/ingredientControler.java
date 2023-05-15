@@ -34,7 +34,7 @@ public class ingredientControler {
   }
   
   
-  public static void addIngredient (String uniqueID, String name) throws SQLException{
+  public static void addIngredient(String uniqueID, String name) throws SQLException{
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String query = "INSERT INTO ingredients VALUES(?,?)";
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {

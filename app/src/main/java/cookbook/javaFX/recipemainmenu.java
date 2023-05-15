@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
+import cookbook.objectControllers.ingredientControler;
 import cookbook.objectControllers.recipeControler;
 import cookbook.objectControllers.tagController;
 import cookbook.objects.ingredientObject;
@@ -67,9 +68,11 @@ public class recipemainmenu implements Initializable{
   @FXML
   public Button addRecipie;
   
+  public List<recipeObject> recipes;
+
   public List<ingredientObject> ingredients;
   public List<ingredientObject> selectedIngredients;
-  public List<recipeObject> recipes;
+
   public List<tagObject> tags;
   public List<tagObject> selectedTags;
   
@@ -82,15 +85,17 @@ public class recipemainmenu implements Initializable{
     UUID uniqueRecipie = UUID.randomUUID();
     String recipeID = uniqueRecipie.toString();
     
-    
-    recipeObject createdRecipe = new recipeObject(recipeID, recipe_Name, shortDescription, "categorys", longDescription, false);
     try{
-      recipeControler.addRecipe(recipe_Name, shortDescription, categorys, longDescription);
+      recipeControler.addRecipe(recipeID, recipe_Name, shortDescription, categorys, longDescription);
+      recipeObject createdRecipe = new recipeObject(recipeID, recipe_Name, shortDescription, "categorys", longDescription, false);
       
       //Two Loops that add all the selected ingredients into the recipe.
       for (ingredientObject ingredient : selectedIngredients) {
         createdRecipe.addIngredient(ingredient);
+        ingredientControler.addIngredientToRecipe(recipeID, ingredient.getId());
       }
+
+      System.out.println(createdRecipe.getIngredientsList());
       
       for (tagObject tag : selectedTags) {
         createdRecipe.addTag(tag);
@@ -127,13 +132,19 @@ public class recipemainmenu implements Initializable{
       String tag_Name = tagName.getText();
       UUID uniqueID = UUID.randomUUID();
       String tagID = uniqueID.toString();
+
+      //Add the tag to the database and create an object.
+      tagController.addTag(tagID, tag_Name);
       tagObject newTag = new tagObject(tagID, tag_Name);
       selectedTags.add(newTag);
+
       Alert success = new Alert(Alert.AlertType.INFORMATION);
       success.setTitle("Success!");
       success.setContentText("You successfully created a new tag!");
       success.show();
+
     } else if (tagsDropdown.getSelectionModel().getSelectedItem() != null) {
+      
       String tag_name = tagsDropdown.getSelectionModel().getSelectedItem().getTag_name();
       UUID uniqueID = UUID.randomUUID();
       String tagID = uniqueID.toString();
@@ -143,11 +154,20 @@ public class recipemainmenu implements Initializable{
   }
   
   public void addIngredientToList(ActionEvent event) throws SQLException, IOException {
-    String ingredient_Name = ingredientName.getText();
-    UUID uniqueID = UUID.randomUUID();
-    String uniqueIngredientID = uniqueID.toString();
-    ingredientObject newIngredientObject = new ingredientObject(uniqueIngredientID, ingredient_Name);
-    selectedIngredients.add(newIngredientObject);
+    try {
+      String ingredient_Name = ingredientName.getText();
+      UUID uniqueID = UUID.randomUUID();
+      String uniqueIngredientID = uniqueID.toString();
+      ingredientControler.addIngredient(uniqueIngredientID, ingredient_Name);
+      ingredientObject newIngredientObject = new ingredientObject(uniqueIngredientID, ingredient_Name);
+      selectedIngredients.add(newIngredientObject);
+      Alert success = new Alert(Alert.AlertType.INFORMATION);
+      success.setTitle("Success!");
+      success.setContentText("You successfully created a new ingredient!");
+      success.show(); 
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
   }
   
   @Override
