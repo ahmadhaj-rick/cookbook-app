@@ -9,6 +9,7 @@ public class recipeObject {
   private String description;
   private String category;
   private String instructions;
+  
   private ArrayList<ingredientObject> ingredientsList = new ArrayList<>();
 
   private ArrayList<tagObject> tagList = new ArrayList<>();
