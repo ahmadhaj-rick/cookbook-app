@@ -5,10 +5,11 @@ import java.util.List;
 
 import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ScheduledRecipeObject;
-import cookbook.dbTools.*;
 import cookbook.objects.ingredientObject;
+import cookbook.objects.userObject;
 
-public class ScheduledRecipeController{
+public class ScheduledRecipeController {
+  static userObject currUser = userController.loggedInUser;
 
   // perform a join and get a new Scheduled recipe entity instance for a given
   public static List<ScheduledRecipeObject> getDateSchedule(Date date) throws SQLException {
@@ -23,7 +24,7 @@ public class ScheduledRecipeController{
                 WHERE user_id = (?) AND date = (?);
                 ;
             """)) {
-      preparedStmnt.setString(1, GlobalState.user.getId());
+      preparedStmnt.setString(1, currUser.getId());
       preparedStmnt.setDate(2, date);
       ResultSet result = preparedStmnt.executeQuery();
 
@@ -48,7 +49,7 @@ public class ScheduledRecipeController{
 
         while (ingredientResult.next()) {
           // Add all Quantified ingredients to the Scheduled Recipe Entity
-          schedRec.addIngredient(new QuanitityIngredients().QuantityIngredients(ingredientResult.getString("unit"),
+          schedRec.addIngredient(new QuanitityIngredients(ingredientResult.getString("unit"),
                   ingredientResult.getFloat("amount"), new ingredientObject(
                   ingredientResult.getString("id"), ingredientResult.getString("name"))));
 
