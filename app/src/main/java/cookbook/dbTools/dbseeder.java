@@ -122,6 +122,27 @@ public class dbseeder {
           }
         }
       }
+
+      // Insert the tags for each recipe into the database.
+      Object tagObj = data.get("tag");
+      if (tagObj instanceof List) {
+        List<?> tagsList = (List<?>) tagObj;
+        try (Connection cnn = DriverManager.getConnection(dbUrl)) {
+          for (Object rowRecipe : tagsList) {
+            if (rowRecipe instanceof Map) {
+              Map<?, ?> row = (Map<?, ?>) rowRecipe;
+              String sql = "INSERT IGNORE INTO tag (tag_id, tag_name) VALUES (?, ?)";
+              try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
+                stmt.setString(1, (String) row.get("tag_id"));
+                stmt.setString(2, (String) row.get("tag_name"));
+                stmt.executeUpdate();
+              }
+
+            }
+          }
+        }
+      }
+
       
       
     } catch (IOException | SQLException e) {
