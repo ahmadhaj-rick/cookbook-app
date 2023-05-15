@@ -5,17 +5,20 @@ import cookbook.objects.ScheduledRecipeObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
+import java.net.URL;
 import java.sql.Date;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class WeeklyListController {
+public class WeeklyListController implements Initializable {
   @FXML
   private Label Weeklabel;
 
@@ -64,21 +67,6 @@ public class WeeklyListController {
     sundayListView.getItems().clear();
   }
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    ObservableList<String> weekList = FXCollections.observableArrayList(WeekListServices.getNextWeeks(11));
-    //ListView<String> weeks = new ListView<>(weekList);
-    weeksComboxBox.setItems(weekList);
-
-
-
-    weeksComboxBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-      public void changed(ObservableValue<? extends String> ov,
-                          final String oldvalue, final String newvalue) {
-        weekChanged(newvalue);
-        Weeklabel.setText(newvalue);
-      }
-    });
 
   public void weekChanged(String newValue) {
     clearAll();
@@ -127,6 +115,23 @@ public class WeeklyListController {
     }
 
     }
+  }
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    ObservableList<String> weekList = FXCollections.observableArrayList(WeekListServices.getNextWeeks(11));
+    //ListView<String> weeks = new ListView<>(weekList);
+    weeksComboxBox.setItems(weekList);
+
+
+
+    weeksComboxBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+      public void changed(ObservableValue<? extends String> ov,
+                          final String oldvalue, final String newvalue) {
+        weekChanged(newvalue);
+        Weeklabel.setText(newvalue);
+      }
+    });
   }
 }
 
