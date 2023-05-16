@@ -112,6 +112,38 @@ public class databasemn {
       System.out.println("Error Creating starred table: " + e);
     }
   }
+
+  public void createCategory() {
+    String category = "CREATE TABLE IF NOT EXISTS category ("
+    + "category_name VARCHAR(60) NOT NULL," 
+    + "category_id VARCHAR(50) NOT NULL," 
+    + "PRIMARY KEY (category_id))";
+    try {
+      Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
+      Statement stm = cnn.createStatement();
+      stm.executeUpdate(category);
+      System.out.println("category table created");
+    } catch (Exception e) {
+      System.out.println("Error creating category table" + e);
+    }
+  }
+
+  public void createRecipeCategory() {
+    String recipeCategory =    "CREATE TABLE IF NOT EXISTS recipe_category ("
+    + "recipe_id varchar(60) not null,"
+    + "category_id varchar(60) not null,"
+    + "PRIMARY KEY (recipe_id, category_id),"
+    + "FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id) ON UPDATE CASCADE ON DELETE CASCADE,"
+    + "FOREIGN KEY (category_id) REFERENCES categort(category_id) ON UPDATE CASCADE ON DELETE CASCADE)";
+    try {
+      Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
+      Statement stm = cnn.createStatement();
+      stm.executeUpdate(recipeCategory);
+      System.out.println("Recipe_Category table created");
+    } catch (Exception e) {
+      System.out.println("Error Creating Recipe_Category table\n" + e);
+    }
+  }
   
   public void createtag() {
     String tag = "CREATE TABLE IF NOT EXISTS tag ("
