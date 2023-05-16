@@ -73,13 +73,13 @@ public class WeekCalendar {
 
   // Insert a scheduled Recipe record
 
-  //Ahmed fix this class
+  //Ahmed fix this class-----------------------------------------------------------------------
   public static void addScheduledRecipe(String recipeId, String recipeName, String userId, java.sql.Date date) throws SQLException {
 
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
     // Insert records into db
-    String insertString = "INSERT INTO week_list VALUES(?, ?, ?);";
+    String insertString = "INSERT INTO week_list VALUES(?, ?, ?);"; //<-----
 
     try (PreparedStatement preparedStmnt = conn.prepareStatement(insertString)) {
       preparedStmnt.setDate(1, date);
@@ -96,12 +96,12 @@ public class WeekCalendar {
 
 
   // Delete a scheduled recipe from the db
-  //Ahmed fix this class
+  //Ahmed fix this class ------------------------------------------------------------------------
   public static void deleteScheduledRecipe(ScheduledRecipeObject schedRec) throws SQLException {
     String recipeId = schedRec.getRecipeId();
     java.sql.Date date = schedRec.getDate();
 
-    String deleteString = "DELETE FROM week_list WHERE date = (?) AND recipe_id = (?);";
+    String deleteString = "DELETE FROM week_list WHERE date = (?) AND recipe_id = (?);"; //<-- <-- <--
 
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
