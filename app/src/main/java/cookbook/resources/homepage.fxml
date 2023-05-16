@@ -34,7 +34,7 @@
                   <HBox prefHeight="59.0" prefWidth="655.0">
                      <children>
                         <Label prefHeight="57.0" prefWidth="43.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Tags:" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="tags it self" textAlignment="JUSTIFY" wrappingWidth="354.13671875">
+                        <Text fx:id="recipeTags" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" textAlignment="JUSTIFY" wrappingWidth="354.13671875">
                            <HBox.margin>
                               <Insets top="23.0" />
                            </HBox.margin>

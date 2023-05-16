@@ -194,6 +194,7 @@ public class recipemainmenu implements Initializable{
       recipes = recipeControler.getRecpies();
       selectedTags = new ArrayList<>();
       selectedIngredients = new ArrayList<>();
+      tags = new ArrayList<>();
       
       updateTagBox();
     } catch (SQLException err) {

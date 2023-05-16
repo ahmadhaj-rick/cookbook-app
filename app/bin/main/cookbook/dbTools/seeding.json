@@ -181,14 +181,14 @@
         },
         {
             "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
-            "ingredient_id": "eab37f8d-6b48-4e22-9d5f-6a3c77d56f3a"
+            "ingredient_id": "eab37f8d-6b48-4eb2-9d5f-6a3c77d56f3a"
         },
         {
             "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
             "ingredient_id": "d3f43e5f-9138-43d2-b891-67896d775c35"
         },
         {
-            "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "recipe_id": "3d32c6f4-41e5-4b8a-9b3f-3d30435d90f3",
             "ingredient_id": "70b3010f-2c17-4db7-9679-0893d8d9f75c"
         },
         {
@@ -199,10 +199,6 @@
     ],
 
     "tag" : [
-        {
-            "tag_id" : "5d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
-            "name" : "Pastry"
-        },
         {
             "tag_id" : "5d36c6f4-41e5-4d8a-9b3f-3d30435d90f3",
             "name" : "Bread"

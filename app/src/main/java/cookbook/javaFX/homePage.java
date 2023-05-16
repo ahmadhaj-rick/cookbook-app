@@ -32,6 +32,8 @@ public class homePage implements Initializable {
   public Text IngField;
   @FXML
   public TableView<recipeObject> recipeLists;
+  @FXML
+  public Text recipeTags;
   
   public List<recipeObject> recipes;
   
@@ -64,13 +66,20 @@ public class homePage implements Initializable {
           if (selectedRecipeObject != null) {
             System.out.println("We inside ");
             List<ingredientObject> ingredientObjects = selectedRecipeObject.getIngredientsList();
+            List<tagObject> tagObjects = selectedRecipeObject.getTagList();
             System.out.println(ingredientObjects.size() + "inggg");
             System.out.println("We inside 3");
             StringBuilder sb = new StringBuilder();
+            StringBuilder tagB = new StringBuilder();
             for (ingredientObject ingredient : ingredientObjects) {
               sb.append(ingredient.getName()).append(", \n");
               System.out.println(sb);
             }
+            for (tagObject tag : tagObjects) {
+              tagB.append(tag.getTag_name()).append(", ");
+              System.out.println(tagB);
+            }
+            recipeTags.setText(tagB.toString());
             if (sb.length() > 2) {
               sb.setLength(sb.length() - 2);
             }
