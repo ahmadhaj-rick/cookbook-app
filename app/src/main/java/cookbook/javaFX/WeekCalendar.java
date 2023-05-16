@@ -4,6 +4,9 @@ import cookbook.objectControllers.ScheduledRecipeController;
 import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ScheduledRecipeObject;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.time.ZonedDateTime;
@@ -68,6 +71,50 @@ public class WeekCalendar {
     return week;
   }
 
+  // Insert a scheduled Recipe record
+
+  //Ahmed fix this class
+  public static void addScheduledRecipe(String recipeId, String recipeName, String userId, java.sql.Date date) throws SQLException {
+
+    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
+
+    // Insert records into db
+    String insertString = "INSERT INTO week_list VALUES(?, ?, ?);";
+
+    try (PreparedStatement preparedStmnt = conn.prepareStatement(insertString)) {
+      preparedStmnt.setDate(1, date);
+      preparedStmnt.setString(2, recipeId);
+      preparedStmnt.setString(3, userId);
+
+      preparedStmnt.executeUpdate();
+
+    } catch (SQLException e) {
+      System.out.println(e);
+      // If there's an error inserting records, return false.
+    }
+  }
+
+
+  // Delete a scheduled recipe from the db
+  //Ahmed fix this class
+  public static void deleteScheduledRecipe(ScheduledRecipeObject schedRec) throws SQLException {
+    String recipeId = schedRec.getRecipeId();
+    java.sql.Date date = schedRec.getDate();
+
+    String deleteString = "DELETE FROM week_list WHERE date = (?) AND recipe_id = (?);";
+
+    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
+
+    try (PreparedStatement prepStatement = conn.prepareStatement(deleteString)) {
+      prepStatement.setDate(1, date);
+      prepStatement.setString(2, recipeId);
+      prepStatement.executeUpdate();
+
+    } catch (SQLException e) {
+      System.out.println(e);
+      // If there's an error inserting records, return false.
+    }
+  }
 
   public static List<QuanitityIngredients> generateShoppingList(List<List<ScheduledRecipeObject>> week) {
 
