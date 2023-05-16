@@ -2,15 +2,23 @@ package cookbook.javaFX;
 import cookbook.objectControllers.ScheduledRecipeController;
 import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ScheduledRecipeObject;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -65,10 +73,11 @@ public class WeeklyListController implements Initializable {
     fridayListView.getItems().clear();
     saturdayListView.getItems().clear();
     sundayListView.getItems().clear();
+    shoppingList.clear();
   }
 
 
-  public void weekChanged(String newValue) {
+  public void weekChanged(String newValue) throws SQLException {
     clearAll();
     initialDateGlobal = LocalDate.parse(newValue.split(" - ")[0]);
     LocalDate endingDate = LocalDate.parse(newValue.split(" - ")[1]);
@@ -113,25 +122,59 @@ public class WeeklyListController implements Initializable {
         }
       }
     }
-
-    }
   }
+
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    ObservableList<String> weekList = FXCollections.observableArrayList(WeekListServices.getNextWeeks(11));
-    //ListView<String> weeks = new ListView<>(weekList);
+    ObservableList<String> weekList = FXCollections.observableArrayList(WeekCalendar.getFollowingWeeks(11));
     weeksComboxBox.setItems(weekList);
-
-
-
-    weeksComboxBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+    weeksComboxBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
       public void changed(ObservableValue<? extends String> ov,
                           final String oldvalue, final String newvalue) {
-        weekChanged(newvalue);
+        try {
+          weekChanged(newvalue);
+        } catch (SQLException e) {
+          throw new RuntimeException(e);
+        }
         Weeklabel.setText(newvalue);
       }
     });
   }
+
+  /*
+  @FXML
+  void openShoppingList(ActionEvent event) throws IOException {
+    if (!shoppingList.isEmpty() && startingDateGlobal!=null) {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("shoppingList.fxml"));
+      loader.load();
+      Parent p = loader.getRoot();
+
+      // Pass the shopping list to next controller
+       shoppingController = loader.getController();
+      shoppingController.getShoppingList(shoppingList, startingDateGlobal);
+
+      Stage stage = new Stage();
+      stage.setScene(new Scene(p));
+      stage.setTitle("Shopping List");
+
+      stage.show();
+    } else {
+
+      if (weeksComboxBox.getSelectionModel().getSelectedItem() == null) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("NOTE");
+        alert.setContentText("Please select a Week");
+        alert.show();
+      } else {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("NOTE");
+        alert.setContentText("No shopping list for this Week.");
+        alert.show();
+      }
+    }
+  }*/
+
 }
 

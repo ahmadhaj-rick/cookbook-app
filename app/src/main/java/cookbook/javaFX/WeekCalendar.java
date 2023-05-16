@@ -1,6 +1,7 @@
 package cookbook.javaFX;
 
 import cookbook.objectControllers.ScheduledRecipeController;
+import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ScheduledRecipeObject;
 
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WeekCalendar {
 
@@ -67,7 +69,30 @@ public class WeekCalendar {
   }
 
 
+  public static List<QuanitityIngredients> generateShoppingList(List<List<ScheduledRecipeObject>> week) {
 
+    List<QuanitityIngredients> weekIngredients = new ArrayList<>();
+
+    // Flatten the WeekList
+    List<ScheduledRecipeObject> weekList = week.stream().flatMap(List::stream).collect(Collectors.toList());
+
+    for( ScheduledRecipeObject meal : weekList) {
+      for (QuanitityIngredients ingredient : meal.getIngredients()) {
+        if (weekIngredients.contains(ingredient)) {
+          // Find the index of the Ingredient in the ingredient tuple list
+          int index = weekIngredients.indexOf(ingredient);
+          // Add the ingredient amount to existing list amount
+          weekIngredients.get(index).addAmount(ingredient.getAmount());
+          continue;
+        } else {
+          // Add ingredient to ingredients list
+          weekIngredients.add(ingredient);
+        }
+      }
+    }
+    // Retrun that week's ingredient
+    return weekIngredients;
+  }
 
 
 }
