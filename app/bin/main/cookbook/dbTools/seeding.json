@@ -196,46 +196,6 @@
             "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22"
         }
 
-    ],
-
-    "category" : [
-
-        {
-            "category_name" : "Pastry",
-            "category_id" : "3d32c6f4-41e5-4d8a-9b3f-3d31123d90f3"
-        },
-        {
-            "category_name" : "Bread",
-            "category_id" : "3d32c6f4-41e5-4d8a-9b3f-3d31223d90f3"
-        },
-        {
-            "category_name" : "Soup",
-            "category_id" : "3d32c6f4-41e5-4d8a-9b3f-3d32123d90f3"
-        },
-        {
-            "category_name" : "Dinner",
-            "category_id" : "3d34c6f4-41e5-4d8a-9b3f-3d31123d90f3"
-        }
-    ],
-    
-    "recipe_category" : [
-
-        {
-            "recipe_id" : "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
-            "category_id" : "3d34c6f4-41e5-4d8a-9b3f-3d31123d90f3"
-        },
-        {
-            "recipe_id" : "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
-            "category_id" : "3d32c6f4-41e5-4d8a-9b3f-3d31223d90f3"
-        },
-        {
-            "recipe_id" : "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
-            "category_id" : "3d32c6f4-41e5-4d8a-9b3f-3d32123d90f3"
-        },
-        {
-            "recipe_id" : "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
-            "category_id" : "3d32c6f4-41e5-4d8a-9b3f-3d31123d90f3"
-        }
     ]
 
 }
