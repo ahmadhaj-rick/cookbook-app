@@ -196,6 +196,25 @@
             "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22"
         }
 
-    ]
+    ],
+
+    "tag" : [
+        {
+            "tag_id" : "5d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "name" : "Pastry"
+        },
+        {
+            "tag_id" : "5d36c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "name" : "Bread"
+        },
+        {
+            "tag_id" : "5d42c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "name" : "Soup"
+        },
+        {
+            "tag_id" : "5d32c6f4-41e5-4dva-9b3f-3d30435d90f3",
+            "name" : "Dinner"
+        }
+    ] 
 
 }

@@ -107,9 +107,9 @@ public class dbseeder {
       // Insert the recipe ingredients into the database
       Object recipeIngredientsObj = data.get("recipe_ingredients");
       if (recipeIngredientsObj instanceof List) {
-        List<?> recipeIngredientsList = (List<?>) recipeIngredientsObj;
+        List<?> tagList = (List<?>) recipeIngredientsObj;
         try (Connection cnn = DriverManager.getConnection(dbUrl)) {
-          for (Object rowObj : recipeIngredientsList) {
+          for (Object rowObj : tagList) {
             if (rowObj instanceof Map) {
               Map<?, ?> row = (Map<?, ?>) rowObj;
               String sql = "INSERT IGNORE INTO recipe_ingredients (recipe_id, ingredient_id) VALUES (?, ?)";
@@ -122,6 +122,26 @@ public class dbseeder {
           }
         }
       }
+
+
+       // Insert the recipe ingredients into the database
+       Object tag = data.get("tag");
+       if (tag instanceof List) {
+         List<?> recipeIngredientsList = (List<?>) tag;
+         try (Connection cnn = DriverManager.getConnection(dbUrl)) {
+           for (Object rowObj : recipeIngredientsList) {
+             if (rowObj instanceof Map) {
+               Map<?, ?> row = (Map<?, ?>) rowObj;
+               String sql = "INSERT IGNORE INTO tag (tag_id, name) VALUES (?, ?)";
+               try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
+                 stmt.setString(1, (String) row.get("tag_id"));
+                 stmt.setString(2, (String) row.get("name"));
+                 stmt.executeUpdate();
+               }
+             }
+           }
+         }
+       }
       
       
     } catch (IOException | SQLException e) {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import cookbook.objectControllers.ingredientControler;
 import cookbook.objectControllers.recipeControler;
@@ -42,7 +43,7 @@ public class recipemainmenu implements Initializable{
   public TextArea recipeLongDesc;
   
   @FXML
-  public ComboBox<tagObject> tagsDropdown;
+  public ComboBox<String> tagsDropdown;
   
   @FXML
   public ComboBox<recipeObject> categoryBox;
@@ -145,11 +146,19 @@ public class recipemainmenu implements Initializable{
 
     } else if (tagsDropdown.getSelectionModel().getSelectedItem() != null) {
       
-      String tag_name = tagsDropdown.getSelectionModel().getSelectedItem().getTag_name();
+      String selectedTag = tagsDropdown.getSelectionModel().getSelectedItem();
+      tags.add(new tagObject(UUID.randomUUID().toString(), selectedTag));
+      tagsDropdown.setValue(null);
+      tagName.setText("");
+      updateTagBox();
+
+
+      /*String tag_name = tagsDropdown.getSelectionModel().getSelectedItem().getTag_name();
+      String tagId = tagsDropdown.getSelectionModel().getSelectedItem().getTag_id();
       UUID uniqueID = UUID.randomUUID();
       String tagID = uniqueID.toString();
-      tagObject newTag = new tagObject(tagID, tag_name);
-      selectedTags.add(newTag);
+      tagObject newTag = new tagObject(tagId, tag_name);
+      selectedTags.add(tagsDropdown.getSelectionModel().getSelectedItem());*/
     }
   }
   
@@ -169,17 +178,24 @@ public class recipemainmenu implements Initializable{
       System.out.println(e);
     }
   }
-  
+
+
+  public void updateTagBox() throws SQLException {
+    tagsDropdown.getItems().add(null);
+    for (tagObject tag : tagController.getTags()) {
+      String tagname = tag.getTag_name();
+      tagsDropdown.getItems().add(tagname);
+    }
+  }
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     try {
       recipes = recipeControler.getRecpies();
       selectedTags = new ArrayList<>();
       selectedIngredients = new ArrayList<>();
-      // TO BE FIXED
-      //categoryBox.getItems().addAll();
-      //tags = tagController.getTags();
       
+      updateTagBox();
     } catch (SQLException err) {
       err.printStackTrace();
     }
