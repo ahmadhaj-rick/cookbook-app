@@ -166,9 +166,30 @@ public class databasemn {
       System.out.println("Error Creating message table: " + e);
     }
   }
-  
-  
-  
+
+  // add a weekly list table to the database.
+
+  private void createTableWeeklyList() {
+    String weeklyListTbName = "CREATE TABLE IF NOT EXISTS weekly_list ("
+            + "weekly_list_id VARCHAR(60) NOT NULL,"
+            + "user_id VARCHAR(60) NOT NULL,"
+            + "recipe_id VARCHAR(60) NOT NULL,"
+            + "week_number INT NOT NULL,"
+            + "PRIMARY KEY (weekly_list_id),"
+            + "FOREIGN KEY (user_id) REFERENCES user(user_id),"
+            + "FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id))";
+    try {
+      Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
+      Statement stm = cnn.createStatement();
+      stm.executeUpdate(weeklyListTbName);
+      System.out.println("Weekly List table created");
+    } catch (SQLException ee) {
+      System.out.println("Error creating Weekly List table");
+    }
+  }
+
+
+
   public void database_mn() {
     try {
       createDb();
@@ -180,6 +201,7 @@ public class databasemn {
       createtag();
       createRecipe_tag();
       createMessage();
+      createTableWeeklyList();
     }
     catch (Exception bread) {
       System.out.println(bread);
