@@ -101,7 +101,7 @@ public class recipemainmenu implements Initializable{
       //Two Loops that add all the selected ingredients into the recipe.
       for (ingredientObject ingredient : selectedIngredients) {
         createdRecipe.addIngredient(ingredient);
-        ingredientControler.addIngredientToRecipe(recipeID, ingredient.getId(), ingredient.getAmount(), ingredient.getUnit());
+        ingredientControler.addIngredientToRecipe(recipeID, ingredient.getId());
       }
 
       System.out.println(createdRecipe.getIngredientsList());
@@ -176,7 +176,8 @@ public class recipemainmenu implements Initializable{
       UUID uniqueID = UUID.randomUUID();
       String uniqueIngredientID = uniqueID.toString();
       String selectedUnit = unit.getSelectionModel().getSelectedItem();
-      int selectedAmount = Integer.parseInt(amount.getText());
+      String a = amount.getText();
+      int selectedAmount = Integer.parseInt(a);
       
       ingredientControler.addIngredient(uniqueIngredientID, ingredient_Name, selectedAmount, selectedUnit);
       ingredientObject newIngredientObject = new ingredientObject(uniqueIngredientID, ingredient_Name, selectedAmount, selectedUnit);
