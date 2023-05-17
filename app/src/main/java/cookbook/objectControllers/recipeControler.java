@@ -53,8 +53,9 @@ public class recipeControler {
           while (ingResultSet.next()) {
             ingredientObject newIng = new ingredientObject(
               ingResultSet.getString("ingredient_id"),
-              ingResultSet.getString("ingredient_name")
-            );
+              ingResultSet.getString("ingredient_name"),
+              result.getInt("amount"),
+             result.getString("unit"));
             recipeObject.addIngredient(newIng);
           }
 

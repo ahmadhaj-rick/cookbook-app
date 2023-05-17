@@ -22,7 +22,9 @@ public class ingredientControler {
       while(result.next()) {
         ingredientObject newIngredient = new ingredientObject(
         result.getString("ingredient_id"),
-        result.getString("ingredient_name"));
+        result.getString("ingredient_name"),
+        result.getInt("amount"),
+        result.getString("unit"));
         currentIngredients.add(newIngredient);
       }
       result.close();
@@ -34,12 +36,14 @@ public class ingredientControler {
   }
   
   
-  public static void addIngredient(String uniqueID, String name) throws SQLException{
+  public static void addIngredient(String uniqueID, String name, int amount, String unit) throws SQLException{
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
-    String query = "INSERT INTO ingredients VALUES(?,?)";
+    String query = "INSERT INTO ingredients VALUES(?,?,?,?)";
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
       sqlStatement.setString(1, uniqueID);
       sqlStatement.setString(2, name);
+      sqlStatement.setInt(3, amount);
+      sqlStatement.setString(4, unit);
       sqlStatement.executeUpdate();
     }
     catch (SQLException e) {
@@ -47,7 +51,7 @@ public class ingredientControler {
     }
   }
  
-  public static void addIngredientToRecipe(String recipeID, String ingredientID) throws SQLException {
+  public static void addIngredientToRecipe(String recipeID, String ingredientID, int amount, String unit) throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String query = "INSERT INTO recipe_ingredients VALUES (?,?)";
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {

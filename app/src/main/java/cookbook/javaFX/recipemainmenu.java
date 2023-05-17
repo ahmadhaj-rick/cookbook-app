@@ -68,6 +68,12 @@ public class recipemainmenu implements Initializable{
   
   @FXML
   public Button addRecipie;
+
+  @FXML
+  public TextField amount;
+
+  @FXML
+  public ComboBox<String> unit;
   
   public List<recipeObject> recipes;
 
@@ -76,6 +82,7 @@ public class recipemainmenu implements Initializable{
 
   public List<tagObject> tags;
   public List<tagObject> selectedTags;
+
   
   public void createRecipe(ActionEvent event) throws SQLException, IOException {
     //For Recipe
@@ -86,6 +93,7 @@ public class recipemainmenu implements Initializable{
     UUID uniqueRecipie = UUID.randomUUID();
     String recipeID = uniqueRecipie.toString();
     
+    
     try{
       recipeControler.addRecipe(recipeID, recipe_Name, shortDescription, categorys, longDescription);
       recipeObject createdRecipe = new recipeObject(recipeID, recipe_Name, shortDescription, "categorys", longDescription, false);
@@ -93,7 +101,7 @@ public class recipemainmenu implements Initializable{
       //Two Loops that add all the selected ingredients into the recipe.
       for (ingredientObject ingredient : selectedIngredients) {
         createdRecipe.addIngredient(ingredient);
-        ingredientControler.addIngredientToRecipe(recipeID, ingredient.getId());
+        ingredientControler.addIngredientToRecipe(recipeID, ingredient.getId(), ingredient.getAmount(), ingredient.getUnit());
       }
 
       System.out.println(createdRecipe.getIngredientsList());
@@ -167,8 +175,11 @@ public class recipemainmenu implements Initializable{
       String ingredient_Name = ingredientName.getText();
       UUID uniqueID = UUID.randomUUID();
       String uniqueIngredientID = uniqueID.toString();
-      ingredientControler.addIngredient(uniqueIngredientID, ingredient_Name);
-      ingredientObject newIngredientObject = new ingredientObject(uniqueIngredientID, ingredient_Name);
+      String selectedUnit = unit.getSelectionModel().getSelectedItem();
+      int selectedAmount = Integer.parseInt(amount.getText());
+      
+      ingredientControler.addIngredient(uniqueIngredientID, ingredient_Name, selectedAmount, selectedUnit);
+      ingredientObject newIngredientObject = new ingredientObject(uniqueIngredientID, ingredient_Name, selectedAmount, selectedUnit);
       selectedIngredients.add(newIngredientObject);
       Alert success = new Alert(Alert.AlertType.INFORMATION);
       success.setTitle("Success!");
@@ -197,11 +208,13 @@ public class recipemainmenu implements Initializable{
       tags = new ArrayList<>();
       
       updateTagBox();
+      unit.setItems(FXCollections.observableArrayList(null, "g", "kg", "ml", "L", "mg", "tea spoon", "pinch"));
+
     } catch (SQLException err) {
       err.printStackTrace();
     }
     System.out.println(recipes.size());
-    ObservableList<recipeObject> recipelist = FXCollections.observableArrayList(recipes);
+
     
   }
 }

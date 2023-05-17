@@ -73,7 +73,7 @@ public class homePage implements Initializable {
             StringBuilder tagB = new StringBuilder();
 
             for (ingredientObject ingredient : ingredientObjects) {
-              sb.append(ingredient.getName()).append(", \n");
+              sb.append(ingredient.toString()).append(", \n");
               System.out.println(sb);
             }
             if (sb.length() > 2) {
