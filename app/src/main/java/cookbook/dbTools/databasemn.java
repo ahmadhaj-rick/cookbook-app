@@ -83,6 +83,8 @@ public class databasemn {
     String recipeIngredientsTbName =    "CREATE TABLE IF NOT EXISTS recipe_ingredients ("
     + "recipe_id varchar(60) not null,"
     + "ingredient_id varchar(60) not null,"
+    + "amount int(1000) not null,"
+    + "unit varchar(10) not null,"
     + "PRIMARY KEY (recipe_id, ingredient_id),"
     + "FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id) ON UPDATE CASCADE ON DELETE CASCADE,"
     + "FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id) ON UPDATE CASCADE ON DELETE CASCADE)";
