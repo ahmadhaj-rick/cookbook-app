@@ -66,7 +66,7 @@ public class recipeControler {
 
           // we can add tag to the object here.
 
-          String tagQuery = "SELECT tag.tag_id, tag.tag_name " +
+          String tagQuery = "SELECT tag.tag_id, tag.name " +
               "FROM tag " +
               "JOIN recipe_tag ON recipe_tag.tag_id = tag.tag_id " +
               "WHERE recipe_tag.recipe_id = ?";
@@ -76,7 +76,7 @@ public class recipeControler {
             while (tagResultSet.next()) {
               tagObject newTag = new tagObject(
                   tagResultSet.getString("tag_id"),
-                  tagResultSet.getString("tag_name"));
+                  tagResultSet.getString("name"));
               recipeObject.addTag(newTag);
             }
 
