@@ -1,11 +1,13 @@
 package cookbook.javaFX;
 import cookbook.objectControllers.ScheduledRecipeController;
+import cookbook.objectControllers.WeekCalendar;
 import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ScheduledRecipeObject;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -142,10 +144,10 @@ public class WeeklyListController implements Initializable {
     });
   }
 
-  /*
+  
   @FXML
   void openShoppingList(ActionEvent event) throws IOException {
-    if (!shoppingList.isEmpty() && startingDateGlobal!=null) {
+    /* if (!shoppingList.isEmpty() && startingDateGlobal!=null) {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(getClass().getResource("shoppingList.fxml"));
       loader.load();
@@ -173,8 +175,8 @@ public class WeeklyListController implements Initializable {
         alert.setContentText("No shopping list for this Week.");
         alert.show();
       }
-    }
-  }*/
+    } */
+  }
 
 }
 

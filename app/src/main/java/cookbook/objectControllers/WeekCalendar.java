@@ -1,6 +1,5 @@
-package cookbook.javaFX;
+package cookbook.objectControllers;
 
-import cookbook.objectControllers.ScheduledRecipeController;
 import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ScheduledRecipeObject;
 

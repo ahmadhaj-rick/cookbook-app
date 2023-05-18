@@ -86,7 +86,7 @@ public class mainMenu {
   public void weeklistClick(ActionEvent event) throws SQLException, IOException {
     
     // Go to the week list screen
-    URL url = new File("src/main/java/cookbook/resources/weeklist.fxml").toURI().toURL();
+    URL url = new File("src/main/java/cookbook/resources/weeklyList.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
     Scene weeklistScene = new Scene(root);
