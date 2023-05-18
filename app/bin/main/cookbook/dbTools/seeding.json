@@ -204,19 +204,55 @@
 
     ],
 
-    "tag" : [
+    "tag": [
         {
-            "tag_id" : "5d36c6f4-41e5-4d8a-9b3f-3d30435d90f3",
-            "name" : "Bread"
+            "tag_id": "d00a891f-5673-4ef4-a5ef-921f4d4f2742",
+            "name": "Italian"
         },
         {
-            "tag_id" : "5d42c6f4-41e5-4d8a-9b3f-3d30435d90f3",
-            "name" : "Soup"
+            "tag_id": "9c1a3e42-76a3-43a6-84e6-b688825e87f9",
+            "name": "Pasta"
         },
         {
-            "tag_id" : "5d32c6f4-41e5-4dva-9b3f-3d30435d90f3",
-            "name" : "Dinner"
+            "tag_id": "2a8acdc5-5631-4d6c-9c24-86960072a199",
+            "name": "Pizza"
+        },
+        {
+            "tag_id": "77b20ef9-5877-4fc4-976e-2f63fe31b1a2",
+            "name": "Steak"
         }
-    ] 
+
+    ],
+    "recipe_tag": [
+        {
+            "recipe_id": "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
+            "tag_id": "9c1a3e42-76a3-43a6-84e6-b688825e87f9"
+        },
+        {
+            "recipe_id": "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
+            "tag_id": "d00a891f-5673-4ef4-a5ef-921f4d4f2742"
+        },
+        {
+            "recipe_id": "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
+            "tag_id": "9c1a3e42-76a3-43a6-84e6-b688825e87f9"
+        },
+        {
+            "recipe_id": "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
+            "tag_id": "d00a891f-5673-4ef4-a5ef-921f4d4f2742"
+        },
+        {
+            "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
+            "tag_id": "2a8acdc5-5631-4d6c-9c24-86960072a199"
+        },
+        {
+            "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
+            "tag_id": "2a8acdc5-5631-4d6c-9c24-86960072a199"
+        },
+        {
+            "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "tag_id": "77b20ef9-5877-4fc4-976e-2f63fe31b1a2"
+        }
+
+    ]
 
 }

@@ -1,14 +1,17 @@
 package cookbook.javaFX;
 
 import cookbook.objectControllers.recipeControler;
+import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ingredientObject;
 import cookbook.objects.recipeObject;
 import cookbook.objects.userObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,9 +36,11 @@ public class homePage implements Initializable {
   @FXML
   public TableView<recipeObject> recipeLists;
   @FXML
-  public Text recipeTags;
-  
+  public CheckBox favoritecheck;
+  @FXML
+  private Text tagField;
   public List<recipeObject> recipes;
+
   
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -65,20 +70,24 @@ public class homePage implements Initializable {
           System.out.println(selectedRecipeObject.getName());
           if (selectedRecipeObject != null) {
             System.out.println("We inside ");
-            List<ingredientObject> ingredientObjects = selectedRecipeObject.getIngredientsList();
+            List<QuanitityIngredients> ingredientObjects = selectedRecipeObject.getIngredientsList();
             List<tagObject> tagObjects = selectedRecipeObject.getTagList();
             System.out.println(ingredientObjects.size() + "inggg");
             System.out.println("We inside 3");
-            StringBuilder sb = new StringBuilder();
-            StringBuilder tagB = new StringBuilder();
-
-            for (ingredientObject ingredient : ingredientObjects) {
-              sb.append(ingredient.toString()).append(", \n");
+            StringBuilder sb = new StringBuilder(); // ingridents 
+            StringBuilder sb2 = new StringBuilder(); // tags
+            for (QuanitityIngredients ingredient : ingredientObjects) {
+              sb.append(ingredient.getName()).append(", \n");
               System.out.println(sb);
             }
             if (sb.length() > 2) {
               sb.setLength(sb.length() - 2);
             }
+            for (tagObject tag : tagObjects) {
+              sb2.append(tag.getTag_name()).append(", ");
+            }
+            tagField.setText(sb2.toString());
+
             IngField.setText(sb.toString());
             
             for (tagObject tag : tagObjects) {
@@ -105,7 +114,7 @@ public class homePage implements Initializable {
     String[] searchWord =searchTxt.split(",");
     
     for (recipeObject recipe : recipes) {
-      List<ingredientObject> ingredients = recipe.getIngredientsList();
+      List<QuanitityIngredients> ingredients = recipe.getIngredientsList();
       List<tagObject> tags = recipe.getTagList();
       boolean tagMatch = false;
       boolean ingMatch = false;
@@ -113,7 +122,7 @@ public class homePage implements Initializable {
       for (String word : searchWord) {
         word = word.trim().toLowerCase();
         
-        for (ingredientObject ing : ingredients) {
+        for (QuanitityIngredients ing : ingredients) {
           // check if the ingredient name contains the search string
           if (ing.getName().toLowerCase().contains(word)){
             ingMatch = true;
@@ -139,11 +148,34 @@ public class homePage implements Initializable {
     recipeLists.setItems(observableFilteredRecipes);
   }
 
-  /*public void getFavorite() {
-    recipeControler control = new recipeControler(); 
-    List<recipeObject> favoriterecepies = new ArrayList<>();
-    for (recipeObject recipie : )
+
+  public void updateFavorite() throws SQLException {
+    recipeControler recipeController = new recipeControler();
+    recipeObject selectedRecipe = recipeLists.getSelectionModel().getSelectedItem();
+    recipeController.updateFavoriteStatus(selectedRecipe);
+    System.out.println(selectedRecipe.getStar());
+  }
+
+  
+  /*public void favoriteRecipeList() throws SQLException {
+    List<recipeObject> faveList = recipeControler.favoriteObjects();
+    ObservableList<recipeObject> observableFavList = FXCollections.observableArrayList(faveList);
+    recipeLists.setItems(observableFavList);
+
   }*/
+
+  public void getFilteredRecipes(ActionEvent event) throws SQLException {
+    CheckBox favoritecheck = (CheckBox) event.getSource();
+    if (favoritecheck.isSelected()) {
+      List<recipeObject> faveList = recipeControler.favoriteObjects();
+      ObservableList<recipeObject> observableFavList = FXCollections.observableArrayList(faveList);
+      recipeLists.setItems(observableFavList);
+    } else {
+      List<recipeObject> normalList = recipeControler.getRecpies();
+      ObservableList<recipeObject> observablenormList = FXCollections.observableArrayList(normalList);
+      recipeLists.setItems(observablenormList);
+    }
+  }
 
 }
 

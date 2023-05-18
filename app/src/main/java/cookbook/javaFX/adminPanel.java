@@ -38,15 +38,15 @@ public class adminPanel implements Initializable {
   public TextField txtPassword;
   @FXML
   public TableView<userObject> userlst;
-
+  
   public List<userObject> users;
-
-
-
+  
+  
+  
   public void refreshData() {
-
+    initialize(null, null);
   }
-
+  
   public void adminCreateUser(ActionEvent event) throws SQLException, IOException {
     String name = txtDisplayName.getText();
     String username = txtUserName.getText();
@@ -57,6 +57,7 @@ public class adminPanel implements Initializable {
       success.setTitle("Success!");
       success.setContentText("You successfully created a new user!");
       success.show();
+      loadData();
     } catch (SQLException x) {
       Alert failure = new Alert(Alert.AlertType.INFORMATION);
       failure.setTitle("Success!");
@@ -64,26 +65,32 @@ public class adminPanel implements Initializable {
       failure.show();
     }
   }
-
+  
   public void adminDeleteUser(ActionEvent event) throws SQLException, IOException{
-    String name = txtDisplayName.getText();
+    userObject user = userlst.getSelectionModel().getSelectedItem();
+    /*String name = txtDisplayName.getText();
     String username = txtUserName.getText();
-    String password = txtPassword.getText();
+    String password = txtPassword.getText();*/
     
-    try{
-      userController.deleteUser(name, username, password);
-      Alert success = new Alert(Alert.AlertType.INFORMATION);
-      success.setTitle("Success!");
-      success.setContentText("You successfully deleted a user!");
-      success.show();
-    } catch (SQLException x) {
-      Alert failure = new Alert(Alert.AlertType.INFORMATION);
-      failure.setTitle("Success!");
-      failure.setContentText(x.toString());
-      failure.show();
+    if (user == null) {
+      return;
+    } else {
+      try{
+        userController.deleteUser(user.getName(), user.getUser_name(), user.getPass());
+        Alert success = new Alert(Alert.AlertType.INFORMATION);
+        success.setTitle("Success!");
+        success.setContentText("You successfully deleted a user!");
+        success.show();
+        loadData();
+      } catch (SQLException x) {
+        Alert failure = new Alert(Alert.AlertType.INFORMATION);
+        failure.setTitle("Success!");
+        failure.setContentText(x.toString());
+        failure.show();
+      }
     }
   }
-
+  
   public void modifyUser(ActionEvent event) throws SQLException, IOException {
     userObject user = userlst.getSelectionModel().getSelectedItem();
     if(user == null) {
@@ -94,15 +101,18 @@ public class adminPanel implements Initializable {
     success.setTitle("Success!");
     success.setContentText("You successfully modified a user!");
     success.show();
+    loadData();
+    
   }
-
+  
+  /*
   public void adminModifyUser(ActionEvent event) throws SQLException, IOException { 
     String name = txtDisplayName.getText(); 
     String username = txtUserName.getText(); 
     String password = txtPassword.getText(); // get the selected user from the table view 
     
     userObject selectedUser = userlst.getSelectionModel().getSelectedItem(); // check if a user is selected 
-
+    
     if (selectedUser != null) { // get the userID of the selected user 
       String i = selectedUser.getId(); 
       try { // modify the user with the new values 
@@ -120,36 +130,60 @@ public class adminPanel implements Initializable {
         Alert warning = new Alert(Alert.AlertType.WARNING); 
         warning.setTitle("Warning!"); warning.setContentText("Please select a user from the table to modify."); warning.show(); 
       } 
-      }
-
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    try {
+    } */
+    
+    
+    /*private void loadData() {
       users = userController.getUsers();
-    } catch (SQLException e) {
-      e.printStackTrace();
+      ObservableList<userObject> user = FXCollections.observableArrayList(users);
+      userlst.getItems().clear();
+      userlst.getItems().addAll(user);
     }
-    System.out.println(users.size());
-    ObservableList<userObject> userList = FXCollections.observableArrayList(users);
+    
+    // adding data to the columns
+    private void initiatecols() {
+      
+      displayNameColumn.setCellValueFactory(new PropertyValueFactory<>("displayName"));
+      
+    }*/
 
-    userlst.getColumns().clear();
-    // for some reasons there is an empty colum !!!!
-
-    TableColumn<userObject, String> nameColumn = new TableColumn<>("Name");
-    nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-    TableColumn<userObject, String> usernameColumn = new TableColumn<>("User Name");
-    usernameColumn.setCellValueFactory(new PropertyValueFactory<>("user_name"));
-
-    TableColumn<userObject, String> passwordColumn = new TableColumn<>("Password");
-    passwordColumn.setCellValueFactory(new PropertyValueFactory<>("pass"));
-
-    userlst.getColumns().add(nameColumn);
-    userlst.getColumns().add(usernameColumn);
-    userlst.getColumns().add(passwordColumn);
-    userlst.getItems().clear();
-    userlst.setItems(userList);
-
+    private void loadData() throws SQLException {
+      users = userController.getUsers();
+      ObservableList<userObject> user = FXCollections.observableArrayList(users);
+      userlst.getItems().clear();
+      userlst.getItems().addAll(user);
+    }
+    
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+      try {
+        users = userController.getUsers();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      System.out.println(users.size());
+      ObservableList<userObject> userList = FXCollections.observableArrayList(users);
+      
+      userlst.getColumns().clear();
+      // for some reasons there is an empty colum !!!!
+      
+      TableColumn<userObject, String> nameColumn = new TableColumn<>("Name");
+      nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+      
+      TableColumn<userObject, String> usernameColumn = new TableColumn<>("User Name");
+      usernameColumn.setCellValueFactory(new PropertyValueFactory<>("user_name"));
+      
+      TableColumn<userObject, String> passwordColumn = new TableColumn<>("Password");
+      passwordColumn.setCellValueFactory(new PropertyValueFactory<>("pass"));
+      
+      userlst.getColumns().add(nameColumn);
+      userlst.getColumns().add(usernameColumn);
+      userlst.getColumns().add(passwordColumn);
+      userlst.getItems().clear();
+      userlst.setItems(userList);
+      
+    }
+    
   }
-
-}
+  

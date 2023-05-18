@@ -9,8 +9,7 @@ public class recipeObject {
   private String description;
   private String category;
   private String instructions;
-  
-  private ArrayList<ingredientObject> ingredientsList = new ArrayList<>();
+  private ArrayList<QuanitityIngredients> QuantityIngredientList = new ArrayList<>();
 
   private ArrayList<tagObject> tagList = new ArrayList<>();
   private Boolean star;
@@ -71,12 +70,16 @@ public class recipeObject {
     this.star = star;
   }
 
-  public ArrayList<ingredientObject> getIngredientsList() {
-    return new ArrayList<>(ingredientsList);
+  public boolean getStar() {
+    return star;
   }
 
-  public void addIngredient(ingredientObject ingredient) {
-    ingredientsList.add(ingredient);
+  public ArrayList<QuanitityIngredients> getIngredientsList() {
+    return new ArrayList<>(QuantityIngredientList);
+  }
+
+  public void addIngredient(QuanitityIngredients ingredient) {
+    QuantityIngredientList.add(ingredient);
   }
 
   public ArrayList<tagObject> getTagList() {

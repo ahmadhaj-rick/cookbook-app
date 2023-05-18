@@ -86,7 +86,7 @@ public class mainMenu {
   public void weeklistClick(ActionEvent event) throws SQLException, IOException {
     
     // Go to the week list screen
-    URL url = new File("src/main/java/cookbook/resources/weeklist.fxml").toURI().toURL();
+    URL url = new File("src/main/java/cookbook/resources/weeklyList.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
     Scene weeklistScene = new Scene(root);
@@ -98,15 +98,17 @@ public class mainMenu {
   }
   
   public void helpClick(ActionEvent event) throws SQLException, IOException {
-    
-    // Show a help dialog
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Help");
-    alert.setHeaderText("How to use this app");
-    alert.setContentText("You can use this app to browse, create and share recipes. You can also plan your weekly meals and get notifications from other users. For more details, please visit our website.");
-    
-    alert.showAndWait();
-    
+    // Go to the week list screen
+    URL url = new File("src/main/java/cookbook/resources/help.fxml").toURI().toURL();
+    FXMLLoader loader = new FXMLLoader(url);
+    Parent root = loader.load();
+    Scene weeklistScene = new Scene(root);
+
+    Stage weeklistStage = (Stage) weeklistbutton.getScene().getWindow();
+    weeklistStage.setScene(weeklistScene);
+    weeklistStage.show();
+
+
   }
   
   public void adminPanelClick(ActionEvent event) throws SQLException, IOException {
@@ -160,7 +162,21 @@ public class mainMenu {
   }
   
   public void exitClick(ActionEvent event) throws SQLException, IOException {
-    
+    URL url = new File("src/main/java/cookbook/resources/login.fxml").toURI().toURL();
+    FXMLLoader loader = new FXMLLoader(url);
+    Parent root = loader.load();
+    Scene loginScene = new Scene(root);
+
+    Stage appStage = (Stage) quitbutton.getScene().getWindow();
+    appStage.setScene(loginScene);
+    appStage.show();
+    appStage.setHeight(500);
+    appStage.setWidth(650);
+    appStage.setResizable(true);
+    appStage.centerOnScreen();
+    appStage.setTitle("Sign In");
+
+
     
     
   }

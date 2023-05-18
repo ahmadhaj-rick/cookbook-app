@@ -21,7 +21,7 @@
       <Separator layoutX="210.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="2.0" />
       <TextField fx:id="search" layoutX="11.0" layoutY="13.0" prefHeight="27.0" prefWidth="131.0" style="-fx-border-style: solid; -fx-background-color: #FDFEFE; -fx-border-color: #5499C7;" text="Search" />
       <Label layoutX="225.0" layoutY="27.0" prefHeight="51.0" prefWidth="346.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Recipe Name" />
-      <CheckBox fx:id="favoritecheck" layoutX="11.0" layoutY="45.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="186.0" style=" -fx-background-color: #FDFEFE; -fx-border-style: solid; -fx-border-color: #5499C7" text="Favorite Only" />
+      <CheckBox fx:id="favoritecheck" layoutX="11.0" layoutY="45.0" mnemonicParsing="false" onAction="#getFilteredRecipes" prefHeight="27.0" prefWidth="186.0" style=" -fx-background-color: #FDFEFE; -fx-border-style: solid; -fx-border-color: #5499C7" text="Favorite Only" />
       <TableView fx:id="recipeLists" layoutX="-2.0" layoutY="78.0" prefHeight="622.0" prefWidth="212.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;">
         <columns>
           <TableColumn prefWidth="207.19998168945312" text="Recipe" />
@@ -34,7 +34,7 @@
                   <HBox prefHeight="59.0" prefWidth="655.0">
                      <children>
                         <Label prefHeight="57.0" prefWidth="43.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Tags:" />
-                        <Text fx:id="recipeTags" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" textAlignment="JUSTIFY" wrappingWidth="354.13671875">
+                        <Text fx:id="tagField" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="tags it self" textAlignment="JUSTIFY" wrappingWidth="354.13671875">
                            <HBox.margin>
                               <Insets top="23.0" />
                            </HBox.margin>
@@ -44,7 +44,7 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="Text" wrappingWidth="521.13671875" />
                   <HBox prefHeight="36.0" prefWidth="655.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to favorite" />
+                        <Button mnemonicParsing="false" onAction="#updateFavorite" prefHeight="42.0" prefWidth="100.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to favorite" />
                         <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Send message" />
                         <DatePicker prefHeight="41.0" prefWidth="174.0" />
                         <Button layoutX="110.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="114.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to dinner list" />
