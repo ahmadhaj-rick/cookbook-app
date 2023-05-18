@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ingredientObject;

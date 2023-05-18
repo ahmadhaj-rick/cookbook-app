@@ -56,10 +56,10 @@ public class mainMenu {
     homeStage.show();
     
   }
-  
+ /*  
   public void addClick(ActionEvent event) throws SQLException, IOException {
     
-    /** // Go to the add recipe screen
+    // Go to the add recipe screen
     URL url = new File("src/main/java/cookbook/resources/addrecipe.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
@@ -67,9 +67,9 @@ public class mainMenu {
     
     Stage addStage = (Stage) addbutton.getScene().getWindow();
     addStage.setScene(addScene);
-    addStage.show();  */
+    addStage.show();  
     
-  }
+  }*/
   public void inboxClick(ActionEvent event) throws SQLException, IOException {
     
     // Go to the inbox screen
@@ -147,11 +147,18 @@ public class mainMenu {
           ioException.printStackTrace();
         }
       });
-    }
+    }  
+  }
+
+  public void addClick(ActionEvent event) throws SQLException, IOException {
+    URL url = new File("src/main/java/cookbook/resources/addNewRecipe.fxml").toURI().toURL();
+    FXMLLoader loader = new FXMLLoader(url);
+    Parent root = loader.load();
+    Scene weeklistScene = new Scene(root);
     
-    
-    
-    
+    Stage weeklistStage = (Stage) weeklistbutton.getScene().getWindow();
+    weeklistStage.setScene(weeklistScene);
+    weeklistStage.show();
   }
   
   public void exitClick(ActionEvent event) throws SQLException, IOException {

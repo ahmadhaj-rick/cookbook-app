@@ -89,6 +89,13 @@ public class homePage implements Initializable {
             tagField.setText(sb2.toString());
 
             IngField.setText(sb.toString());
+            
+            for (tagObject tag : tagObjects) {
+              tagB.append(tag.getTag_name()).append(", ");
+              System.out.println(tagB);
+            }
+            recipeTags.setText(tagB.toString());
+            
           }
         }
       }
