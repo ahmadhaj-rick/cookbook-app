@@ -14,15 +14,11 @@ import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-
-
 public class dbseeder {
-  
-  
+
   public void seed() {
     String dbUrl = "jdbc:mysql://localhost:3306/cookbook?user=root&password=root";
-    
+
     try {
       // Read the JSON file
       File file = new File("src/main/java/cookbook/dbTools/seeding.json");
@@ -30,16 +26,17 @@ public class dbseeder {
         System.out.println("yes");
         String currdir = System.getProperty("user.dir");
         System.out.println(currdir);
-      }else {
+      } else {
         System.out.println("No");
       }
-      
+
       String json = new String(Files.readAllBytes(Paths.get("src/main/java/cookbook/dbTools/seeding.json")));
-      
+
       // Parse the JSON file
       ObjectMapper mapper = new ObjectMapper();
-      Map<String, Object> data = mapper.readValue(json, new TypeReference<Map<String, Object>>() {});
-      
+      Map<String, Object> data = mapper.readValue(json, new TypeReference<Map<String, Object>>() {
+      });
+
       // Insert the users into the database
       Object userObj = data.get("user");
       if (userObj instanceof List) {
@@ -49,19 +46,19 @@ public class dbseeder {
             if (rowUserObj instanceof Map) {
               Map<?, ?> row = (Map<?, ?>) rowUserObj;
               String sqlUser = "INSERT IGNORE INTO user (user_id, fname, username, password, admin_id) VALUES (?, ?, ?, ?, ?)";
-              try(PreparedStatement stmt = cnn.prepareStatement(sqlUser)) {
+              try (PreparedStatement stmt = cnn.prepareStatement(sqlUser)) {
                 stmt.setString(1, (String) row.get("user_id"));
                 stmt.setString(2, (String) row.get("fname"));
                 stmt.setString(3, (String) row.get("username"));
                 stmt.setString(4, (String) row.get("password"));
                 stmt.setBoolean(5, (Boolean) row.get("admin_id"));
                 stmt.executeUpdate();
-              } 
+              }
             }
           }
         }
       }
-      
+
       // Insert the recipes into the database.
       Object recipeObj = data.get("recipe");
       if (recipeObj instanceof List) {
@@ -83,7 +80,7 @@ public class dbseeder {
           }
         }
       }
-      
+
       // Insert the ingredients into the database
       Object ingredientsObj = data.get("ingredients");
       if (ingredientsObj instanceof List) {
@@ -102,8 +99,7 @@ public class dbseeder {
           }
         }
       }
-      
-      
+
       // Insert the recipe ingredients into the database
       Object recipeIngredientsObj = data.get("recipe_ingredients");
       if (recipeIngredientsObj instanceof List) {
@@ -122,12 +118,50 @@ public class dbseeder {
           }
         }
       }
-      
-      
+
+      // Insert the tags for each recipe into the database.
+      Object tagObj = data.get("tag");
+      if (tagObj instanceof List) {
+        List<?> tagsList = (List<?>) tagObj;
+        try (Connection cnn = DriverManager.getConnection(dbUrl)) {
+          for (Object rowRecipe : tagsList) {
+            if (rowRecipe instanceof Map) {
+              Map<?, ?> row = (Map<?, ?>) rowRecipe;
+              String sql = "INSERT IGNORE INTO tag (tag_id, name) VALUES (?, ?)";
+              try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
+                stmt.setString(1, (String) row.get("tag_id"));
+                stmt.setString(2, (String) row.get("name"));
+                stmt.executeUpdate();
+              }
+
+            }
+          }
+        }
+      }
+
+      // Insert the recipe tags into the database
+      Object recipeTagsObj = data.get("recipe_tag");
+      if (recipeTagsObj instanceof List) {
+        List<?> recipeTagsList = (List<?>) recipeTagsObj;
+        try (Connection cnn = DriverManager.getConnection(dbUrl)) {
+          for (Object rowObj : recipeTagsList) {
+            if (rowObj instanceof Map) {
+              Map<?, ?> row = (Map<?, ?>) rowObj;
+              String sql = "INSERT IGNORE INTO recipe_tag (recipe_id, tag_id) VALUES (?, ?)";
+              try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
+                stmt.setString(1, (String) row.get("recipe_id"));
+                stmt.setString(2, (String) row.get("tag_id"));
+                stmt.executeUpdate();
+              }
+            }
+          }
+        }
+      }
+
     } catch (IOException | SQLException e) {
       // Handle the exception here
       e.printStackTrace();
     }
   }
-  
+
 }

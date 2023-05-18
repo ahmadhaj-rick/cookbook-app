@@ -34,7 +34,7 @@
                   <HBox prefHeight="59.0" prefWidth="655.0">
                      <children>
                         <Label prefHeight="57.0" prefWidth="43.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Tags:" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="tags it self" textAlignment="JUSTIFY" wrappingWidth="354.13671875">
+                        <Text fx:id="tagField" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="tags it self" textAlignment="JUSTIFY" wrappingWidth="354.13671875">
                            <HBox.margin>
                               <Insets top="23.0" />
                            </HBox.margin>
@@ -44,7 +44,7 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="Text" wrappingWidth="521.13671875" />
                   <HBox prefHeight="36.0" prefWidth="655.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" onAction="#updateFavorite" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to favorite" />
+                        <Button mnemonicParsing="false" onAction="#updateFavorite" prefHeight="42.0" prefWidth="100.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to favorite" />
                         <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Send message" />
                         <DatePicker prefHeight="41.0" prefWidth="174.0" />
                         <Button layoutX="110.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="114.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to dinner list" />
