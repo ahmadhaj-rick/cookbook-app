@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ingredientObject;
 import cookbook.objects.recipeObject;
 import cookbook.objects.tagObject;
@@ -45,18 +46,22 @@ public class recipeControler {
       // adding ingredients for each recipe.
       for (recipeObject recipeObject : currentRecipeObjects) {
         String id = recipeObject.getId();
-        String ingQuery = "SELECT ingredients.ingredient_id, ingredients.ingredient_name " +
-            "FROM ingredients " +
-            "JOIN recipe_ingredients ON recipe_ingredients.ingredient_id = ingredients.ingredient_id " +
-            "WHERE recipe_ingredients.recipe_id = ?";
+        String ingQuery = "SELECT * " +
+                          "FROM ingredients " +
+                          "JOIN recipe_ingredients ON recipe_ingredients.ingredient_id = ingredients.ingredient_id " +
+                          "WHERE recipe_ingredients.recipe_id = ?";
         try (PreparedStatement ingStatement = conn.prepareStatement(ingQuery)) {
           ingStatement.setString(1, id);
           ResultSet ingResultSet = ingStatement.executeQuery();
+          System.out.println(ingResultSet);
           while (ingResultSet.next()) {
-            ingredientObject newIng = new ingredientObject(
-                ingResultSet.getString("ingredient_id"),
-                ingResultSet.getString("ingredient_name"));
-            recipeObject.addIngredient(newIng);
+            System.out.println("ingredient_name: " + ingResultSet.getString("ingredient_name"));
+            System.out.println("ingredient_id: " + ingResultSet.getString("ingredient_id"));
+            recipeObject.addIngredient(new QuanitityIngredients(
+              ingResultSet.getString("unit"),
+              ingResultSet.getFloat("amount"),
+              new ingredientObject(ingResultSet.getString("ingredient_id"), ingResultSet.getString("ingredient_name")))
+            );
           }
 
           // we can add tag to the object here.
@@ -162,18 +167,19 @@ public class recipeControler {
 
       for (recipeObject recipeObject : favoriteRecipies) {
         String id = recipeObject.getId();
-        String ingQuery = "SELECT ingredients.ingredient_id, ingredients.ingredient_name " +
-            "FROM ingredients " +
-            "JOIN recipe_ingredients ON recipe_ingredients.ingredient_id = ingredients.ingredient_id " +
-            "WHERE recipe_ingredients.recipe_id = ?";
+        String ingQuery = "SELECT * " +
+                          "FROM ingredients " +
+                          "JOIN recipe_ingredients ON recipe_ingredients.ingredient_id = ingredients.ingredient_id " +
+                          "WHERE recipe_ingredients.recipe_id = ?";
         try (PreparedStatement ingStatement = conn.prepareStatement(ingQuery)) {
           ingStatement.setString(1, id);
           ResultSet ingResultSet = ingStatement.executeQuery();
           while (ingResultSet.next()) {
-            ingredientObject newIng = new ingredientObject(
-                ingResultSet.getString("ingredient_id"),
-                ingResultSet.getString("ingredient_name"));
-            recipeObject.addIngredient(newIng);
+            recipeObject.addIngredient(new QuanitityIngredients(
+              ingResultSet.getString("unit"),
+              ingResultSet.getFloat("amount"),
+              new ingredientObject(ingResultSet.getString("ingredient_name"), ingResultSet.getString("ingredient_id")))
+            );
           }
 
           // we can add tag to the object here.

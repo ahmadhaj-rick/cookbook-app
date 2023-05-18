@@ -1,6 +1,7 @@
 package cookbook.javaFX;
 
 import cookbook.objectControllers.recipeControler;
+import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ingredientObject;
 import cookbook.objects.recipeObject;
 import cookbook.objects.userObject;
@@ -36,7 +37,8 @@ public class homePage implements Initializable {
   public TableView<recipeObject> recipeLists;
   @FXML
   public CheckBox favoritecheck;
-  
+  @FXML
+  private Text tagField;
   public List<recipeObject> recipes;
 
   
@@ -68,17 +70,24 @@ public class homePage implements Initializable {
           System.out.println(selectedRecipeObject.getName());
           if (selectedRecipeObject != null) {
             System.out.println("We inside ");
-            List<ingredientObject> ingredientObjects = selectedRecipeObject.getIngredientsList();
+            List<QuanitityIngredients> ingredientObjects = selectedRecipeObject.getIngredientsList();
+            List<tagObject> tagObjects = selectedRecipeObject.getTagList();
             System.out.println(ingredientObjects.size() + "inggg");
             System.out.println("We inside 3");
-            StringBuilder sb = new StringBuilder();
-            for (ingredientObject ingredient : ingredientObjects) {
+            StringBuilder sb = new StringBuilder(); // ingridents 
+            StringBuilder sb2 = new StringBuilder(); // tags
+            for (QuanitityIngredients ingredient : ingredientObjects) {
               sb.append(ingredient.getName()).append(", \n");
               System.out.println(sb);
             }
             if (sb.length() > 2) {
               sb.setLength(sb.length() - 2);
             }
+            for (tagObject tag : tagObjects) {
+              sb2.append(tag.getTag_name()).append(", ");
+            }
+            tagField.setText(sb2.toString());
+
             IngField.setText(sb.toString());
           }
         }
@@ -98,7 +107,7 @@ public class homePage implements Initializable {
     String[] searchWord =searchTxt.split(",");
     
     for (recipeObject recipe : recipes) {
-      List<ingredientObject> ingredients = recipe.getIngredientsList();
+      List<QuanitityIngredients> ingredients = recipe.getIngredientsList();
       List<tagObject> tags = recipe.getTagList();
       boolean tagMatch = false;
       boolean ingMatch = false;
@@ -106,7 +115,7 @@ public class homePage implements Initializable {
       for (String word : searchWord) {
         word = word.trim().toLowerCase();
         
-        for (ingredientObject ing : ingredients) {
+        for (QuanitityIngredients ing : ingredients) {
           // check if the ingredient name contains the search string
           if (ing.getName().toLowerCase().contains(word)){
             ingMatch = true;

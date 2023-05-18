@@ -85,6 +85,8 @@ public class databasemn {
     + "unit VARCHAR(20) NOT NULL,"
     + "amount FLOAT NOT NULL,"
     + "ingredient_id varchar(60) not null,"
+    + "unit VARCHAR(20),"
+    + "amount DECIMAL(8,2),"
     + "PRIMARY KEY (recipe_id, ingredient_id),"
     + "FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id) ON UPDATE CASCADE ON DELETE CASCADE,"
     + "FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id) ON UPDATE CASCADE ON DELETE CASCADE)";
