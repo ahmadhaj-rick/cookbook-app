@@ -34,7 +34,6 @@ public class recipeControler {
             result.getString("recipe_id"),
             result.getString("name"),
             result.getString("description"),
-            result.getString("category"),
             result.getString("instructions"),
             result.getBoolean("star"));
 
@@ -159,7 +158,6 @@ public class recipeControler {
             result.getString("recipe_id"),
             result.getString("name"),
             result.getString("description"),
-            result.getString("category"),
             result.getString("instructions"),
             result.getBoolean("star"));
 
