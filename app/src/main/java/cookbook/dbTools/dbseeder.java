@@ -103,9 +103,9 @@ public class dbseeder {
       // Insert the recipe ingredients into the database
       Object recipeIngredientsObj = data.get("recipe_ingredients");
       if (recipeIngredientsObj instanceof List) {
-        List<?> recipeIngredientsList = (List<?>) recipeIngredientsObj;
+        List<?> tagList = (List<?>) recipeIngredientsObj;
         try (Connection cnn = DriverManager.getConnection(dbUrl)) {
-          for (Object rowObj : recipeIngredientsList) {
+          for (Object rowObj : tagList) {
             if (rowObj instanceof Map) {
               Map<?, ?> row = (Map<?, ?>) rowObj;
               String sql = "INSERT IGNORE INTO recipe_ingredients (recipe_id, ingredient_id) VALUES (?, ?)";

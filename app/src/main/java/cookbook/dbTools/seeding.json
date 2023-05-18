@@ -58,15 +58,21 @@
     "ingredients" : [
         {
             "ingredient_id": "f6c0d8ef-6225-49cb-bb3e-f7b5cf9ab4a7",
-            "ingredient_name": "Spaghetti"
+            "ingredient_name": "Spaghetti",
+            "amount" : 4,
+            "unit" : "L"
         },
         {
             "ingredient_id": "cdb63720-9628-47f1-a0fe-4ddf28a7a655",
-            "ingredient_name": "Ground Beef"
+            "ingredient_name": "Ground Beef",
+            "amount" : 6,
+            "unit" : "L"
         },
         {
             "ingredient_id": "a6b68b08-4507-423e-bd03-dce230bddb58",
-            "ingredient_name": "Tomato Sauce"
+            "ingredient_name": "Tomato Sauce",
+            "amount" : 5,
+            "unit" : "mg"
         },
         {
             "ingredient_id": "c1f0c3a1-37a4-4b5d-83f6-2b4c1e9e55eb",
@@ -181,14 +187,14 @@
         },
         {
             "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
-            "ingredient_id": "eab37f8d-6b48-4e22-9d5f-6a3c77d56f3a"
+            "ingredient_id": "eab37f8d-6b48-4eb2-9d5f-6a3c77d56f3a"
         },
         {
             "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
             "ingredient_id": "d3f43e5f-9138-43d2-b891-67896d775c35"
         },
         {
-            "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
+            "recipe_id": "3d32c6f4-41e5-4b8a-9b3f-3d30435d90f3",
             "ingredient_id": "70b3010f-2c17-4db7-9679-0893d8d9f75c"
         },
         {

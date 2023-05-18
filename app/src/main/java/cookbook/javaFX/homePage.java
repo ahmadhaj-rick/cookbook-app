@@ -89,6 +89,7 @@ public class homePage implements Initializable {
             tagField.setText(sb2.toString());
 
             IngField.setText(sb.toString());
+            
           }
         }
       }

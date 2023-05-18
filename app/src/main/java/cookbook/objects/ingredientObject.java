@@ -3,6 +3,7 @@ package cookbook.objects;
 public class ingredientObject {
     private String id;
     private String name;
+
     
     
     public ingredientObject(String id, String name){
@@ -26,7 +27,4 @@ public class ingredientObject {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
-    
 }
