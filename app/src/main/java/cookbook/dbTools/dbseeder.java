@@ -131,10 +131,10 @@ public class dbseeder {
           for (Object rowRecipe : tagsList) {
             if (rowRecipe instanceof Map) {
               Map<?, ?> row = (Map<?, ?>) rowRecipe;
-              String sql = "INSERT IGNORE INTO tag (tag_id, tag_name) VALUES (?, ?)";
+              String sql = "INSERT IGNORE INTO tag (tag_id, name) VALUES (?, ?)";
               try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
                 stmt.setString(1, (String) row.get("tag_id"));
-                stmt.setString(2, (String) row.get("tag_name"));
+                stmt.setString(2, (String) row.get("name"));
                 stmt.executeUpdate();
               }
 
