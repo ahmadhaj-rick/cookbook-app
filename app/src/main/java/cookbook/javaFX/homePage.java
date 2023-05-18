@@ -37,7 +37,8 @@ public class homePage implements Initializable {
   public TableView<recipeObject> recipeLists;
   @FXML
   public CheckBox favoritecheck;
-  
+  @FXML
+  private Text tagField;
   public List<recipeObject> recipes;
 
   
@@ -70,9 +71,11 @@ public class homePage implements Initializable {
           if (selectedRecipeObject != null) {
             System.out.println("We inside ");
             List<QuanitityIngredients> ingredientObjects = selectedRecipeObject.getIngredientsList();
+            List<tagObject> tagObjects = selectedRecipeObject.getTagList();
             System.out.println(ingredientObjects.size() + "inggg");
             System.out.println("We inside 3");
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder(); // ingridents 
+            StringBuilder sb2 = new StringBuilder(); // tags
             for (QuanitityIngredients ingredient : ingredientObjects) {
               sb.append(ingredient.getName()).append(", \n");
               System.out.println(sb);
@@ -80,6 +83,11 @@ public class homePage implements Initializable {
             if (sb.length() > 2) {
               sb.setLength(sb.length() - 2);
             }
+            for (tagObject tag : tagObjects) {
+              sb2.append(tag.getTag_name()).append(", ");
+            }
+            tagField.setText(sb2.toString());
+
             IngField.setText(sb.toString());
           }
         }
