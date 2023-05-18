@@ -140,14 +140,14 @@ public class dbseeder {
       }
 
       // Insert the recipe tags into the database
-      Object recipeTagsObj = data.get("recipe_tags");
+      Object recipeTagsObj = data.get("recipe_tag");
       if (recipeTagsObj instanceof List) {
         List<?> recipeTagsList = (List<?>) recipeTagsObj;
         try (Connection cnn = DriverManager.getConnection(dbUrl)) {
           for (Object rowObj : recipeTagsList) {
             if (rowObj instanceof Map) {
               Map<?, ?> row = (Map<?, ?>) rowObj;
-              String sql = "INSERT IGNORE INTO recipe_tags (recipe_id, tag_id) VALUES (?, ?)";
+              String sql = "INSERT IGNORE INTO recipe_tag (recipe_id, tag_id) VALUES (?, ?)";
               try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
                 stmt.setString(1, (String) row.get("recipe_id"));
                 stmt.setString(2, (String) row.get("tag_id"));

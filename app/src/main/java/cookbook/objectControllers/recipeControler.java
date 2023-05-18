@@ -66,13 +66,13 @@ public class recipeControler {
 
           // we can add tag to the object here.
 
-          String tagQuery = "SELECT tags.tag_id, tags.tag_name " +
-              "FROM tags " +
-              "JOIN recipe_tags ON recipe_tags.tag_id = tags.tag_id " +
-              "WHERE recipe_tags.recipe_id = ?";
-          try (PreparedStatement tagStatement = conn.prepareStatement(tagQuery)) {
-            tagStatement.setString(1, id);
-            ResultSet tagResultSet = tagStatement.executeQuery();
+          String tagQuery = "SELECT tag.tag_id, tag.tag_name " +
+              "FROM tag " +
+              "JOIN recipe_tag ON recipe_tag.tag_id = tag.tag_id " +
+              "WHERE recipe_tag.recipe_id = ?";
+          try (PreparedStatement tagtatement = conn.prepareStatement(tagQuery)) {
+            tagtatement.setString(1, id);
+            ResultSet tagResultSet = tagtatement.executeQuery();
             while (tagResultSet.next()) {
               tagObject newTag = new tagObject(
                   tagResultSet.getString("tag_id"),
@@ -81,7 +81,7 @@ public class recipeControler {
             }
 
           } catch (SQLException e) {
-            System.out.println("Error adding tags: " + e);
+            System.out.println("Error adding tag: " + e);
           }
 
         } catch (SQLException e) {
