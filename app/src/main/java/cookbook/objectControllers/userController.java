@@ -118,7 +118,7 @@ public class userController {
 
   }
 
-  public static void ModifyUser(String i, String name, String username, String password, Boolean isAdmin) throws SQLException {
+  /*public static void ModifyUser(String i, String name, String username, String password, Boolean isAdmin) throws SQLException {
     Connection conn = DriverManager
         .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String query = "UPDATE user SET name = ?, username = ?, password = ?, isAdmin = ? WHERE userID = ?;";
@@ -137,7 +137,7 @@ public class userController {
     } catch (SQLException x) {
       System.out.println(x);
     }
-  }
+  }*/
 
   public static void editUser(String name, String username, String password, String userID) throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
