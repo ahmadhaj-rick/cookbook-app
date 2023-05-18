@@ -1,6 +1,7 @@
 package cookbook.javaFX;
 
 import cookbook.objectControllers.recipeControler;
+import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ingredientObject;
 import cookbook.objects.recipeObject;
 import cookbook.objects.userObject;
@@ -68,11 +69,11 @@ public class homePage implements Initializable {
           System.out.println(selectedRecipeObject.getName());
           if (selectedRecipeObject != null) {
             System.out.println("We inside ");
-            List<ingredientObject> ingredientObjects = selectedRecipeObject.getIngredientsList();
+            List<QuanitityIngredients> ingredientObjects = selectedRecipeObject.getIngredientsList();
             System.out.println(ingredientObjects.size() + "inggg");
             System.out.println("We inside 3");
             StringBuilder sb = new StringBuilder();
-            for (ingredientObject ingredient : ingredientObjects) {
+            for (QuanitityIngredients ingredient : ingredientObjects) {
               sb.append(ingredient.getName()).append(", \n");
               System.out.println(sb);
             }
@@ -98,7 +99,7 @@ public class homePage implements Initializable {
     String[] searchWord =searchTxt.split(",");
     
     for (recipeObject recipe : recipes) {
-      List<ingredientObject> ingredients = recipe.getIngredientsList();
+      List<QuanitityIngredients> ingredients = recipe.getIngredientsList();
       List<tagObject> tags = recipe.getTagList();
       boolean tagMatch = false;
       boolean ingMatch = false;
@@ -106,7 +107,7 @@ public class homePage implements Initializable {
       for (String word : searchWord) {
         word = word.trim().toLowerCase();
         
-        for (ingredientObject ing : ingredients) {
+        for (QuanitityIngredients ing : ingredients) {
           // check if the ingredient name contains the search string
           if (ing.getName().toLowerCase().contains(word)){
             ingMatch = true;
