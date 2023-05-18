@@ -82,8 +82,6 @@ public class databasemn {
   private void createTableRecipeIngredients () {
     String recipeIngredientsTbName =    "CREATE TABLE IF NOT EXISTS recipe_ingredients ("
     + "recipe_id varchar(60) not null,"
-    + "unit VARCHAR(20) NOT NULL,"
-    + "amount FLOAT NOT NULL,"
     + "ingredient_id varchar(60) not null,"
     + "unit VARCHAR(20),"
     + "amount DECIMAL(8,2),"
