@@ -22,9 +22,7 @@ public class ingredientControler {
       while(result.next()) {
         ingredientObject newIngredient = new ingredientObject(
         result.getString("ingredient_id"),
-        result.getString("ingredient_name"),
-        result.getInt("amount"),
-        result.getString("unit"));
+        result.getString("ingredient_name"));
         currentIngredients.add(newIngredient);
       }
       result.close();

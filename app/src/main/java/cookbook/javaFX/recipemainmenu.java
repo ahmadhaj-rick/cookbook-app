@@ -95,12 +95,12 @@ public class recipemainmenu implements Initializable{
     
     
     try{
-      recipeControler.addRecipe(recipeID, recipe_Name, shortDescription, categorys, longDescription);
+      // recipeControler.addRecipe(recipeID, recipe_Name, shortDescription, categorys, longDescription);
       recipeObject createdRecipe = new recipeObject(recipeID, recipe_Name, shortDescription, "categorys", longDescription, false);
       
       //Two Loops that add all the selected ingredients into the recipe.
       for (ingredientObject ingredient : selectedIngredients) {
-        createdRecipe.addIngredient(ingredient);
+        // createdRecipe.addIngredient(ingredient);
         ingredientControler.addIngredientToRecipe(recipeID, ingredient.getId());
       }
 
@@ -143,7 +143,7 @@ public class recipemainmenu implements Initializable{
       String tagID = uniqueID.toString();
 
       //Add the tag to the database and create an object.
-      tagController.addTag(tagID, tag_Name);
+      // tagController.addTag(tagID, tag_Name);
       tagObject newTag = new tagObject(tagID, tag_Name);
       selectedTags.add(newTag);
 
@@ -180,8 +180,8 @@ public class recipemainmenu implements Initializable{
       int selectedAmount = Integer.parseInt(a);
       
       ingredientControler.addIngredient(uniqueIngredientID, ingredient_Name, selectedAmount, selectedUnit);
-      ingredientObject newIngredientObject = new ingredientObject(uniqueIngredientID, ingredient_Name, selectedAmount, selectedUnit);
-      selectedIngredients.add(newIngredientObject);
+      // ingredientObject newIngredientObject = new ingredientObject(uniqueIngredientID, ingredient_Name, selectedAmount, selectedUnit);
+      //selectedIngredients.add(newIngredientObject);
       Alert success = new Alert(Alert.AlertType.INFORMATION);
       success.setTitle("Success!");
       success.setContentText("You successfully created a new ingredient!");
