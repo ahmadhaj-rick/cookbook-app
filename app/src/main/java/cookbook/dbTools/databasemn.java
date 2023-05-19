@@ -48,7 +48,6 @@ public class databasemn {
     + "recipe_id VARCHAR(60) NOT NULL," 
     + "name VARCHAR(50) NOT NULL," 
     + "description VARCHAR(100) NOT NULL,"
-    + "category VARCHAR(50) NOT NULL," 
     + "instructions VARCHAR(300) NOT NULL,"
     + "star BOOLEAN NOT NULL," 
     + "PRIMARY KEY (recipe_id))";

@@ -95,8 +95,8 @@ public class recipemainmenu implements Initializable{
     
    
     try{
-      recipeControler.addRecipe(recipeID, recipe_Name, shortDescription, "categorys", longDescription);
-      recipeObject createdRecipe = new recipeObject(recipeID, recipe_Name, shortDescription, "categorys", longDescription, false);
+      recipeControler.addRecipe(recipeID, recipe_Name, shortDescription, longDescription);
+      recipeObject createdRecipe = new recipeObject(recipeID, recipe_Name, shortDescription, longDescription, false);
       
       //Two Loops that add all the selected ingredients into the recipe.
       for (QuanitityIngredients ingredient : selectedIngredients) {

@@ -67,13 +67,12 @@ public class dbseeder {
           for (Object rowRecipe : recipeList) {
             if (rowRecipe instanceof Map) {
               Map<?, ?> row = (Map<?, ?>) rowRecipe;
-              String sqlRecipe = "INSERT IGNORE INTO recipe (recipe_id, name, description, category, instructions) VALUES (?, ?, ?, ?, ?)";
+              String sqlRecipe = "INSERT IGNORE INTO recipe (recipe_id, name, description, instructions) VALUES (?, ?, ?, ?)";
               try (PreparedStatement stmt = cnn.prepareStatement(sqlRecipe)) {
                 stmt.setString(1, (String) row.get("recipe_id"));
                 stmt.setString(2, (String) row.get("name"));
                 stmt.setString(3, (String) row.get("description"));
-                stmt.setString(4, (String) row.get("category"));
-                stmt.setString(5, (String) row.get("instructions"));
+                stmt.setString(4, (String) row.get("instructions"));
                 stmt.executeUpdate();
               }
             }

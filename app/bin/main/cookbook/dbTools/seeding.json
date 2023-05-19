@@ -22,35 +22,30 @@
             "recipe_id": "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
             "name": "Spaghetti Bolognese",
             "description": "A classic Italian dish",
-            "category": "Pasta",
             "instructions": "Cook the spaghetti according to the package instructions. In a separate pan, cook the ground beef and tomato sauce. Serve the spaghetti with the sauce on top."
         },
         {
             "recipe_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
             "name" : " Chicken Alfredo",
             "description" : " A creamy pasta dish",
-            "category" : " Pasta",
             "instructions" : " Cook the fettuccine according to the package instructions. In a separate pan, cook the chicken and Alfredo sauce. Serve the fettuccine with the sauce and chicken on top."
         },
         {
             "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
             "name": "Margherita Pizza",
             "description": "A classic Italian pizza with tomatoes, mozzarella, and fresh basil",
-            "category": "Pizza",
             "instructions": "Preheat the oven to 450 degrees F (230 degrees C). Roll out the pizza dough and place it on a pizza pan. Spread tomato sauce over the dough. Add slices of fresh mozzarella cheese on top of the tomato sauce. Bake for 10-12 minutes or until the crust is golden brown and the cheese is melted. Remove from oven and garnish with fresh basil leaves."
         },
         {
             "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
             "name": "Pepperoni Pizza",
             "description": "A classic pizza topped with pepperoni slices",
-            "category": "Pizza",
             "instructions": "Preheat the oven to 450 degrees F (230 degrees C). Roll out the pizza dough and place it on a pizza pan. Spread tomato sauce over the dough. Add slices of pepperoni on top of the tomato sauce. Bake for 10-12 minutes or until the crust is golden brown and the cheese is melted. Remove from oven and let cool for a few minutes before slicing and serving."
         },
         {
             "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
             "name": "Grilled Ribeye Steak",
             "description": "A juicy and flavorful grilled ribeye steak",
-            "category": "Steak",
             "instructions": "1. Preheat grill to high heat.\n2. Season the steak generously with salt and pepper on both sides.\n3. Place the steak on the grill and cook for 4-5 minutes on each side for medium-rare, or until desired doneness is reached.\n4. Remove from the grill and let it rest for a few minutes before slicing and serving."
         }
     ],
@@ -58,21 +53,15 @@
     "ingredients" : [
         {
             "ingredient_id": "f6c0d8ef-6225-49cb-bb3e-f7b5cf9ab4a7",
-            "ingredient_name": "Spaghetti",
-            "amount" : 4,
-            "unit" : "L"
+            "ingredient_name": "Spaghetti"
         },
         {
             "ingredient_id": "cdb63720-9628-47f1-a0fe-4ddf28a7a655",
-            "ingredient_name": "Ground Beef",
-            "amount" : 6,
-            "unit" : "L"
+            "ingredient_name": "Ground Beef"
         },
         {
             "ingredient_id": "a6b68b08-4507-423e-bd03-dce230bddb58",
-            "ingredient_name": "Tomato Sauce",
-            "amount" : 5,
-            "unit" : "mg"
+            "ingredient_name": "Tomato Sauce"
         },
         {
             "ingredient_id": "c1f0c3a1-37a4-4b5d-83f6-2b4c1e9e55eb",
