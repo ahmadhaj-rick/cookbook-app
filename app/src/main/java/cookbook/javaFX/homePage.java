@@ -77,7 +77,7 @@ public class homePage implements Initializable {
             StringBuilder sb = new StringBuilder(); // ingridents 
             StringBuilder sb2 = new StringBuilder(); // tags
             for (QuanitityIngredients ingredient : ingredientObjects) {
-              sb.append(ingredient.getName()).append(", \n");
+              sb.append(ingredient.getAmount() + ingredient.getUnit() + " " + ingredient.getName()).append(", \n");
               System.out.println(sb);
             }
             if (sb.length() > 2) {

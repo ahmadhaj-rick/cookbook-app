@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import cookbook.objectControllers.ingredientControler;
 import cookbook.objectControllers.recipeControler;
 import cookbook.objectControllers.tagController;
+import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ingredientObject;
 import cookbook.objects.recipeObject;
 import cookbook.objects.tagObject;
@@ -78,7 +79,7 @@ public class recipemainmenu implements Initializable{
   public List<recipeObject> recipes;
 
   public List<ingredientObject> ingredients;
-  public List<ingredientObject> selectedIngredients;
+  public List<QuanitityIngredients> selectedIngredients;
 
   public List<tagObject> tags;
   public List<tagObject> selectedTags;
@@ -89,26 +90,27 @@ public class recipemainmenu implements Initializable{
     String recipe_Name = recipeName.getText();
     String shortDescription = recipeShortDesc.getText();
     String longDescription = recipeLongDesc.getText();
-    String categorys = categoryName.getText();
     UUID uniqueRecipie = UUID.randomUUID();
     String recipeID = uniqueRecipie.toString();
     
-    
+   
     try{
-      // recipeControler.addRecipe(recipeID, recipe_Name, shortDescription, categorys, longDescription);
-      recipeObject createdRecipe = new recipeObject(recipeID, recipe_Name, shortDescription, longDescription, false);
+      recipeControler.addRecipe(recipeID, recipe_Name, shortDescription, "categorys", longDescription);
+      recipeObject createdRecipe = new recipeObject(recipeID, recipe_Name, shortDescription, "categorys", longDescription, false);
       
       //Two Loops that add all the selected ingredients into the recipe.
-      for (ingredientObject ingredient : selectedIngredients) {
-        // createdRecipe.addIngredient(ingredient);
-        ingredientControler.addIngredientToRecipe(recipeID, ingredient.getId());
+      for (QuanitityIngredients ingredient : selectedIngredients) {
+        createdRecipe.addIngredient(ingredient);
+        ingredientControler.addIngredientToRecipe(recipeID, ingredient.ingredientID(), ingredient.getUnit(), ingredient.getAmount());
       }
 
       System.out.println(createdRecipe.getIngredientsList());
       
       for (tagObject tag : selectedTags) {
         createdRecipe.addTag(tag);
+        tagController.addTagToRecipe(recipeID, tag.getTag_id());
       }
+
       Alert success = new Alert(Alert.AlertType.INFORMATION);
       success.setTitle("Success!");
       success.setContentText("You successfully created a new recipe!");
@@ -144,6 +146,7 @@ public class recipemainmenu implements Initializable{
 
       //Add the tag to the database and create an object.
       // tagController.addTag(tagID, tag_Name);
+      tagController.addTag(tagID, tag_Name);
       tagObject newTag = new tagObject(tagID, tag_Name);
       selectedTags.add(newTag);
 
@@ -158,6 +161,11 @@ public class recipemainmenu implements Initializable{
       tags.add(new tagObject(UUID.randomUUID().toString(), selectedTag));
       tagsDropdown.setValue(null);
       tagName.setText("");
+      
+      Alert success = new Alert(Alert.AlertType.INFORMATION);
+      success.setTitle("Success!");
+      success.setContentText("You successfully added a new tag!");
+      success.show();
       updateTagBox();
 
 
@@ -170,6 +178,10 @@ public class recipemainmenu implements Initializable{
     }
   }
   
+  /**
+   * The add ingredient button, when button is pressed, add the ingredient to the recipe.
+   */
+
   public void addIngredientToList(ActionEvent event) throws SQLException, IOException {
     try {
       String ingredient_Name = ingredientName.getText();
@@ -177,11 +189,15 @@ public class recipemainmenu implements Initializable{
       String uniqueIngredientID = uniqueID.toString();
       String selectedUnit = unit.getSelectionModel().getSelectedItem();
       String a = amount.getText();
-      int selectedAmount = Integer.parseInt(a);
-      
-      ingredientControler.addIngredient(uniqueIngredientID, ingredient_Name, selectedAmount, selectedUnit);
-      // ingredientObject newIngredientObject = new ingredientObject(uniqueIngredientID, ingredient_Name, selectedAmount, selectedUnit);
-      //selectedIngredients.add(newIngredientObject);
+      float selectedAmount = Float.parseFloat(a);
+
+      //add the ingredient to the database aswell as creating an object.
+      ingredientControler.addIngredient(uniqueIngredientID, ingredient_Name);
+      ingredientObject newIngredientObject = new ingredientObject(uniqueIngredientID, ingredient_Name);
+      //add the ingredient to our QuantityIngredient object and then add the object to the list.
+      QuanitityIngredients newQuanitityIngredients = new QuanitityIngredients(selectedUnit, selectedAmount, newIngredientObject);
+      selectedIngredients.add(newQuanitityIngredients);
+
       Alert success = new Alert(Alert.AlertType.INFORMATION);
       success.setTitle("Success!");
       success.setContentText("You successfully created a new ingredient!");
@@ -200,6 +216,9 @@ public class recipemainmenu implements Initializable{
     }
   }
 
+  /**
+   * Recipe stuff.
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     try {

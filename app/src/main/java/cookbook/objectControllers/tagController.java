@@ -24,7 +24,7 @@ public class tagController {
       ResultSet result = sqlStatement.executeQuery();
       while (result.next()) {
         tagObject user = new tagObject(
-            result.getString("id"),
+            result.getString("tag_id"),
             result.getString("name"));
 
         tags.add(user);
@@ -36,8 +36,8 @@ public class tagController {
     return tags;
   }
 
-  public tagObject addTag(String tag_id, String tag_name) throws SQLException {
-    String query = "INSERT INTO user VALUES(?, ?);";
+  public static void addTag(String tag_id, String tag_name) throws SQLException {
+    String query = "INSERT INTO tag VALUES(?, ?);";
     Connection conn = DriverManager
         .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
@@ -47,26 +47,21 @@ public class tagController {
 
       sqlStatement.executeUpdate();
 
-      tagObject tag = new tagObject(tag_id, tag_name);
-      return tag;
     } catch (SQLException e) {
       System.out.println(e);
     }
-    return null;
-    
-    
   }
   
   public static void addTagToRecipe(String RecipeID, String TagID) throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
-    String query = "INSERT INTO recipe_tag VALEUS(?,?)";
+    String query = "INSERT INTO recipe_tag VALUES(?,?)";
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
-      sqlStatement.setString(1, RecipeID);
-      sqlStatement.setString(2, TagID);
+      sqlStatement.setString(1, TagID);
+      sqlStatement.setString(2, RecipeID);
       sqlStatement.executeUpdate();
       
-      int rowsAffected = sqlStatement.executeUpdate();
-      System.out.println(rowsAffected + "rows affected");
+    //  int rowsAffected = sqlStatement.executeUpdate();
+    //  System.out.println(rowsAffected + "rows affected");
     }
   }
 }
