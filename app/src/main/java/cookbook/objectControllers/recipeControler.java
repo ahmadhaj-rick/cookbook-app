@@ -200,16 +200,17 @@ public class recipeControler {
 
   public static void addRecipe(String recipeId, String recipeName, String shortDesc, String categories, String longDesc) throws SQLException{
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
-    String query = "INSERT INTO ingredients VALUES(?,?,?,?,?)";
+    String query = "INSERT INTO recipe VALUES(?,?,?,?,?,?)";
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
       sqlStatement.setString(1, recipeId);
       sqlStatement.setString(2, recipeName);
       sqlStatement.setString(3, shortDesc);
       sqlStatement.setString(4, categories);
       sqlStatement.setString(5, longDesc);
+      sqlStatement.setBoolean(6, false);
       sqlStatement.executeUpdate();
     } catch (SQLException e) {
-      System.out.println(e);
+      System.out.println("lala" + e);
     }
   }
 }

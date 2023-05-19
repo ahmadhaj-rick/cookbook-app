@@ -24,7 +24,7 @@ public class tagController {
       ResultSet result = sqlStatement.executeQuery();
       while (result.next()) {
         tagObject user = new tagObject(
-            result.getString("id"),
+            result.getString("tag_id"),
             result.getString("name"));
 
         tags.add(user);
@@ -36,8 +36,8 @@ public class tagController {
     return tags;
   }
 
-  public tagObject addTag(String tag_id, String tag_name) throws SQLException {
-    String query = "INSERT INTO user VALUES(?, ?);";
+  public static tagObject addTag(String tag_id, String tag_name) throws SQLException {
+    String query = "INSERT INTO tag VALUES(?, ?);";
     Connection conn = DriverManager
         .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 

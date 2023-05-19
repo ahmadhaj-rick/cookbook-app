@@ -93,6 +93,7 @@ public class recipemainmenu implements Initializable{
     UUID uniqueRecipie = UUID.randomUUID();
     String recipeID = uniqueRecipie.toString();
     
+   
     try{
       recipeControler.addRecipe(recipeID, recipe_Name, shortDescription, "categorys", longDescription);
       recipeObject createdRecipe = new recipeObject(recipeID, recipe_Name, shortDescription, "categorys", longDescription, false);
@@ -100,7 +101,7 @@ public class recipemainmenu implements Initializable{
       //Two Loops that add all the selected ingredients into the recipe.
       for (QuanitityIngredients ingredient : selectedIngredients) {
         createdRecipe.addIngredient(ingredient);
-        ingredientControler.addIngredientToRecipe(recipeID, ingredient.ingredientID(), ingredient.getAmount(), ingredient.getUnit());
+        ingredientControler.addIngredientToRecipe(recipeID, ingredient.ingredientID(), ingredient.getUnit(), ingredient.getAmount());
       }
 
       System.out.println(createdRecipe.getIngredientsList());
@@ -144,6 +145,7 @@ public class recipemainmenu implements Initializable{
 
       //Add the tag to the database and create an object.
       // tagController.addTag(tagID, tag_Name);
+      tagController.addTag(tagID, tag_Name);
       tagObject newTag = new tagObject(tagID, tag_Name);
       selectedTags.add(newTag);
 
@@ -158,6 +160,11 @@ public class recipemainmenu implements Initializable{
       tags.add(new tagObject(UUID.randomUUID().toString(), selectedTag));
       tagsDropdown.setValue(null);
       tagName.setText("");
+      
+      Alert success = new Alert(Alert.AlertType.INFORMATION);
+      success.setTitle("Success!");
+      success.setContentText("You successfully added a new tag!");
+      success.show();
       updateTagBox();
 
 
