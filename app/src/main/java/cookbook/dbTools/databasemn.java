@@ -66,9 +66,7 @@ public class databasemn {
   private void createTableingredients() {
     String ingredientstbname = "CREATE TABLE IF NOT EXISTS ingredients ("
     + "ingredient_id VARCHAR(60) NOT NULL," 
-    + "ingredient_name VARCHAR(50) NOT NULL," 
-    + "amount int(255) NOT NULL,"
-    + "unit varchar(20) NOT NULL,"
+    + "ingredient_name VARCHAR(50) NOT NULL,"
     + "PRIMARY KEY (ingredient_id))";
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);

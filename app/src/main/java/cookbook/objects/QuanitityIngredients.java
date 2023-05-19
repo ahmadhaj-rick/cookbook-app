@@ -32,6 +32,10 @@ public class QuanitityIngredients {
     return ingredient;
   }
   
+  public String ingredientID() {
+    return ingredient.getId();
+  }
+
   public String getUnit() {
     return unit;
   }

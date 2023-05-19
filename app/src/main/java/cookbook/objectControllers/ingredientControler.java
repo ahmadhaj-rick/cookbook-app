@@ -34,14 +34,12 @@ public class ingredientControler {
   }
   
   
-  public static void addIngredient(String uniqueID, String name, int amount, String unit) throws SQLException{
+  public static void addIngredient(String uniqueID, String name) throws SQLException{
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String query = "INSERT INTO ingredients VALUES(?,?,?,?)";
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
       sqlStatement.setString(1, uniqueID);
       sqlStatement.setString(2, name);
-      sqlStatement.setInt(3, amount);
-      sqlStatement.setString(4, unit);
       sqlStatement.executeUpdate();
     }
     catch (SQLException e) {
@@ -49,12 +47,14 @@ public class ingredientControler {
     }
   }
  
-  public static void addIngredientToRecipe(String recipeID, String ingredientID) throws SQLException {
+  public static void addIngredientToRecipe(String recipeID, String ingredientID, Float amount, String unit) throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
-    String query = "INSERT INTO recipe_ingredients VALUES (?,?)";
+    String query = "INSERT INTO recipe_ingredients VALUES (?,?,?,?)";
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
       sqlStatement.setString(1, recipeID);
       sqlStatement.setString(2, ingredientID);
+      sqlStatement.setFloat(3, amount);
+      sqlStatement.setString(4, unit);
       sqlStatement.execute();
       
       int rowsAffected = sqlStatement.executeUpdate();
