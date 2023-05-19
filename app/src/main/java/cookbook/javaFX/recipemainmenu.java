@@ -108,6 +108,7 @@ public class recipemainmenu implements Initializable{
       
       for (tagObject tag : selectedTags) {
         createdRecipe.addTag(tag);
+        tagController.addTagToRecipe(recipeID, tag.getTag_id());
       }
 
       Alert success = new Alert(Alert.AlertType.INFORMATION);
