@@ -79,4 +79,29 @@ public class MessageController {
     return messages;
   }
 
+  // display the name of the user.
+  public static String getName(String user_id) throws SQLException {
+    String query = "SELECT name FROM users WHERE id = ?";
+
+    Connection conn = DriverManager
+        .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
+
+    try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
+      sqlStatement.setString(1, user_id);
+
+      ResultSet result = sqlStatement.executeQuery();
+
+      if (result.next()) {
+        return result.getString("name");
+      }
+
+      result.close();
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+
+    return null;
+  }
+  
+
 }
