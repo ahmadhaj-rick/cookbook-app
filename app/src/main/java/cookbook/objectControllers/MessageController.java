@@ -3,10 +3,14 @@ package cookbook.objectControllers;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
+import cookbook.objects.MessageObject;
 
 public class MessageController {
 
@@ -37,6 +41,42 @@ public class MessageController {
     } catch (SQLException e) {
       System.out.println(e);
     }
+  }
+
+  // Get Messages by user from one user to other user.
+  public static List<MessageObject> getMessages(String from_User, String to_User) throws SQLException {
+
+    List<MessageObject> messages = new ArrayList<>();
+    String query = "SELECT * FROM messages WHERE from_user = ? AND to_user = ?";
+
+    Connection conn = DriverManager
+        .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
+
+    try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
+      sqlStatement.setString(1, from_User);
+      sqlStatement.setString(2, to_User);
+
+      ResultSet result = sqlStatement.executeQuery();
+
+      while (result.next()) {
+        String Id = result.getString("id");
+        MessageObject message = new MessageObject(
+            Id,
+            result.getString("from_User"),
+            result.getString("to_User"),
+            result.getString("recipe_Id"),
+            result.getString("body"),
+            result.getTimestamp("created_at"));
+
+        messages.add(message);
+      }
+
+      result.close();
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+
+    return messages;
   }
 
 }
