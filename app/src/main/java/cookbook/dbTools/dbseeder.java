@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -150,6 +151,29 @@ public class dbseeder {
               try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
                 stmt.setString(1, (String) row.get("recipe_id"));
                 stmt.setString(2, (String) row.get("tag_id"));
+                stmt.executeUpdate();
+              }
+            }
+          }
+        }
+      }
+
+      // Insert the messages into the database
+      Object messagesObj = data.get("message");
+      if (messagesObj instanceof List) {
+        List<?> messagesList = (List<?>) messagesObj;
+        try (Connection cnn = DriverManager.getConnection(dbUrl)) {
+          for (Object rowObj : messagesList) {
+            if (rowObj instanceof Map) {
+              Map<?, ?> row = (Map<?, ?>) rowObj;
+              String sql = "INSERT INTO messages (id, from_user, to_user, recipe_id, body, created_at) VALUES (?, ?, ?, ?, ?, ?)";
+              try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
+                stmt.setString(1, (String) row.get("id"));
+                stmt.setString(2, (String) row.get("from_user"));
+                stmt.setString(3, (String) row.get("to_user"));
+                stmt.setString(4, (String) row.get("recipe_id"));
+                stmt.setString(5, (String) row.get("body"));
+                stmt.setTimestamp(6, (Timestamp) row.get("created_at"));
                 stmt.executeUpdate();
               }
             }
