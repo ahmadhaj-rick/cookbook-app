@@ -32,41 +32,53 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class recipemainmenu implements Initializable{
-  
+public class recipemainmenu implements Initializable {
+
   @FXML
   public TextField recipeName;
-  
+
   @FXML
   public TextArea recipeShortDesc;
-  
+
   @FXML
   public TextArea recipeLongDesc;
-  
+
   @FXML
   public ComboBox<String> tagsDropdown;
-  
+
   @FXML
   public ComboBox<recipeObject> categoryBox;
-  
+
   @FXML
   public TextField tagName;
-  
+
   @FXML
   public Button addTag;
-  
+
+  @FXML
+  private TextField fromUser;
+
+  @FXML
+  private TextField toUser;
+
+  @FXML
+  private TextArea messageBody;
+
+  @FXML
+  private Button messagebutton;
+
   @FXML
   public TextField ingredientName;
-  
+
   @FXML
   public TextField categoryName;
-  
+
   @FXML
   public Button addIngredient;
 
   @FXML
   public Button back;
-  
+
   @FXML
   public Button addRecipie;
 
@@ -75,7 +87,7 @@ public class recipemainmenu implements Initializable{
 
   @FXML
   public ComboBox<String> unit;
-  
+
   public List<recipeObject> recipes;
 
   public List<ingredientObject> ingredients;
@@ -84,28 +96,27 @@ public class recipemainmenu implements Initializable{
   public List<tagObject> tags;
   public List<tagObject> selectedTags;
 
-  
   public void createRecipe(ActionEvent event) throws SQLException, IOException {
-    //For Recipe
+    // For Recipe
     String recipe_Name = recipeName.getText();
     String shortDescription = recipeShortDesc.getText();
     String longDescription = recipeLongDesc.getText();
     UUID uniqueRecipie = UUID.randomUUID();
     String recipeID = uniqueRecipie.toString();
-    
-   
-    try{
+
+    try {
       recipeControler.addRecipe(recipeID, recipe_Name, shortDescription, longDescription);
       recipeObject createdRecipe = new recipeObject(recipeID, recipe_Name, shortDescription, longDescription, false);
-      
-      //Two Loops that add all the selected ingredients into the recipe.
+
+      // Two Loops that add all the selected ingredients into the recipe.
       for (QuanitityIngredients ingredient : selectedIngredients) {
         createdRecipe.addIngredient(ingredient);
-        ingredientControler.addIngredientToRecipe(recipeID, ingredient.ingredientID(), ingredient.getUnit(), ingredient.getAmount());
+        ingredientControler.addIngredientToRecipe(recipeID, ingredient.ingredientID(), ingredient.getUnit(),
+            ingredient.getAmount());
       }
 
       System.out.println(createdRecipe.getIngredientsList());
-      
+
       for (tagObject tag : selectedTags) {
         createdRecipe.addTag(tag);
         tagController.addTagToRecipe(recipeID, tag.getTag_id());
@@ -114,7 +125,7 @@ public class recipemainmenu implements Initializable{
       Alert success = new Alert(Alert.AlertType.INFORMATION);
       success.setTitle("Success!");
       success.setContentText("You successfully created a new recipe!");
-      success.show();  
+      success.show();
     } catch (SQLException x) {
       Alert failure = new Alert(Alert.AlertType.INFORMATION);
       failure.setTitle("Faliure!");
@@ -122,13 +133,13 @@ public class recipemainmenu implements Initializable{
       failure.show();
     }
   }
-  
+
   public void backButton(ActionEvent event) throws SQLException, IOException {
     URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
     Scene loginScene = new Scene(root);
-    
+
     Stage mainStage = (Stage) back.getScene().getWindow();
     mainStage.setScene(loginScene);
     mainStage.show();
@@ -137,14 +148,14 @@ public class recipemainmenu implements Initializable{
     mainStage.setResizable(true);
     mainStage.centerOnScreen();
   }
-  
+
   public void addTagToList(ActionEvent event) throws SQLException, IOException {
     if (tagsDropdown.getSelectionModel().getSelectedItem() == null) {
       String tag_Name = tagName.getText();
       UUID uniqueID = UUID.randomUUID();
       String tagID = uniqueID.toString();
 
-      //Add the tag to the database and create an object.
+      // Add the tag to the database and create an object.
       // tagController.addTag(tagID, tag_Name);
       tagController.addTag(tagID, tag_Name);
       tagObject newTag = new tagObject(tagID, tag_Name);
@@ -156,30 +167,34 @@ public class recipemainmenu implements Initializable{
       success.show();
 
     } else if (tagsDropdown.getSelectionModel().getSelectedItem() != null) {
-      
+
       String selectedTag = tagsDropdown.getSelectionModel().getSelectedItem();
       tags.add(new tagObject(UUID.randomUUID().toString(), selectedTag));
       tagsDropdown.setValue(null);
       tagName.setText("");
-      
+
       Alert success = new Alert(Alert.AlertType.INFORMATION);
       success.setTitle("Success!");
       success.setContentText("You successfully added a new tag!");
       success.show();
       updateTagBox();
 
-
-      /*String tag_name = tagsDropdown.getSelectionModel().getSelectedItem().getTag_name();
-      String tagId = tagsDropdown.getSelectionModel().getSelectedItem().getTag_id();
-      UUID uniqueID = UUID.randomUUID();
-      String tagID = uniqueID.toString();
-      tagObject newTag = new tagObject(tagId, tag_name);
-      selectedTags.add(tagsDropdown.getSelectionModel().getSelectedItem());*/
+      /*
+       * String tag_name =
+       * tagsDropdown.getSelectionModel().getSelectedItem().getTag_name();
+       * String tagId =
+       * tagsDropdown.getSelectionModel().getSelectedItem().getTag_id();
+       * UUID uniqueID = UUID.randomUUID();
+       * String tagID = uniqueID.toString();
+       * tagObject newTag = new tagObject(tagId, tag_name);
+       * selectedTags.add(tagsDropdown.getSelectionModel().getSelectedItem());
+       */
     }
   }
-  
+
   /**
-   * The add ingredient button, when button is pressed, add the ingredient to the recipe.
+   * The add ingredient button, when button is pressed, add the ingredient to the
+   * recipe.
    */
 
   public void addIngredientToList(ActionEvent event) throws SQLException, IOException {
@@ -191,22 +206,23 @@ public class recipemainmenu implements Initializable{
       String a = amount.getText();
       float selectedAmount = Float.parseFloat(a);
 
-      //add the ingredient to the database aswell as creating an object.
+      // add the ingredient to the database aswell as creating an object.
       ingredientControler.addIngredient(uniqueIngredientID, ingredient_Name);
       ingredientObject newIngredientObject = new ingredientObject(uniqueIngredientID, ingredient_Name);
-      //add the ingredient to our QuantityIngredient object and then add the object to the list.
-      QuanitityIngredients newQuanitityIngredients = new QuanitityIngredients(selectedUnit, selectedAmount, newIngredientObject);
+      // add the ingredient to our QuantityIngredient object and then add the object
+      // to the list.
+      QuanitityIngredients newQuanitityIngredients = new QuanitityIngredients(selectedUnit, selectedAmount,
+          newIngredientObject);
       selectedIngredients.add(newQuanitityIngredients);
 
       Alert success = new Alert(Alert.AlertType.INFORMATION);
       success.setTitle("Success!");
       success.setContentText("You successfully created a new ingredient!");
-      success.show(); 
+      success.show();
     } catch (SQLException e) {
       System.out.println(e);
     }
   }
-
 
   public void updateTagBox() throws SQLException {
     tagsDropdown.getItems().add(null);
@@ -226,7 +242,7 @@ public class recipemainmenu implements Initializable{
       selectedTags = new ArrayList<>();
       selectedIngredients = new ArrayList<>();
       tags = new ArrayList<>();
-      
+
       updateTagBox();
       unit.setItems(FXCollections.observableArrayList(null, "g", "kg", "ml", "L", "mg", "tea spoon", "pinch"));
 
@@ -235,6 +251,5 @@ public class recipemainmenu implements Initializable{
     }
     System.out.println(recipes.size());
 
-    
   }
 }
