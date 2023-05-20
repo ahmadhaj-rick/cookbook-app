@@ -107,14 +107,15 @@ public class MessageController {
   public static List<MessageObject> getMessagesByUserId(String user_id) throws SQLException {
     List<MessageObject> messages = new ArrayList<>();
     String query = "SELECT * FROM messages WHERE from_user = ?";
-  
-    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
-  
+
+    Connection conn = DriverManager
+        .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
+
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
       sqlStatement.setString(1, user_id);
-  
+
       ResultSet result = sqlStatement.executeQuery();
-  
+
       while (result.next()) {
         String Id = result.getString("id");
         MessageObject message = new MessageObject(
@@ -124,19 +125,40 @@ public class MessageController {
             result.getString("recipe_Id"),
             result.getString("body"),
             result.getTimestamp("created_at"));
-  
+
         messages.add(message);
       }
-  
+
       result.close();
     } catch (SQLException e) {
       System.out.println(e);
     }
-  
+
     return messages;
   }
 
+  // Get the name of a recipe based on its ID.
+  public static String getRecipeName(String user_id) throws SQLException {
+    String query = "SELECT name FROM recipes WHERE id = ?";
 
+    Connection conn = DriverManager
+        .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
+    try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
+      sqlStatement.setString(1, user_id);
+
+      ResultSet result = sqlStatement.executeQuery();
+
+      if (result.next()) {
+        return result.getString("name");
+      }
+
+      result.close();
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+
+    return null;
+  }
 
 }
