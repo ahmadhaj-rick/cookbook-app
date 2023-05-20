@@ -102,6 +102,41 @@ public class MessageController {
 
     return null;
   }
+
+  // Retrieve all messages sent by a user based on their ID.
+  public static List<MessageObject> getMessagesByUserId(String user_id) throws SQLException {
+    List<MessageObject> messages = new ArrayList<>();
+    String query = "SELECT * FROM messages WHERE from_user = ?";
   
+    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
+  
+    try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
+      sqlStatement.setString(1, user_id);
+  
+      ResultSet result = sqlStatement.executeQuery();
+  
+      while (result.next()) {
+        String Id = result.getString("id");
+        MessageObject message = new MessageObject(
+            Id,
+            result.getString("from_User"),
+            result.getString("to_User"),
+            result.getString("recipe_Id"),
+            result.getString("body"),
+            result.getTimestamp("created_at"));
+  
+        messages.add(message);
+      }
+  
+      result.close();
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+  
+    return messages;
+  }
+
+
+
 
 }
