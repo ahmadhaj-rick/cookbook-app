@@ -11,10 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -34,14 +31,15 @@ public class homePage implements Initializable {
   @FXML
   public Text IngField;
   @FXML
+  public Label portionsLabel;
+  @FXML
   public TableView<recipeObject> recipeLists;
   @FXML
   public CheckBox favoritecheck;
   @FXML
   private Text tagField;
   public List<recipeObject> recipes;
-
-  
+  int portions = 1;
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     try {
@@ -170,6 +168,35 @@ public class homePage implements Initializable {
       recipeLists.setItems(observablenormList);
     }
   }
+
+  // adjust the number of persons a recipe is
+  private void updateIngredientsText() {
+    StringBuilder ingredientsString = new StringBuilder();
+    recipeObject recp = recipeLists.getSelectionModel().getSelectedItem();
+    for (QuanitityIngredients quantifiedIngredient : recp.getIngredientsList()) {
+      float ingredientAmount = quantifiedIngredient.getAmount() * portions;
+      String ingredientUnit = quantifiedIngredient.getUnit() != null ? " " + quantifiedIngredient.getUnit() : "";
+      String ingredientName = quantifiedIngredient.getIngredient().getName();
+      ingredientsString.append(String.format("%s%s %s\n", ingredientAmount, ingredientUnit, ingredientName));
+    }
+    IngField.setText(ingredientsString.toString());
+    portionsLabel.setText(String.valueOf(portions));
+  }
+
+  @FXML
+  void onDecreasePortions(ActionEvent event) {
+    if (portions > 1) {
+      portions--;
+      updateIngredientsText();
+    }
+  }
+
+  @FXML
+  void onIncreasePortions(ActionEvent event) {
+    portions++;
+    updateIngredientsText();
+  }
+
 
 }
 
