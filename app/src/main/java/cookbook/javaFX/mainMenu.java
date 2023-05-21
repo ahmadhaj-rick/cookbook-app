@@ -45,15 +45,21 @@ public class mainMenu {
   
   public void homeClick(ActionEvent event) throws SQLException, IOException {
     
-    // Go back to the home screen
     URL url = new File("src/main/java/cookbook/resources/homepage.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
     Scene homeScene = new Scene(root);
-    
+
     Stage homeStage = (Stage) homebtn.getScene().getWindow();
     homeStage.setScene(homeScene);
     homeStage.show();
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    homeStage.setTitle("Welcome to the recipes menu Dear " + name);
+    homeStage.setHeight(737);
+    homeStage.setWidth(1015);
+    homeStage.setResizable(false);
+    homeStage.centerOnScreen();
     
   }
  /*  

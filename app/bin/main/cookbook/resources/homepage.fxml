@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -11,46 +12,88 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.homePage">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #D7BDE2;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.homePage">
    <children>
       <Separator layoutX="210.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="2.0" />
-      <TextField fx:id="search" layoutX="11.0" layoutY="13.0" prefHeight="27.0" prefWidth="131.0" style="-fx-border-style: solid; -fx-background-color: #FDFEFE; -fx-border-color: #5499C7;" text="Search" />
-      <Label layoutX="225.0" layoutY="27.0" prefHeight="51.0" prefWidth="346.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Recipe Name" />
-      <CheckBox fx:id="favoritecheck" layoutX="11.0" layoutY="45.0" mnemonicParsing="false" onAction="#getFilteredRecipes" prefHeight="27.0" prefWidth="186.0" style=" -fx-background-color: #FDFEFE; -fx-border-style: solid; -fx-border-color: #5499C7" text="Favorite Only" />
+      <TextField fx:id="search" layoutX="621.0" layoutY="37.0" prefHeight="27.0" prefWidth="131.0" promptText="Search" style="-fx-border-style: solid; -fx-background-color: #FDFEFE; -fx-border-color: #5499C7;" stylesheets="@application.css" />
+      <Label fx:id="recipeName" layoutX="225.0" layoutY="27.0" prefHeight="51.0" prefWidth="346.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Recipe Name">
+         <font>
+            <Font name="Times New Roman Italic" size="18.0" />
+         </font>
+         <padding>
+            <Insets left="100.0" />
+         </padding></Label>
+      <CheckBox fx:id="favoritecheck" layoutX="11.0" layoutY="29.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="186.0" style=" -fx-background-color: #FDFEFE; -fx-border-style: solid; -fx-border-color: #5499C7" text="Favorite Only">
+         <font>
+            <Font name="Times New Roman Italic" size="12.0" />
+         </font></CheckBox>
       <TableView fx:id="recipeLists" layoutX="-2.0" layoutY="78.0" prefHeight="622.0" prefWidth="212.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;">
         <columns>
           <TableColumn prefWidth="207.19998168945312" text="Recipe" />
         </columns>
       </TableView>
-      <ScrollPane layoutX="221.0" layoutY="87.0" prefHeight="609.0" prefWidth="672.0">
+      <ScrollPane layoutX="221.0" layoutY="87.0" prefHeight="609.0" prefWidth="778.0">
          <content>
-            <VBox prefHeight="831.0" prefWidth="655.0" style="-fx-background-color: #FCF3CF;">
+            <VBox prefHeight="831.0" prefWidth="764.0" style="-fx-background-color: #FCF3CF;">
                <children>
                   <HBox prefHeight="59.0" prefWidth="655.0">
                      <children>
-                        <Label prefHeight="57.0" prefWidth="43.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Tags:" />
+                        <Label prefHeight="59.0" prefWidth="43.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Tags:">
+                           <font>
+                              <Font name="Times New Roman Italic" size="14.0" />
+                           </font></Label>
                         <Text fx:id="tagField" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="tags it self" textAlignment="JUSTIFY" wrappingWidth="354.13671875">
                            <HBox.margin>
                               <Insets top="23.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Text>
                      </children>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
                   </HBox>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="Text" wrappingWidth="521.13671875" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="Text" wrappingWidth="521.13671875">
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin></Text>
                   <HBox prefHeight="36.0" prefWidth="655.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#updateFavorite" prefHeight="42.0" prefWidth="100.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to favorite" />
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Send message" />
+                        <Button mnemonicParsing="false" onAction="#updateFavorite" prefHeight="42.0" prefWidth="100.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to favorite">
+                           <font>
+                              <Font name="Times New Roman Italic" size="12.0" />
+                           </font></Button>
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Send message">
+                           <font>
+                              <Font name="Times New Roman Italic" size="12.0" />
+                           </font></Button>
                         <DatePicker prefHeight="41.0" prefWidth="174.0" />
-                        <Button layoutX="110.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="114.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to dinner list" />
+                        <Button layoutX="110.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="114.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to dinner list">
+                           <font>
+                              <Font name="Times New Roman Italic" size="12.0" />
+                           </font></Button>
                      </children>
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
                   </HBox>
-                  <Label prefHeight="46.0" prefWidth="97.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="INGREDIENTS" />
+                  <Label prefHeight="46.0" prefWidth="97.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="INGREDIENTS">
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Times New Roman Italic" size="12.0" />
+                     </font></Label>
                   <HBox prefHeight="39.0" prefWidth="655.0">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="52.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="-" />
@@ -61,26 +104,35 @@
                         </Label>
                         <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="52.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="+" />
                      </children>
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
                   </HBox>
                   <Text fx:id="IngField" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="ingredients field" wrappingWidth="172.13671875">
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets left="20.0" top="5.0" />
                      </VBox.margin>
                   </Text>
                   <Label prefHeight="27.0" prefWidth="158.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Steps">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Times New Roman Italic" size="12.0" />
+                     </font>
                   </Label>
                   <Text layoutX="10.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="steps field" wrappingWidth="356.13671875">
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets left="20.0" top="5.0" />
                      </VBox.margin>
                   </Text>
                   <Label prefHeight="28.0" prefWidth="65.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #FDFEFE;" text="Comments">
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets left="20.0" top="5.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="Times New Roman Italic" size="12.0" />
+                     </font>
                   </Label>
                   <HBox prefHeight="48.0" prefWidth="655.0">
                      <children>
@@ -89,8 +141,14 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="comment" />
+                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="comment">
+                           <font>
+                              <Font name="Times New Roman Italic" size="12.0" />
+                           </font></Button>
                      </children>
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
                   </HBox>
                   <HBox prefHeight="137.0" prefWidth="655.0">
                      <children>
@@ -103,25 +161,51 @@
                            </padding>
                         </ListView>
                      </children>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Edit comment ">
+                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="112.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Delete comment ">
                            <HBox.margin>
-                              <Insets bottom="50.0" top="15.0" />
+                              <Insets left="100.0" right="10.0" top="30.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="Times New Roman Italic" size="12.0" />
+                           </font>
                         </Button>
-                        <Button layoutX="10.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Edit comment ">
+                        <Button layoutX="10.0" layoutY="25.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="112.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Edit comment ">
                            <HBox.margin>
-                              <Insets bottom="50.0" left="15.0" top="15.0" />
+                              <Insets left="100.0" right="10.0" top="30.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="Times New Roman Italic" size="12.0" />
+                           </font>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
          </content>
       </ScrollPane>
-      <Button fx:id="searchButton" layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchMethod" text="Search" />
+      <Button fx:id="searchButton" layoutX="755.0" layoutY="38.0" mnemonicParsing="false" onAction="#searchMethod" text="Search">
+         <font>
+            <Font name="Times New Roman Italic" size="12.0" />
+         </font></Button>
+      <Button fx:id="back" layoutX="945.0" layoutY="4.0" mnemonicParsing="false" onAction="#backButton" prefHeight="44.0" prefWidth="50.0" style="-fx-background-color: white;" stylesheets="@application.css">
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/backleftarrow.jpg" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>
