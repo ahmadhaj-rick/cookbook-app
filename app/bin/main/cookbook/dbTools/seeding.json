@@ -245,13 +245,11 @@
     ],
     "message": [
         {
-            "id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
-            "from_User": "john_doe",
-            "to_User": "jane_doe",
-            "recipe_Id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
-            "body": "Hi Jane, I tried your Margherita Pizza recipe and it was delicious!",
-            "created_at": "2023-05-20 14:30:00"
-            
+            "message_id": "f4c6d9e2-4a3e-4b8b-9d7c-2f6f9f8d8a11",
+            "from_user": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+            "to_user": "3c0e7e76-c8fa-4e72-8c44-0a9e2d57a38f",
+            "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
+            "body": "Hi Jane, I tried your Margherita Pizza recipe and it was delicious!"            
         }
         
     ]
