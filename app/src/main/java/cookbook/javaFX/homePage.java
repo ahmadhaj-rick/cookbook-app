@@ -46,6 +46,8 @@ public class homePage implements Initializable {
   private Text tagField;
   @FXML
   public Button back;
+  @FXML
+  public Label recipeName;
 
   public List<recipeObject> recipes;
 
@@ -78,6 +80,7 @@ public class homePage implements Initializable {
           recipeObject selectedRecipeObject = recipeLists.getSelectionModel().getSelectedItem();
           System.out.println("We out here ");
           System.out.println(selectedRecipeObject.getName());
+          recipeName.setText(selectedRecipeObject.getName());
           if (selectedRecipeObject != null) {
             System.out.println("We inside ");
             List<QuanitityIngredients> ingredientObjects = selectedRecipeObject.getIngredientsList();
