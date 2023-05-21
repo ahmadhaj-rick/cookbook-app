@@ -85,10 +85,17 @@ public class mainMenu {
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
     Scene weeklistScene = new Scene(root);
-    
+
     Stage weeklistStage = (Stage) weeklistbutton.getScene().getWindow();
     weeklistStage.setScene(weeklistScene);
     weeklistStage.show();
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    weeklistStage.setTitle("Welcome to your Weekly List Dear " + name);
+    weeklistStage.setHeight(740);
+    weeklistStage.setWidth(1010);
+    weeklistStage.setResizable(true);
+    weeklistStage.centerOnScreen();
     
   }
   
