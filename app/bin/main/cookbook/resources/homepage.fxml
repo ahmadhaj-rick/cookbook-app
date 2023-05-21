@@ -31,7 +31,7 @@
          <padding>
             <Insets left="100.0" />
          </padding></Label>
-      <CheckBox fx:id="favoritecheck" layoutX="11.0" layoutY="29.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="186.0" style=" -fx-background-color: #FDFEFE; -fx-border-style: solid; -fx-border-color: #5499C7" text="Favorite Only">
+      <CheckBox fx:id="favoritecheck" layoutX="11.0" layoutY="29.0" mnemonicParsing="false" onAction="#getFilteredRecipes" prefHeight="27.0" prefWidth="186.0" style=" -fx-background-color: #FDFEFE; -fx-border-style: solid; -fx-border-color: #5499C7" text="Favorite Only">
          <font>
             <Font name="Times New Roman Italic" size="12.0" />
          </font></CheckBox>
