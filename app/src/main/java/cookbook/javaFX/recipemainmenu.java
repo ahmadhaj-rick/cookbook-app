@@ -47,9 +47,6 @@ public class recipemainmenu implements Initializable{
   public ComboBox<String> tagsDropdown;
   
   @FXML
-  public ComboBox<recipeObject> categoryBox;
-  
-  @FXML
   public TextField tagName;
   
   @FXML
@@ -57,9 +54,6 @@ public class recipemainmenu implements Initializable{
   
   @FXML
   public TextField ingredientName;
-  
-  @FXML
-  public TextField categoryName;
   
   @FXML
   public Button addIngredient;

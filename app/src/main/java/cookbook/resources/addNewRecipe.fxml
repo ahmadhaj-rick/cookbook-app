@@ -50,7 +50,7 @@
             <Font name="Times New Roman Bold Italic" size="18.0" />
          </font></Label>
       <TextField fx:id="tagName" layoutX="250.0" layoutY="372.0" prefHeight="32.0" prefWidth="180.0" promptText="type in a new one" />
-      <Button layoutX="462.0" layoutY="373.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="114.0" style="-fx-border-color: #5499C7; -fx-background-color: F5B7B1;" text="Add tag">
+      <Button fx:id="addTag" layoutX="462.0" layoutY="373.0" mnemonicParsing="false" onAction="#addTagToList" prefHeight="32.0" prefWidth="114.0" style="-fx-border-color: #5499C7; -fx-background-color: F5B7B1;" text="Add tag">
          <font>
             <Font name="Times New Roman Bold Italic" size="14.0" />
          </font></Button>
@@ -58,10 +58,10 @@
          <font>
             <Font name="Times New Roman Bold Italic" size="18.0" />
          </font></Label>
-      <TextField layoutX="317.0" layoutY="432.0" prefHeight="32.0" prefWidth="120.0" promptText="Amount " style="-fx-border-color: #5499C7;" />
-      <ComboBox layoutX="462.0" layoutY="432.0" prefHeight="32.0" prefWidth="77.0" promptText="Unit" style="-fx-border-color: #5499C7; -fx-background-color: F5B7B1;" />
-      <TextField layoutX="119.0" layoutY="432.0" prefHeight="32.0" prefWidth="180.0" promptText="Ingredient name" style="-fx-border-color: #5499C7;" />
-      <Button layoutX="562.0" layoutY="432.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="114.0" style="-fx-border-color: #5499C7; -fx-background-color: F5B7B1;" text="Add ingredient">
+      <TextField fx:id="amount" layoutX="317.0" layoutY="432.0" prefHeight="32.0" prefWidth="120.0" promptText="Amount " style="-fx-border-color: #5499C7;" />
+      <ComboBox fx:id="unit" layoutX="462.0" layoutY="432.0" prefHeight="32.0" prefWidth="77.0" promptText="Unit" style="-fx-border-color: #5499C7; -fx-background-color: F5B7B1;" />
+      <TextField fx:id="ingredientName" layoutX="119.0" layoutY="432.0" prefHeight="32.0" prefWidth="180.0" promptText="Ingredient name" style="-fx-border-color: #5499C7;" />
+      <Button fx:id="addIngredient" layoutX="562.0" layoutY="432.0" mnemonicParsing="false" onAction="#addIngredientToList" prefHeight="32.0" prefWidth="114.0" style="-fx-border-color: #5499C7; -fx-background-color: F5B7B1;" text="Add ingredient">
          <font>
             <Font name="Times New Roman Bold Italic" size="14.0" />
          </font></Button>
@@ -77,7 +77,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="285.0" layoutY="653.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="342.0" style="-fx-border-color: #5499C7; -fx-background-color: pink;" text="Add Recipe">
+      <Button fx:id="addRecipie" layoutX="285.0" layoutY="653.0" mnemonicParsing="false" onAction="#createRecipe" prefHeight="46.0" prefWidth="342.0" style="-fx-border-color: #5499C7; -fx-background-color: pink;" text="Add Recipe">
          <font>
             <Font name="Times New Roman Bold Italic" size="18.0" />
          </font>
