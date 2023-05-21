@@ -30,7 +30,7 @@ public class mainMenu {
   @FXML 
   public Button homebtn;
   @FXML 
-  public Button addbuttom;
+  public Button addbutton;
   @FXML 
   public Button inboxbutton;
   @FXML 
@@ -62,20 +62,8 @@ public class mainMenu {
     homeStage.centerOnScreen();
     
   }
- /*  
-  public void addClick(ActionEvent event) throws SQLException, IOException {
-    
-    // Go to the add recipe screen
-    URL url = new File("src/main/java/cookbook/resources/addrecipe.fxml").toURI().toURL();
-    FXMLLoader loader = new FXMLLoader(url);
-    Parent root = loader.load();
-    Scene addScene = new Scene(root);
-    
-    Stage addStage = (Stage) addbutton.getScene().getWindow();
-    addStage.setScene(addScene);
-    addStage.show();  
-    
-  }*/
+ 
+
   public void inboxClick(ActionEvent event) throws SQLException, IOException {
     
     // Go to the inbox screen
@@ -88,7 +76,8 @@ public class mainMenu {
     inboxStage.setScene(inboxScene);
     inboxStage.show();
     
-  } 
+  }
+  
   public void weeklistClick(ActionEvent event) throws SQLException, IOException {
     
     // Go to the week list screen
@@ -160,11 +149,18 @@ public class mainMenu {
     URL url = new File("src/main/java/cookbook/resources/addNewRecipe.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
-    Scene weeklistScene = new Scene(root);
-    
-    Stage weeklistStage = (Stage) weeklistbutton.getScene().getWindow();
-    weeklistStage.setScene(weeklistScene);
-    weeklistStage.show();
+    Scene addScene = new Scene(root);
+
+    Stage addStage = (Stage) addbutton.getScene().getWindow();
+    addStage.setScene(addScene);
+    addStage.show();
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    addStage.setTitle("It`s always a good idea to have a new recipe that belongs to you " + name);
+    addStage.setHeight(750);
+    addStage.setWidth(1009);
+    addStage.centerOnScreen();
+    addStage.setResizable(false);
   }
   
   public void exitClick(ActionEvent event) throws SQLException, IOException {
