@@ -106,9 +106,16 @@ public class mainMenu {
     Parent root = loader.load();
     Scene weeklistScene = new Scene(root);
 
-    Stage weeklistStage = (Stage) weeklistbutton.getScene().getWindow();
-    weeklistStage.setScene(weeklistScene);
-    weeklistStage.show();
+    Stage helpStage = (Stage) weeklistbutton.getScene().getWindow();
+    helpStage.setScene(weeklistScene);
+    helpStage.show();
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    helpStage.setTitle("Figuring about something " + name + ", just search and you will find what you need ");
+    helpStage.setHeight(730);
+    helpStage.setWidth(815);
+    helpStage.centerOnScreen();
+    helpStage.setResizable(false);
 
 
   }
@@ -116,7 +123,7 @@ public class mainMenu {
   public void adminPanelClick(ActionEvent event) throws SQLException, IOException {
     
     userObject loggedUser = userController.loggedInUser;
-    
+
     if (loggedUser.getAdminPrivelages().equals(false)) {
       Alert error = new Alert(Alert.AlertType.INFORMATION);
       error.setTitle("Big NoNo");
@@ -127,29 +134,18 @@ public class mainMenu {
       FXMLLoader loader = new FXMLLoader(url);
       Parent root = loader.load();
       Scene adminScene = new Scene(root);
-      
+
       Stage adminStage = (Stage) adminPanel.getScene().getWindow();
       adminStage.setScene(adminScene);
       adminStage.show();
-      
-      
-      // Wait for the admin panel to close
-      adminStage.setOnCloseRequest(e -> {
-        try {
-          URL url2 = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
-          FXMLLoader loader2 = new FXMLLoader(url2);
-          Parent root2 = loader2.load();
-          Scene mainMenu = new Scene(root2);
-          
-          Stage mainMenuStage = new Stage();
-          mainMenuStage.setScene(mainMenu);
-          mainMenuStage.show();
-          
-        } catch (IOException ioException) {
-          ioException.printStackTrace();
-        }
-      });
-    }  
+      userController user = new userController();
+      String name = user.loggedInUser.getName();
+      adminStage.setTitle("welcome Dear " + name + ", You are a great Admin");
+      adminStage.setHeight(740);
+      adminStage.setWidth(1015);
+      adminStage.centerOnScreen();
+      adminStage.setResizable(false);
+    }
   }
 
   public void addClick(ActionEvent event) throws SQLException, IOException {
