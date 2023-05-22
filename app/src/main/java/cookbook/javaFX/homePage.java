@@ -5,6 +5,8 @@ import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ingredientObject;
 import cookbook.objects.recipeObject;
 import cookbook.objects.userObject;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,6 +35,8 @@ public class homePage implements Initializable {
   @FXML
   public Label portionsLabel;
   @FXML
+  public Button addToFavorite;
+  @FXML
   public TableView<recipeObject> recipeLists;
   @FXML
   public CheckBox favoritecheck;
@@ -40,6 +44,7 @@ public class homePage implements Initializable {
   private Text tagField;
   public List<recipeObject> recipes;
   int portions = 1;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     try {
@@ -49,16 +54,16 @@ public class homePage implements Initializable {
     }
     System.out.println(recipes.size() + "Size of elements");
     ObservableList<recipeObject> recipeList = FXCollections.observableArrayList(recipes);
-    
+
     recipeLists.getColumns().clear();
-    
+
     TableColumn<recipeObject, String> recipeNameColumn = new TableColumn<>("Name");
     recipeNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-    
+
     recipeLists.getColumns().add(recipeNameColumn);
     recipeLists.getItems().clear();
     recipeLists.setItems(recipeList);
-    
+
     recipeLists.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
@@ -72,7 +77,7 @@ public class homePage implements Initializable {
             List<tagObject> tagObjects = selectedRecipeObject.getTagList();
             System.out.println(ingredientObjects.size() + "inggg");
             System.out.println("We inside 3");
-            StringBuilder sb = new StringBuilder(); // ingridents 
+            StringBuilder sb = new StringBuilder(); // ingredients
             StringBuilder sb2 = new StringBuilder(); // tags
             for (QuanitityIngredients ingredient : ingredientObjects) {
               sb.append(ingredient.getAmount() + ingredient.getUnit() + " " + ingredient.getName()).append(", \n");
@@ -87,12 +92,19 @@ public class homePage implements Initializable {
             tagField.setText(sb2.toString());
 
             IngField.setText(sb.toString());
-            
           }
         }
       }
     });
-    
+
+    // Add a listener to the TableView selection model
+    recipeLists.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<recipeObject>() {
+      @Override
+      public void changed(ObservableValue<? extends recipeObject> observable, recipeObject oldValue, recipeObject newValue) {
+        portions = 1; // Set the portions back to 1
+        updateIngredientsText(); // Update the displayed ingredients
+      }
+    });
   }
   
   public void searchMethod() throws SQLException, IOException {
@@ -147,8 +159,6 @@ public class homePage implements Initializable {
     recipeController.updateFavoriteStatus(selectedRecipe);
     System.out.println(selectedRecipe.getStar());
   }
-
-  
   /*public void favoriteRecipeList() throws SQLException {
     List<recipeObject> faveList = recipeControler.favoriteObjects();
     ObservableList<recipeObject> observableFavList = FXCollections.observableArrayList(faveList);
@@ -196,7 +206,5 @@ public class homePage implements Initializable {
     portions++;
     updateIngredientsText();
   }
-
-
 }
 
