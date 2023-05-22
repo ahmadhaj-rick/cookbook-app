@@ -8,82 +8,108 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.mainMenu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #D7BDE2;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.mainMenu">
    <children>
-      <VBox prefHeight="700.0" prefWidth="94.0">
+      <VBox prefHeight="700.0" prefWidth="129.0">
          <children>
-            <Button fx:id="homebtn" mnemonicParsing="false" onAction="#homeClick" prefHeight="100.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+            <Button fx:id="homebtn" mnemonicParsing="false" onAction="#homeClick" prefHeight="97.0" prefWidth="130.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="Home">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/Hom.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="addbutton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addClick" prefHeight="100.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+               </graphic>
+               <font>
+                  <Font name="Times New Roman Italic" size="12.0" />
+               </font></Button>
+            <Button fx:id="addbutton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addClick" prefHeight="97.0" prefWidth="134.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="Add Recipe">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/AddRecipe.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="inboxbutton" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#inboxClick" prefHeight="100.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+               </graphic>
+               <font>
+                  <Font name="Times New Roman Italic" size="12.0" />
+               </font></Button>
+            <Button fx:id="inboxbutton" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#inboxClick" prefHeight="98.0" prefWidth="134.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="inbox">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/inbox.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="weeklistbutton" layoutX="10.0" layoutY="63.0" mnemonicParsing="false" onAction="#weeklistClick" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+               </graphic>
+               <font>
+                  <Font name="Times New Roman Italic" size="12.0" />
+               </font></Button>
+            <Button fx:id="weeklistbutton" layoutX="10.0" layoutY="63.0" mnemonicParsing="false" onAction="#weeklistClick" prefHeight="103.0" prefWidth="134.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="Weekly list">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/WList.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="helpbutton" layoutX="10.0" layoutY="89.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+               </graphic>
+               <font>
+                  <Font name="Times New Roman Italic" size="12.0" />
+               </font></Button>
+            <Button fx:id="helpbutton" layoutX="10.0" layoutY="89.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="104.0" prefWidth="133.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="Help">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/Help.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="adminPanel" layoutX="10.0" layoutY="116.0" mnemonicParsing="false" onAction="#adminPanelClick" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+               </graphic>
+               <font>
+                  <Font name="Times New Roman Italic" size="12.0" />
+               </font></Button>
+            <Button fx:id="adminPanel" layoutX="10.0" layoutY="116.0" mnemonicParsing="false" onAction="#adminPanelClick" prefHeight="104.0" prefWidth="134.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="Admin">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/Admin.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="quitbutton" layoutX="10.0" layoutY="142.0" mnemonicParsing="false" onAction="#exitClick" prefHeight="105.0" prefWidth="118.0" style="-fx-background-color:#F5B7B1 ; -fx-border-color: #000000">
+               </graphic>
+               <font>
+                  <Font name="Times New Roman Italic" size="12.0" />
+               </font></Button>
+            <Button fx:id="quitbutton" layoutX="10.0" layoutY="142.0" mnemonicParsing="false" onAction="#exitClick" prefHeight="104.0" prefWidth="134.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="Quit">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/Quit.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
+               </graphic>
+               <font>
+                  <Font name="Times New Roman Italic" size="12.0" />
+               </font></Button>
          </children>
       </VBox>
-      <Separator layoutX="80.0" layoutY="1.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="34.0" />
-      <AnchorPane fx:id="root" layoutX="98.0" layoutY="2.0" prefHeight="696.0" prefWidth="899.0">
+      <AnchorPane fx:id="root" layoutX="133.0" layoutY="2.0" prefHeight="716.0" prefWidth="872.0">
          <children>
-            <Pane layoutX="14.0" layoutY="14.0" prefHeight="47.0" prefWidth="399.0">
+            <Pane layoutX="213.0" layoutY="16.0" prefHeight="62.0" prefWidth="520.0">
                <children>
-                  <Label fx:id="UserNameMain" layoutX="19.0" layoutY="15.0" prefHeight="17.0" prefWidth="305.0" textAlignment="CENTER" />
+                  <Label fx:id="UserNameMain" layoutX="12.0" prefHeight="62.0" prefWidth="497.0" textAlignment="CENTER">
+                     <font>
+                        <Font name="Times New Roman Bold Italic" size="18.0" />
+                     </font></Label>
                </children>
             </Pane>
-            <ImageView fitHeight="617.0" fitWidth="879.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="538.0" fitWidth="730.0" layoutX="82.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@cookbookanimation.gif" />
-               </image></ImageView>
+                  <Image url="@images/cookanimation.gif" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
+      <Separator layoutX="111.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="36.0" />
    </children>
 </AnchorPane>

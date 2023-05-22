@@ -38,6 +38,8 @@ public class adminPanel implements Initializable {
   public TextField txtPassword;
   @FXML
   public TableView<userObject> userlst;
+  @FXML
+  public Button back;
   
   public List<userObject> users;
   
@@ -103,6 +105,25 @@ public class adminPanel implements Initializable {
     success.show();
     loadData();
     
+  }
+
+  public void backButton(ActionEvent event) throws SQLException, IOException {
+    URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
+    FXMLLoader loader = new FXMLLoader(url);
+    Parent root = loader.load();
+    Scene loginScene = new Scene(root);
+
+    Stage mainStage = (Stage) back.getScene().getWindow();
+    mainStage.setScene(loginScene);
+    mainStage.show();
+    mainStage.setHeight(740);
+    mainStage.setWidth(1000);
+    mainStage.setResizable(true);
+    mainStage.centerOnScreen();
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    mainStage.setTitle("Welcome back to the main menu dear " + name );
+
   }
   
   /*
@@ -182,6 +203,19 @@ public class adminPanel implements Initializable {
       userlst.getColumns().add(passwordColumn);
       userlst.getItems().clear();
       userlst.setItems(userList);
+
+      userlst.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        if (newValue != null) {
+          txtDisplayName.setText(newValue.getName());
+          txtUserName.setText(newValue.getUser_name());
+          txtPassword.setText(newValue.getPass());
+        } else {
+          // Clear the text fields if no user is selected
+          txtDisplayName.setText("");
+          txtUserName.setText("");
+          txtPassword.setText("");
+        }
+      });
       
     }
     
