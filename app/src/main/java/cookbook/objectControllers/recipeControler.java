@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.sql.*;
 
 import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ingredientObject;
@@ -195,6 +196,31 @@ public class recipeControler {
 
     return favoriteRecipies;
   }
+
+  public static void adddate(String recipeId, Timestamp created_at , String userId, int weekly_list) throws SQLException {
+
+
+    String query = "INSERT into weekly_list values ((?),(?),(?),(?))";
+    Connection conn = DriverManager
+            .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
+    try (PreparedStatement preparedStmnt = conn.prepareStatement(query)) {
+      preparedStmnt.setString(1, String.valueOf(created_at));
+      preparedStmnt.setString(2, recipeId);
+      preparedStmnt.setString(3, userId);
+      preparedStmnt.setInt(4, weekly_list);
+      preparedStmnt.executeUpdate();
+
+
+    } catch (SQLException e) {
+      if (e instanceof SQLIntegrityConstraintViolationException) {
+        return;
+      } else {
+        e.printStackTrace();
+      }
+    }
+
+  }
+
 
   public static void addRecipe(String recipeId, String recipeName, String shortDesc, String longDesc) throws SQLException{
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");

@@ -24,6 +24,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import cookbook.objects.tagObject;
+import cookbook.objectControllers.ScheduledRecipeController;
+import cookbook.objectControllers.userController;
+import cookbook.objects.*;
+import javafx.scene.control.*;
+
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,8 +66,11 @@ public class homePage implements Initializable {
   public Text Shortdesc;
   @FXML
   public Text Longdesc;
-  
-  
+
+  @FXML
+  private DatePicker myDatePicker;
+
+
   public List<recipeObject> recipes;
   
   int portions = 1;
@@ -271,7 +283,39 @@ public class homePage implements Initializable {
     mainStage.setTitle("Welcome back to the main menu dear " + name );
     
   }
-  
-  
+
+  // weeklyList DatePicker
+  @FXML
+  void datePicker(ActionEvent event) {
+    LocalDate localDate = myDatePicker.getValue();
+    localDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+  }
+
+  // Add date to the week-list table
+  @FXML
+  void addToWeekList(ActionEvent event) {
+    recipeObject recipe = recipeLists.getSelectionModel().getSelectedItem();
+
+    try {
+      LocalDate localDate = myDatePicker.getValue();
+
+      Timestamp timestamp = Timestamp.valueOf(localDate.atTime(LocalTime.MIDNIGHT));
+      //System.out.println(timestamp); //2019-05-16 00:00:00.0
+
+      userObject loggedInUser = userController.loggedInUser;
+      recipeControler.adddate(recipe.getId(),timestamp, loggedInUser.getId(), 5);
+
+
+  }  //this generic but you can control another types of exception
+    catch (Exception e) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Error");
+    alert.setContentText("Please select a recipe");
+    alert.show();
+  }
 }
+
+
+
+        }
 

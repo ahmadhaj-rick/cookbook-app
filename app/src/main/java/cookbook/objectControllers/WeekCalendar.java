@@ -72,19 +72,19 @@ public class WeekCalendar {
 
   // Insert a scheduled Recipe record
 
-  
-  public static void addScheduledRecipe(String recipeId, String recipeName, String userId, java.sql.Date date) throws SQLException {
+
+  public static void addScheduledRecipe(String recipeId, String recipeName, String userId, java.sql.Date date, int week_number) throws SQLException {
 
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
     // Insert records into db
-    String insertString = "INSERT INTO weekly_list VALUES(?, ?, ?);";
+    String insertString = "INSERT INTO weekly_list VALUES(?, ?, ?, ?);";
 
     try (PreparedStatement preparedStmnt = conn.prepareStatement(insertString)) {
       preparedStmnt.setDate(1, date);
       preparedStmnt.setString(2, recipeId);
       preparedStmnt.setString(3, userId);
-
+      preparedStmnt.setInt(4, week_number);
       preparedStmnt.executeUpdate();
 
     } catch (SQLException e) {

@@ -77,7 +77,7 @@
                            <font>
                               <Font name="Times New Roman Italic" size="12.0" />
                            </font></Button>
-                        <DatePicker prefHeight="41.0" prefWidth="174.0" />
+                        <DatePicker fx:id="myDatePicker" onAction="#datePicker" prefHeight="41.0" prefWidth="174.0" />
                         <Button layoutX="110.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="114.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to dinner list">
                            <font>
                               <Font name="Times New Roman Italic" size="12.0" />
