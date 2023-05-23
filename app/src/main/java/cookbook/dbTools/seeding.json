@@ -15,14 +15,14 @@
             "admin_id": true
         },
         {
-            "user_id": "3c0e7e76-c8fa-4e72-8c44-0a9e2d57a38f",
+            "user_id": "3c0e7e76-c8fa-5e72-8c44-0a9e2d57a38f",
             "fname": "User",
             "username": "user",
             "password": "user",
             "admin_id": false
         },
         {
-            "user_id": "3c0e7e76-c8fa-4e72-8c44-0a9e2d57a38f",
+            "user_id": "3c0e7e76-c8fa-6e72-8c44-0a9e2d57a38f",
             "fname": "Admin",
             "username": "admin",
             "password": "admin",
