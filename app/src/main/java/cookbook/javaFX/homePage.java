@@ -6,6 +6,8 @@ import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ingredientObject;
 import cookbook.objects.recipeObject;
 import cookbook.objects.userObject;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,6 +42,8 @@ public class homePage implements Initializable {
   @FXML
   public Label portionsLabel;
   @FXML
+  public Button addToFavorite;
+  @FXML
   public TableView<recipeObject> recipeLists;
   @FXML
   public CheckBox favoritecheck;
@@ -66,41 +70,45 @@ public class homePage implements Initializable {
     }
     System.out.println(recipes.size() + "Size of elements");
     ObservableList<recipeObject> recipeList = FXCollections.observableArrayList(recipes);
-    
+
     recipeLists.getColumns().clear();
-    
+
     TableColumn<recipeObject, String> recipeNameColumn = new TableColumn<>("Name");
     recipeNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-    
+
     recipeLists.getColumns().add(recipeNameColumn);
     recipeLists.getItems().clear();
     recipeLists.setItems(recipeList);
-    
-    recipeLists.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-      // code to update text of addToFavorite button based on favorite status of newly selected recipe
-      recipeObject selectedRecipeObject = recipeLists.getSelectionModel().getSelectedItem();
-      System.out.println("We out here ");
-      System.out.println(selectedRecipeObject.getName());
-      recipeName.setText(selectedRecipeObject.getName());
-      if (selectedRecipeObject != null) {
-        if (selectedRecipeObject.getStar() == true) {
-          addToFavorite.setText("Remove From Favorite");
-        } else {
-          addToFavorite.setText("Add to Favorite");
-        }
-        System.out.println("We inside ");
-        List<QuanitityIngredients> ingredientObjects = selectedRecipeObject.getIngredientsList();
-        List<tagObject> tagObjects = selectedRecipeObject.getTagList();
-        System.out.println(ingredientObjects.size() + "inggg");
-        System.out.println("We inside 3");
-        StringBuilder sb = new StringBuilder(); // ingridents 
-        StringBuilder sb2 = new StringBuilder(); // tags
-        for (QuanitityIngredients ingredient : ingredientObjects) {
-          sb.append(ingredient.getAmount() + ingredient.getUnit() + " " + ingredient.getName()).append(", \n");
-          System.out.println(sb);
-        }
-        if (sb.length() > 2) {
-          sb.setLength(sb.length() - 2);
+
+    recipeLists.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        if (event.getClickCount() > 0) {
+          recipeObject selectedRecipeObject = recipeLists.getSelectionModel().getSelectedItem();
+          System.out.println("We out here ");
+          System.out.println(selectedRecipeObject.getName());
+          if (selectedRecipeObject != null) {
+            System.out.println("We inside ");
+            List<QuanitityIngredients> ingredientObjects = selectedRecipeObject.getIngredientsList();
+            List<tagObject> tagObjects = selectedRecipeObject.getTagList();
+            System.out.println(ingredientObjects.size() + "inggg");
+            System.out.println("We inside 3");
+            StringBuilder sb = new StringBuilder(); // ingredients
+            StringBuilder sb2 = new StringBuilder(); // tags
+            for (QuanitityIngredients ingredient : ingredientObjects) {
+              sb.append(ingredient.getAmount() + ingredient.getUnit() + " " + ingredient.getName()).append(", \n");
+              System.out.println(sb);
+            }
+            if (sb.length() > 2) {
+              sb.setLength(sb.length() - 2);
+            }
+            for (tagObject tag : tagObjects) {
+              sb2.append(tag.getTag_name()).append(", ");
+            }
+            tagField.setText(sb2.toString());
+
+            IngField.setText(sb.toString());
+          }
         }
         for (tagObject tag : tagObjects) {
           sb2.append(tag.getTag_name()).append(", ");
@@ -112,44 +120,14 @@ public class homePage implements Initializable {
       }
     });
 
-
-/* recipeLists.setOnMouseClicked(new EventHandler<MouseEvent>() {
-  @Override
-  public void handle(MouseEvent event) {
-    if (event.getClickCount() > 0) {
-      recipeObject selectedRecipeObject = recipeLists.getSelectionModel().getSelectedItem();
-      System.out.println("We out here ");
-      System.out.println(selectedRecipeObject.getName());
-      recipeName.setText(selectedRecipeObject.getName());
-      if (selectedRecipeObject != null) {
-        if (selectedRecipeObject.getStar() == true) {
-          addToFavorite.setText("Remove From Favorite");
-        } else {
-          addToFavorite.setText("Add to Favorite");
-        }
-        System.out.println("We inside ");
-        List<QuanitityIngredients> ingredientObjects = selectedRecipeObject.getIngredientsList();
-        List<tagObject> tagObjects = selectedRecipeObject.getTagList();
-        System.out.println(ingredientObjects.size() + "inggg");
-        System.out.println("We inside 3");
-        StringBuilder sb = new StringBuilder(); // ingridents 
-        StringBuilder sb2 = new StringBuilder(); // tags
-        for (QuanitityIngredients ingredient : ingredientObjects) {
-          sb.append(ingredient.getAmount() + ingredient.getUnit() + " " + ingredient.getName()).append(", \n");
-          System.out.println(sb);
-        }
-        if (sb.length() > 2) {
-          sb.setLength(sb.length() - 2);
-        }
-        for (tagObject tag : tagObjects) {
-          sb2.append(tag.getTag_name()).append(", ");
-        }
-        tagField.setText(sb2.toString());
-        
-        IngField.setText(sb.toString());
-        
+    // Add a listener to the TableView selection model
+    recipeLists.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<recipeObject>() {
+      @Override
+      public void changed(ObservableValue<? extends recipeObject> observable, recipeObject oldValue, recipeObject newValue) {
+        portions = 1; // Set the portions back to 1
+        updateIngredientsText(); // Update the displayed ingredients
       }
-    }
+    });
   }
 }); */
 
