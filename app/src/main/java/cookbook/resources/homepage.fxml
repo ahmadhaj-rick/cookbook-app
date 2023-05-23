@@ -50,7 +50,7 @@
                            <font>
                               <Font name="Times New Roman Bold" size="14.0" />
                            </font></Label>
-                        <Text fx:id="tagField" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="tags it self" textAlignment="JUSTIFY" wrappingWidth="354.13671875">
+                        <Text fx:id="tagField" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" textAlignment="JUSTIFY" wrappingWidth="354.13671875">
                            <HBox.margin>
                               <Insets left="10.0" top="23.0" />
                            </HBox.margin>
@@ -63,7 +63,7 @@
                         <Insets left="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <Text fx:id="Shortdesc" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="Text" wrappingWidth="521.13671875">
+                  <Text fx:id="Shortdesc" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" wrappingWidth="521.13671875">
                      <VBox.margin>
                         <Insets bottom="5.0" left="20.0" top="5.0" />
                      </VBox.margin>
@@ -119,7 +119,7 @@
                      <font>
                         <Font name="Times New Roman Bold" size="12.0" />
                      </font></Label>
-                  <Text fx:id="IngField" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="ingredients field" wrappingWidth="172.13671875">
+                  <Text fx:id="IngField" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" wrappingWidth="172.13671875">
                      <VBox.margin>
                         <Insets left="20.0" />
                      </VBox.margin>
@@ -135,7 +135,7 @@
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Text fx:id="Longdesc" layoutX="10.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="steps field" wrappingWidth="356.13671875">
+                  <Text fx:id="Longdesc" layoutX="10.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" wrappingWidth="356.13671875">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
