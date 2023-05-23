@@ -78,6 +78,14 @@ public class mainMenu implements Initializable  {
     Stage inboxStage = (Stage) inboxbutton.getScene().getWindow();
     inboxStage.setScene(inboxScene);
     inboxStage.show();
+
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    inboxStage.setTitle("Did you got a new message " + name + " FABULOUS!");
+    inboxStage.setHeight(740);
+    inboxStage.setWidth(1010);
+    inboxStage.setResizable(false);
+    inboxStage.centerOnScreen();
     
   }
   
@@ -97,7 +105,7 @@ public class mainMenu implements Initializable  {
     weeklistStage.setTitle("Welcome to your Weekly List Dear " + name);
     weeklistStage.setHeight(740);
     weeklistStage.setWidth(1010);
-    weeklistStage.setResizable(true);
+    weeklistStage.setResizable(false);
     weeklistStage.centerOnScreen();
     
   }
