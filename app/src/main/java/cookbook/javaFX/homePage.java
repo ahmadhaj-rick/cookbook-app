@@ -53,6 +53,10 @@ public class homePage implements Initializable {
   public Button back;
   @FXML
   public Label recipeName;
+  @FXML
+  public Text Shortdesc;
+  @FXML
+  public Text Longdesc;
   
   
   public List<recipeObject> recipes;
@@ -107,6 +111,10 @@ public class homePage implements Initializable {
             tagField.setText(sb2.toString());
             
             IngField.setText(sb.toString());
+
+            Shortdesc.setText(selectedRecipeObject.getDescription());
+            Longdesc.setText(selectedRecipeObject.getInstructions());
+
           }
         }
       }
