@@ -115,6 +115,8 @@ public class homePage implements Initializable {
             Shortdesc.setText(selectedRecipeObject.getDescription());
             Longdesc.setText(selectedRecipeObject.getInstructions());
 
+            recipeName.setText(selectedRecipeObject.getName());
+
           }
         }
       }
