@@ -27,13 +27,13 @@
             <Insets left="40.0" />
          </padding>
       </TextField>
-      <Label layoutX="20.0" layoutY="27.0" prefHeight="45.0" prefWidth="276.0" style="-fx-border-color: #5499C7; -fx-background-color: white;" text="Tutorials and help">
+      <Label layoutX="20.0" layoutY="27.0" prefHeight="45.0" prefWidth="276.0" text="Tutorials and help">
          <font>
-            <Font name="Times New Roman Italic" size="30.0" />
+            <Font name="Times New Roman Bold Italic" size="30.0" />
          </font>
       </Label>
       <Button layoutX="244.0" layoutY="97.0" mnemonicParsing="false" onAction="#searchAction" text="Search" />
-      <Button fx:id="back" layoutX="746.0" layoutY="4.0" mnemonicParsing="false" onAction="#backButton" prefHeight="44.0" prefWidth="50.0" style="-fx-background-color: white;" stylesheets="@application.css">
+      <Button fx:id="back" layoutX="712.0" layoutY="2.0" mnemonicParsing="false" onAction="#backButton" prefHeight="46.0" prefWidth="87.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Back">
          <graphic>
             <ImageView fitHeight="38.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -45,5 +45,10 @@
             </ImageView>
          </graphic>
       </Button>
+      <ImageView fitHeight="169.0" fitWidth="217.0" layoutX="400.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/wondering.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
