@@ -137,15 +137,15 @@ public class recipemainmenu implements Initializable {
     Stage mainStage = (Stage) back.getScene().getWindow();
     mainStage.setScene(loginScene);
     mainStage.show();
-    mainStage.setHeight(700);
+    mainStage.setHeight(740);
     mainStage.setWidth(1000);
-    mainStage.setResizable(true);
+    mainStage.setResizable(false);
     mainStage.centerOnScreen();
   }
 
   /**
    * Method for adding the tags to the temporary list.
-   * We will add all of the tags within that list to the recipe later on.
+   * We will add all the tags within that list to the recipe later on.
    */
   
   public void addTagToList(ActionEvent event) throws SQLException, IOException {

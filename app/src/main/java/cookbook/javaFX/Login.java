@@ -43,7 +43,7 @@ public class Login implements Initializable {
 
       Stage mainMenuStage = (Stage) loginButton.getScene().getWindow();
       mainMenuStage.setScene(mainMenu);
-      mainMenuStage.setHeight(737);
+      mainMenuStage.setHeight(740);
       mainMenuStage.setWidth(1000);
       mainMenuStage.centerOnScreen();
       mainMenuStage.setResizable(false);
