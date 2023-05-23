@@ -1,0 +1,13 @@
+.root{
+    -fx-icon: url("cookbook/resources/images/CB.png");
+    -fx-min-width: 1000px;
+    -fx-max-width: 1000px;
+    -fx-min-height: 700px;
+    -fx-max-height: 700px;
+
+}
+
+.text-field, .text-area, .combo-box, .text-area {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}

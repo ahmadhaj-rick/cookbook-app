@@ -30,7 +30,7 @@ public class mainMenu {
   @FXML 
   public Button homebtn;
   @FXML 
-  public Button addbuttom;
+  public Button addbutton;
   @FXML 
   public Button inboxbutton;
   @FXML 
@@ -45,31 +45,25 @@ public class mainMenu {
   
   public void homeClick(ActionEvent event) throws SQLException, IOException {
     
-    // Go back to the home screen
     URL url = new File("src/main/java/cookbook/resources/homepage.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
     Scene homeScene = new Scene(root);
-    
+
     Stage homeStage = (Stage) homebtn.getScene().getWindow();
     homeStage.setScene(homeScene);
     homeStage.show();
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    homeStage.setTitle("Welcome to the recipes menu Dear " + name);
+    homeStage.setHeight(737);
+    homeStage.setWidth(1015);
+    homeStage.setResizable(false);
+    homeStage.centerOnScreen();
     
   }
- /*  
-  public void addClick(ActionEvent event) throws SQLException, IOException {
-    
-    // Go to the add recipe screen
-    URL url = new File("src/main/java/cookbook/resources/addrecipe.fxml").toURI().toURL();
-    FXMLLoader loader = new FXMLLoader(url);
-    Parent root = loader.load();
-    Scene addScene = new Scene(root);
-    
-    Stage addStage = (Stage) addbutton.getScene().getWindow();
-    addStage.setScene(addScene);
-    addStage.show();  
-    
-  }*/
+ 
+
   public void inboxClick(ActionEvent event) throws SQLException, IOException {
     
     // Go to the inbox screen
@@ -82,7 +76,8 @@ public class mainMenu {
     inboxStage.setScene(inboxScene);
     inboxStage.show();
     
-  } 
+  }
+  
   public void weeklistClick(ActionEvent event) throws SQLException, IOException {
     
     // Go to the week list screen
@@ -90,10 +85,17 @@ public class mainMenu {
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
     Scene weeklistScene = new Scene(root);
-    
+
     Stage weeklistStage = (Stage) weeklistbutton.getScene().getWindow();
     weeklistStage.setScene(weeklistScene);
     weeklistStage.show();
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    weeklistStage.setTitle("Welcome to your Weekly List Dear " + name);
+    weeklistStage.setHeight(740);
+    weeklistStage.setWidth(1010);
+    weeklistStage.setResizable(true);
+    weeklistStage.centerOnScreen();
     
   }
   
@@ -104,9 +106,16 @@ public class mainMenu {
     Parent root = loader.load();
     Scene weeklistScene = new Scene(root);
 
-    Stage weeklistStage = (Stage) weeklistbutton.getScene().getWindow();
-    weeklistStage.setScene(weeklistScene);
-    weeklistStage.show();
+    Stage helpStage = (Stage) weeklistbutton.getScene().getWindow();
+    helpStage.setScene(weeklistScene);
+    helpStage.show();
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    helpStage.setTitle("Figuring about something " + name + ", just search and you will find what you need ");
+    helpStage.setHeight(730);
+    helpStage.setWidth(815);
+    helpStage.centerOnScreen();
+    helpStage.setResizable(false);
 
 
   }
@@ -114,7 +123,7 @@ public class mainMenu {
   public void adminPanelClick(ActionEvent event) throws SQLException, IOException {
     
     userObject loggedUser = userController.loggedInUser;
-    
+
     if (loggedUser.getAdminPrivelages().equals(false)) {
       Alert error = new Alert(Alert.AlertType.INFORMATION);
       error.setTitle("Big NoNo");
@@ -125,40 +134,36 @@ public class mainMenu {
       FXMLLoader loader = new FXMLLoader(url);
       Parent root = loader.load();
       Scene adminScene = new Scene(root);
-      
+
       Stage adminStage = (Stage) adminPanel.getScene().getWindow();
       adminStage.setScene(adminScene);
       adminStage.show();
-      
-      
-      // Wait for the admin panel to close
-      adminStage.setOnCloseRequest(e -> {
-        try {
-          URL url2 = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
-          FXMLLoader loader2 = new FXMLLoader(url2);
-          Parent root2 = loader2.load();
-          Scene mainMenu = new Scene(root2);
-          
-          Stage mainMenuStage = new Stage();
-          mainMenuStage.setScene(mainMenu);
-          mainMenuStage.show();
-          
-        } catch (IOException ioException) {
-          ioException.printStackTrace();
-        }
-      });
-    }  
+      userController user = new userController();
+      String name = user.loggedInUser.getName();
+      adminStage.setTitle("welcome Dear " + name + ", You are a great Admin");
+      adminStage.setHeight(740);
+      adminStage.setWidth(1015);
+      adminStage.centerOnScreen();
+      adminStage.setResizable(false);
+    }
   }
 
   public void addClick(ActionEvent event) throws SQLException, IOException {
     URL url = new File("src/main/java/cookbook/resources/addNewRecipe.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
-    Scene weeklistScene = new Scene(root);
-    
-    Stage weeklistStage = (Stage) weeklistbutton.getScene().getWindow();
-    weeklistStage.setScene(weeklistScene);
-    weeklistStage.show();
+    Scene addScene = new Scene(root);
+
+    Stage addStage = (Stage) addbutton.getScene().getWindow();
+    addStage.setScene(addScene);
+    addStage.show();
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    addStage.setTitle("It`s always a good idea to have a new recipe that belongs to you " + name);
+    addStage.setHeight(750);
+    addStage.setWidth(1009);
+    addStage.centerOnScreen();
+    addStage.setResizable(false);
   }
   
   public void exitClick(ActionEvent event) throws SQLException, IOException {

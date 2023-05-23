@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.WeeklyListController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #D7BDE2;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.WeeklyListController">
    <children>
       <Label layoutX="20.0" layoutY="33.0" prefHeight="45.0" prefWidth="233.0" style="-fx-background-color: #FDFEFE; -fx-border-color: #5499C7;" text="Dinner list" AnchorPane.rightAnchor="747.0">
          <font>
@@ -87,10 +90,22 @@
             <Font name="Times New Roman Italic" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="openShopp" layoutX="783.0" layoutY="595.0" mnemonicParsing="false" onAction="#openShoppingList" prefHeight="35.0" prefWidth="127.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="GENERATE" textFill="#171616">
+      <Button fx:id="openShopp" layoutX="783.0" layoutY="595.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="127.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="GENERATE" textFill="#171616">
          <font>
             <Font name="Times New Roman Italic" size="14.0" />
          </font>
+      </Button>
+      <Button fx:id="back" layoutX="946.0" mnemonicParsing="false" onAction="#backButton" prefHeight="44.0" prefWidth="50.0" style="-fx-background-color: white;" stylesheets="@application.css">
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/backleftarrow.jpg" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>

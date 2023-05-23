@@ -116,79 +116,117 @@
     "recipe_ingredients" : [
         {
             "recipe_id" : "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
-            "ingredient_id" : "f6c0d8ef-6225-49cb-bb3e-f7b5cf9ab4a7"
+            "ingredient_id" : "f6c0d8ef-6225-49cb-bb3e-f7b5cf9ab4a7",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id" : "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
-            "ingredient_id" : "cdb63720-9628-47f1-a0fe-4ddf28a7a655"
+            "ingredient_id" : "cdb63720-9628-47f1-a0fe-4ddf28a7a655",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id" : "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
-            "ingredient_id" : "a6b68b08-4507-423e-bd03-dce230bddb58"
+            "ingredient_id" : "a6b68b08-4507-423e-bd03-dce230bddb58",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
-            "ingredient_id" : "c1f0c3a1-37a4-4b5d-83f6-2b4c1e9e55eb"
+            "ingredient_id" : "c1f0c3a1-37a4-4b5d-83f6-2b4c1e9e55eb",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
-            "ingredient_id" : "2d6e17c5-3e6d-4f90-bf89-ea2e2f8dd0e8"
+            "ingredient_id" : "2d6e17c5-3e6d-4f90-bf89-ea2e2f8dd0e8",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
-            "ingredient_id" : "9d3f0e3a-7a6c-4f07-bd6b-20c9a7b10a27"
+            "ingredient_id" : "9d3f0e3a-7a6c-4f07-bd6b-20c9a7b10a27",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
-            "ingredient_id": "d7fbcb6a-5b11-453a-a982-4b5e2f7033d9"
+            "ingredient_id": "d7fbcb6a-5b11-453a-a982-4b5e2f7033d9",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
-            "ingredient_id": "a6b68b08-4507-423e-bd03-dce230bddb58"
+            "ingredient_id": "a6b68b08-4507-423e-bd03-dce230bddb58",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
-            "ingredient_id": "c506de28-0e1a-4d75-98a2-50fcb3d845fb"
+            "ingredient_id": "c506de28-0e1a-4d75-98a2-50fcb3d845fb",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
-            "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22"
+            "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
-            "ingredient_id": "d7fbcb6a-5b11-453a-a982-4b5e2f7033d9"
+            "ingredient_id": "d7fbcb6a-5b11-453a-a982-4b5e2f7033d9",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
-            "ingredient_id": "c506de28-0e1a-4d75-98a2-50fcb3d845fb"
+            "ingredient_id": "c506de28-0e1a-4d75-98a2-50fcb3d845fb",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
-            "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22"
+            "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
-            "ingredient_id": "e3f6725b-647a-4d99-b1d1-98be71d67e39"
+            "ingredient_id": "e3f6725b-647a-4d99-b1d1-98be71d67e39",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
-            "ingredient_id": "8dca60f8-ee03-4f56-b8dc-2b56270a8b09"
+            "ingredient_id": "8dca60f8-ee03-4f56-b8dc-2b56270a8b09",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
-            "ingredient_id": "eab37f8d-6b48-4eb2-9d5f-6a3c77d56f3a"
+            "ingredient_id": "eab37f8d-6b48-4eb2-9d5f-6a3c77d56f3a",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
-            "ingredient_id": "d3f43e5f-9138-43d2-b891-67896d775c35"
+            "ingredient_id": "d3f43e5f-9138-43d2-b891-67896d775c35",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "3d32c6f4-41e5-4b8a-9b3f-3d30435d90f3",
-            "ingredient_id": "70b3010f-2c17-4db7-9679-0893d8d9f75c"
+            "ingredient_id": "70b3010f-2c17-4db7-9679-0893d8d9f75c",
+            "unit" : "kg",
+            "amount" : "1.0"
         },
         {
             "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
-            "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22"
+            "ingredient_id": "1d2ad6f6-4e4f-4b70-b4e4-3f1f9d5a9b22",
+            "unit" : "kg",
+            "amount" : "1.0"
         }
 
     ],
