@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 import cookbook.objects.recipeObject;
 import cookbook.objectControllers.recipeControler;
 
-public class mainMenu {
+public class mainMenu implements Initializable  {
   
   @FXML 
   public Button homebtn;
@@ -41,6 +41,9 @@ public class mainMenu {
   public Button adminPanel;
   @FXML 
   public Button quitbutton;
+
+  @FXML
+  public Label UserNameMain;
   
   
   public void homeClick(ActionEvent event) throws SQLException, IOException {
@@ -177,13 +180,22 @@ public class mainMenu {
     appStage.show();
     appStage.setHeight(500);
     appStage.setWidth(650);
-    appStage.setResizable(true);
+    appStage.setResizable(false);
     appStage.centerOnScreen();
     appStage.setTitle("Sign In");
 
-
-    
-    
   }
-  
+
+  public void userNameUser() {
+    //Display the logged in user name
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    UserNameMain.setText("Welcome to our lovely app " + name);
+  }
+
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    userNameUser();
+  }
 }
