@@ -63,7 +63,7 @@
                         <Insets left="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="Text" wrappingWidth="521.13671875">
+                  <Text fx:id="Shortdesc" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="Text" wrappingWidth="521.13671875">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin></Text>
@@ -96,13 +96,13 @@
                      </font></Label>
                   <HBox prefHeight="39.0" prefWidth="655.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="52.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="-" />
-                        <Label prefHeight="38.0" prefWidth="47.0" style="-fx-background-color: #FDFEFE;" text="1">
+                        <Button mnemonicParsing="false" onAction="#onDecreasePortions" prefHeight="38.0" prefWidth="52.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="-" />
+                        <Label fx:id="portionsLabel" prefHeight="38.0" prefWidth="47.0" style="-fx-background-color: #FDFEFE;" text="1">
                            <padding>
                               <Insets bottom="10.0" left="17.0" top="10.0" />
                            </padding>
                         </Label>
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="52.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="+" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onIncreasePortions" prefHeight="38.0" prefWidth="52.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="+" />
                      </children>
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
