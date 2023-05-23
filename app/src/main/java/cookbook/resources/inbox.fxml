@@ -16,9 +16,9 @@
 
 <AnchorPane prefHeight="760.0" prefWidth="1010.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.Inbox">
    <children>
-      <TableView prefHeight="760.0" prefWidth="214.0">
+      <TableView fx:id="usersNames" onMouseClicked="#DisplaySelected" prefHeight="760.0" prefWidth="214.0">
         <columns>
-          <TableColumn prefWidth="199.0" text="Users" />
+          <TableColumn prefWidth="212.0" text="Users" />
         </columns>
       </TableView>
       <VBox layoutX="220.0" layoutY="142.0" prefHeight="563.0" prefWidth="778.0" style="-fx-background-color: #FCF3CF;">
@@ -31,7 +31,7 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <ListView prefHeight="199.0" prefWidth="776.0" style="-fx-border-color: #5499C7FF;">
+            <ListView fx:id="inboxlist" prefHeight="199.0" prefWidth="776.0" style="-fx-border-color: #5499C7FF;">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -44,7 +44,7 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Label prefHeight="232.0" prefWidth="766.0" style="-fx-border-color: #5499C7FF; -fx-background-color: FDFEFEFF;">
+            <Label fx:id="messageBox" onMousePressed="#DisplayTheMSG" prefHeight="232.0" prefWidth="766.0" style="-fx-border-color: #5499C7FF; -fx-background-color: FDFEFEFF;">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
