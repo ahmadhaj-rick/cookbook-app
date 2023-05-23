@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.SendMessagesController">
+<AnchorPane prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #D7BDE2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.SendMessages">
    <children>
-      <TableView fx:id="userList" layoutY="-1.0"  prefHeight="572.0" prefWidth="230.0" style="-fx-background-color: white;">
+      <TableView fx:id="userList" layoutY="-1.0" prefHeight="572.0" prefWidth="230.0" style="-fx-background-color: white;">
          <columns>
             <TableColumn fx:id="displayNameColumn" prefWidth="107.0" text="User Name" />
             <TableColumn fx:id="userColumn" prefWidth="122.0" text="Display name " />
@@ -29,7 +29,7 @@
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="443.0" layoutY="472.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="Send" textFill="#222020">
+      <Button layoutX="443.0" layoutY="472.0" mnemonicParsing="false" onAction="#sendMessageAction" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="Send" textFill="#222020">
          <font>
             <Font name="Times New Roman Italic" size="12.0" />
          </font>
