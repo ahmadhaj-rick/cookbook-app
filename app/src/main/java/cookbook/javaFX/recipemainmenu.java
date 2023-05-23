@@ -47,9 +47,6 @@ public class recipemainmenu implements Initializable {
   public ComboBox<String> tagsDropdown;
 
   @FXML
-  public ComboBox<recipeObject> categoryBox;
-
-  @FXML
   public TextField tagName;
 
   @FXML
@@ -69,9 +66,6 @@ public class recipemainmenu implements Initializable {
 
   @FXML
   public TextField ingredientName;
-
-  @FXML
-  public TextField categoryName;
 
   @FXML
   public Button addIngredient;
@@ -149,47 +143,53 @@ public class recipemainmenu implements Initializable {
     mainStage.centerOnScreen();
   }
 
+  /**
+   * Method for adding the tags to the temporary list.
+   * We will add all of the tags within that list to the recipe later on.
+   */
+  
   public void addTagToList(ActionEvent event) throws SQLException, IOException {
     if (tagsDropdown.getSelectionModel().getSelectedItem() == null) {
       String tag_Name = tagName.getText();
       UUID uniqueID = UUID.randomUUID();
       String tagID = uniqueID.toString();
 
-      // Add the tag to the database and create an object.
-      // tagController.addTag(tagID, tag_Name);
-      tagController.addTag(tagID, tag_Name);
-      tagObject newTag = new tagObject(tagID, tag_Name);
-      selectedTags.add(newTag);
+      //If duplicate, do this. Else, do that.
+      if (findTag(tag_Name) != null) {
+        //If tag already exists, show this.
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Error!");
+        error.setContentText("Tag already exists!");
+        error.show();
+      } else {
+        // Add the tag to the database and create an object.
+        tagController.addTag(tagID, tag_Name);
+        tagObject newTag = new tagObject(tagID, tag_Name);
+        selectedTags.add(newTag);
 
-      Alert success = new Alert(Alert.AlertType.INFORMATION);
-      success.setTitle("Success!");
-      success.setContentText("You successfully created a new tag!");
-      success.show();
+        Alert success = new Alert(Alert.AlertType.INFORMATION);
+        success.setTitle("Success!");
+        success.setContentText("You successfully created a new tag!");
+        success.show();
+        updateTagBox();  
+        
+      }
 
+      //If something is selected, use that one. 
     } else if (tagsDropdown.getSelectionModel().getSelectedItem() != null) {
+      String tag_name = tagsDropdown.getSelectionModel().getSelectedItem();
+      tagObject myTag = findTag(tag_name);
 
-      String selectedTag = tagsDropdown.getSelectionModel().getSelectedItem();
-      tags.add(new tagObject(UUID.randomUUID().toString(), selectedTag));
-      tagsDropdown.setValue(null);
-      tagName.setText("");
-
-      Alert success = new Alert(Alert.AlertType.INFORMATION);
-      success.setTitle("Success!");
-      success.setContentText("You successfully added a new tag!");
-      success.show();
-      updateTagBox();
-
-      /*
-       * String tag_name =
-       * tagsDropdown.getSelectionModel().getSelectedItem().getTag_name();
-       * String tagId =
-       * tagsDropdown.getSelectionModel().getSelectedItem().getTag_id();
-       * UUID uniqueID = UUID.randomUUID();
-       * String tagID = uniqueID.toString();
-       * tagObject newTag = new tagObject(tagId, tag_name);
-       * selectedTags.add(tagsDropdown.getSelectionModel().getSelectedItem());
-       */
+      if (myTag != null && !selectedTags.contains(myTag)) {
+        selectedTags.add(myTag);
+        Alert success = new Alert(Alert.AlertType.INFORMATION);
+        success.setTitle("Success!");
+        success.setContentText("You successfully added a new tag!");
+        success.show(); 
+      }
     }
+    tagsDropdown.setValue(null);
+    tagName.setText("");
   }
 
   /**
@@ -224,12 +224,27 @@ public class recipemainmenu implements Initializable {
     }
   }
 
+/**
+ * Two methods for handling the comboboxes aswell as finding tags.
+ */
+
   public void updateTagBox() throws SQLException {
+    tagsDropdown.getItems().clear();
     tagsDropdown.getItems().add(null);
     for (tagObject tag : tagController.getTags()) {
       String tagname = tag.getTag_name();
       tagsDropdown.getItems().add(tagname);
     }
+    
+  }
+
+  public tagObject findTag(String tagName) throws SQLException {
+    for (tagObject tag : tagController.getTags()) {
+      if (tag.getTag_name().equals(tagName)) {
+        return tag;
+      }
+    }    
+    return null;
   }
 
   /**
@@ -244,7 +259,7 @@ public class recipemainmenu implements Initializable {
       tags = new ArrayList<>();
 
       updateTagBox();
-      unit.setItems(FXCollections.observableArrayList(null, "g", "kg", "ml", "L", "mg", "tea spoon", "pinch"));
+      unit.setItems(FXCollections.observableArrayList("g", "kg", "ml", "L", "mg", "tea spoon", "pinch"));
 
     } catch (SQLException err) {
       err.printStackTrace();

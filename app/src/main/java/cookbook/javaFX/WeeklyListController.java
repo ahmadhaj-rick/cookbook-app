@@ -1,6 +1,7 @@
 package cookbook.javaFX;
 import cookbook.objectControllers.ScheduledRecipeController;
 import cookbook.objectControllers.WeekCalendar;
+import cookbook.objectControllers.userController;
 import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ScheduledRecipeObject;
 import javafx.beans.value.ChangeListener;
@@ -17,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -52,6 +54,8 @@ public class WeeklyListController implements Initializable {
   private Button openShopp;
   @FXML
   private ComboBox<String> weeksComboxBox;
+  @FXML
+  private Button back;
 
   private ObservableList<QuanitityIngredients> shoppingList = FXCollections.observableArrayList();
   private LocalDate initialDateGlobal;
@@ -78,7 +82,25 @@ public class WeeklyListController implements Initializable {
     shoppingList.clear();
   }
 
+  public void backButton(ActionEvent event) throws SQLException, IOException {
+    URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
+    FXMLLoader loader = new FXMLLoader(url);
+    Parent root = loader.load();
+    Scene loginScene = new Scene(root);
 
+    Stage mainStage = (Stage) back.getScene().getWindow();
+    mainStage.setScene(loginScene);
+    mainStage.show();
+    mainStage.setHeight(740);
+    mainStage.setWidth(1000);
+    mainStage.setResizable(true);
+    mainStage.centerOnScreen();
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    mainStage.setTitle("Welcome back to the main menu dear " + name );
+
+  }
+  
   public void weekChanged(String newValue) throws SQLException {
     clearAll();
     initialDateGlobal = LocalDate.parse(newValue.split(" - ")[0]);

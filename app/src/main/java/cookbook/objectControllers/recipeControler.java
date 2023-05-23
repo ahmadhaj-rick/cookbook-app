@@ -177,7 +177,7 @@ public class recipeControler {
             recipeObject.addIngredient(new QuanitityIngredients(
               ingResultSet.getString("unit"),
               ingResultSet.getFloat("amount"),
-              new ingredientObject(ingResultSet.getString("ingredient_name"), ingResultSet.getString("ingredient_id")))
+              new ingredientObject(ingResultSet.getString("ingredient_id"), ingResultSet.getString("ingredient_name")))
             );
           }
 
