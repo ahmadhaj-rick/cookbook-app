@@ -66,7 +66,8 @@
             <Image url="@images/meAndStormtrooper.jpeg" />
          </image>
       </ImageView>
-      <Button fx:id="back" layoutX="946.0" layoutY="1.0" mnemonicParsing="false" onAction="#backButton" prefHeight="44.0" prefWidth="50.0" style="-fx-background-color: white;" stylesheets="@application.css">
+      <Separator layoutX="212.0" layoutY="1.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="5.0" />
+      <Button fx:id="back" layoutX="914.0" mnemonicParsing="false" onAction="#backButton" prefHeight="46.0" prefWidth="87.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Back">
          <graphic>
             <ImageView fitHeight="38.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -78,6 +79,5 @@
             </ImageView>
          </graphic>
       </Button>
-      <Separator layoutX="212.0" layoutY="1.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="5.0" />
    </children>
 </AnchorPane>
