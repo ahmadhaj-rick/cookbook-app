@@ -65,7 +65,7 @@
                   </HBox>
                   <Text fx:id="Shortdesc" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;" text="Text" wrappingWidth="521.13671875">
                      <VBox.margin>
-                        <Insets left="20.0" top="5.0" />
+                        <Insets bottom="5.0" left="20.0" top="5.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Times New Roman Italic" size="14.0" />
