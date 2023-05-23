@@ -178,8 +178,8 @@ public class mainMenu implements Initializable  {
     Stage appStage = (Stage) quitbutton.getScene().getWindow();
     appStage.setScene(loginScene);
     appStage.show();
-    appStage.setHeight(500);
-    appStage.setWidth(650);
+    appStage.setHeight(350);
+    appStage.setWidth(568);
     appStage.setResizable(false);
     appStage.centerOnScreen();
     appStage.setTitle("Sign In");
