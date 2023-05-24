@@ -166,7 +166,7 @@ public class WeeklyListController implements Initializable {
   
   @FXML
   void openShoppingList(ActionEvent event) throws IOException {
-   if (!shoppingList.isEmpty() && startingDateGlobal!=null) {
+   if (!shoppingList.isEmpty() && initialDateGlobal!=null) {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(getClass().getResource("shoppingList.fxml"));
       loader.load();

@@ -100,7 +100,7 @@ import java.util.Scanner;
       if (quantity == null) {
         return;
       } else {
-        qe.setAmount(Float.valueOf(amount_text.getText()));
+        quantity.setAmount(Float.valueOf(amount_text.getText()));
         ingView.setItems(x);
         ingView.setItems(ingredients);
         save();
