@@ -78,7 +78,7 @@ public class WeekCalendar {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
     // Insert records into db
-    String insertString = "INSERT INTO weekly_list VALUES(?, ?, ?, ?, ?);";
+    String insertString ="INSERT INTO weekly_list (weekly_list_id, user_id, recipe_id, week_date, week_number) VALUES (?, ?, ?, ?, ?);";
 
     try (PreparedStatement preparedStmnt = conn.prepareStatement(insertString)) {
       preparedStmnt.setString(1, weekly_list_id);
