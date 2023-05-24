@@ -178,8 +178,7 @@ public class databasemn {
     + "PRIMARY KEY (user_id, recipe_id, week_date),"
     + "FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE,"
     + "FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id) ON DELETE CASCADE ON UPDATE CASCADE,"
-    + "CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES user(user_id),"
-    + "CONSTRAINT FK_recipe FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id))";
+    + "CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES user(user_id))";
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
       Statement stm = cnn.createStatement();
@@ -187,6 +186,7 @@ public class databasemn {
       System.out.println("Weekly List table created");
     } catch (SQLException ee) {
       System.out.println("Error creating Weekly List table");
+      System.out.println(ee);
     }
   }
 

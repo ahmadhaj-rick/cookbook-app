@@ -197,19 +197,17 @@ public class recipeControler {
     return favoriteRecipies;
   }
 
-  public static void adddate(String recipeId, Timestamp created_at , String userId, int week_date) throws SQLException {
+  public static void adddate(String recipeId, Timestamp created_at , String userId) throws SQLException {
 
 
-    String query = "INSERT into weekly_list values ((?),(?),(?),(?))";
+    String query = "INSERT into weekly_list values ((?),(?),(?))";
     Connection conn = DriverManager
             .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     try (PreparedStatement preparedStmnt = conn.prepareStatement(query)) {
-      preparedStmnt.setString(1, String.valueOf(created_at));
+      preparedStmnt.setString(1, userId);
       preparedStmnt.setString(2, recipeId);
-      preparedStmnt.setString(3, userId);
-      preparedStmnt.setInt(4, week_date);
+      preparedStmnt.setString(3, String.valueOf(created_at));
       preparedStmnt.executeUpdate();
-
 
     } catch (SQLException e) {
       if (e instanceof SQLIntegrityConstraintViolationException) {

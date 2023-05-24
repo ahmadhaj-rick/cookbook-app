@@ -301,9 +301,10 @@ public class homePage implements Initializable {
 
       Timestamp timestamp = Timestamp.valueOf(localDate.atTime(LocalTime.MIDNIGHT));
       System.out.println("Me as a button, I function lol"); //2019-05-16 00:00:00.0
+      System.out.println(timestamp);
 
       userObject loggedInUser = userController.loggedInUser;
-      recipeControler.adddate(recipe.getId(),timestamp, loggedInUser.getId(), 5);
+      recipeControler.adddate(recipe.getId(),timestamp, loggedInUser.getId());
 
 
   }  //this generic but you can control another types of exception
