@@ -68,11 +68,12 @@ public class Inbox implements Initializable {
 
         if (user == null)
             return;
-        var message = MessageController.getMessagesByUserId(userSelected.getId());
+        String userId = user.getId();
+        var message = MessageController.getMessages(userId,userSelected.getId());
         for (var item : message) {
             String msg = item.getBody();
-            String recipe = item.getMessage_id();
-            var RecipeName = MessageController.getName(recipe);
+            String recipe = item.getRecipe_Id();
+            var RecipeName = MessageController.getRecipeName(recipe);
             if (RecipeName != null) {
                 String allMessages = (String.format("%s\n%s\n\n", RecipeName.toUpperCase(), msg));
                 inboxlist.getItems().addAll(allMessages);
