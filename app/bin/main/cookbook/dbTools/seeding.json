@@ -13,6 +13,20 @@
             "username": "jane_doe",
             "password": "password456",
             "admin_id": true
+        },
+        {
+            "user_id": "3c0e7e76-c8fa-5e72-8c44-0a9e2d57a38f",
+            "fname": "User",
+            "username": "user",
+            "password": "user",
+            "admin_id": false
+        },
+        {
+            "user_id": "3c0e7e76-c8fa-6e72-8c44-0a9e2d57a38f",
+            "fname": "Admin",
+            "username": "admin",
+            "password": "admin",
+            "admin_id": true
         }
         
     ],
@@ -22,31 +36,31 @@
             "recipe_id": "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
             "name": "Spaghetti Bolognese",
             "description": "A classic Italian dish",
-            "instructions": "Cook the spaghetti according to the package instructions. In a separate pan, cook the ground beef and tomato sauce. Serve the spaghetti with the sauce on top."
+            "instructions": "1.Cook the spaghetti according to the package instructions. \n2.In a separate pan, cook the ground beef and tomato sauce. \n3.Serve the spaghetti with the sauce on top."
         },
         {
             "recipe_id" : "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
             "name" : " Chicken Alfredo",
             "description" : " A creamy pasta dish",
-            "instructions" : " Cook the fettuccine according to the package instructions. In a separate pan, cook the chicken and Alfredo sauce. Serve the fettuccine with the sauce and chicken on top."
+            "instructions" : "1.Cook the fettuccine according to the package instructions. \n2.In a separate pan, cook the chicken and Alfredo sauce. \n3.Serve the fettuccine with the sauce and chicken on top."
         },
         {
             "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
             "name": "Margherita Pizza",
             "description": "A classic Italian pizza with tomatoes, mozzarella, and fresh basil",
-            "instructions": "Preheat the oven to 450 degrees F (230 degrees C). Roll out the pizza dough and place it on a pizza pan. Spread tomato sauce over the dough. Add slices of fresh mozzarella cheese on top of the tomato sauce. Bake for 10-12 minutes or until the crust is golden brown and the cheese is melted. Remove from oven and garnish with fresh basil leaves."
+            "instructions": "1.Preheat the oven to 450 degrees F (230 degrees C). \n2.Roll out the pizza dough and place it on a pizza pan. \n3.Spread tomato sauce over the dough. \n4.Add slices of fresh mozzarella cheese on top of the tomato sauce. \n5.Bake for 10-12 minutes or until the crust is golden brown and the cheese is melted. \n6.Remove from oven and garnish with fresh basil leaves."
         },
         {
             "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
             "name": "Pepperoni Pizza",
             "description": "A classic pizza topped with pepperoni slices",
-            "instructions": "Preheat the oven to 450 degrees F (230 degrees C). Roll out the pizza dough and place it on a pizza pan. Spread tomato sauce over the dough. Add slices of pepperoni on top of the tomato sauce. Bake for 10-12 minutes or until the crust is golden brown and the cheese is melted. Remove from oven and let cool for a few minutes before slicing and serving."
+            "instructions": "1.Preheat the oven to 450 degrees F (230 degrees C). \n2.Roll out the pizza dough and place it on a pizza pan. \n3.Spread tomato sauce over the dough.\n4.Add slices of pepperoni on top of the tomato sauce. \n5.Bake for 10-12 minutes or until the crust is golden brown and the cheese is melted. \n6.Remove from oven and let cool for a few minutes before slicing and serving."
         },
         {
             "recipe_id": "3d32c6f4-41e5-4d8a-9b3f-3d30435d90f3",
             "name": "Grilled Ribeye Steak",
             "description": "A juicy and flavorful grilled ribeye steak",
-            "instructions": "1. Preheat grill to high heat.\n2. Season the steak generously with salt and pepper on both sides.\n3. Place the steak on the grill and cook for 4-5 minutes on each side for medium-rare, or until desired doneness is reached.\n4. Remove from the grill and let it rest for a few minutes before slicing and serving."
+            "instructions": "1. Preheat grill to high heat.\n2. Season the steak generously with salt and pepper on both sides.\n3. Place the steak on the grill and cook for 4-5 minutes on each side for medium-rare, or until desired readiness is reached.\n4. Remove from the grill and let it rest for a few minutes before slicing and serving."
         }
     ],
 
@@ -287,7 +301,16 @@
             "from_user": "d290f1ee-6c54-4b01-90e6-d701748f0851",
             "to_user": "3c0e7e76-c8fa-4e72-8c44-0a9e2d57a38f",
             "recipe_id": "b41a5a70-85c8-46d8-9b05-4910b7fb8431",
-            "body": "Hi Jane, I tried your Margherita Pizza recipe and it was delicious!"            
+            "body": "Hi Jane, I tried your Margherita Pizza recipe and it was delicious!",
+            "created_at": "2023-05-20 14:30:00"           
+        },
+        {
+            "message_id": "b8f3e6d4-5c6a-4a8b-8f7c-6f9f6f8e8b13",
+            "from_user": "3c0e7e76-c8fa-5e72-8c44-0a9e2d57a38f",
+            "to_user": "3c0e7e76-c8fa-6e72-8c44-0a9e2d57a38f",
+            "recipe_id": "c3c8f1a3-1a22-4821-ae28-c4f24a1abf02",
+            "body": "Hi Admin, I love your Pepperoni Pizza recipe. Can you share some tips on how to make the crust crispy?",
+            "created_at": "2023-05-22 12:30:00"  
         }
         
     ]

@@ -60,12 +60,6 @@ public class recipemainmenu implements Initializable {
   private TextField toUser;
 
   @FXML
-  private TextArea messageBody;
-
-  @FXML
-  private Button messagebutton;
-
-  @FXML
   public TextField ingredientName;
 
   @FXML
