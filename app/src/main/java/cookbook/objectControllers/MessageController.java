@@ -16,7 +16,7 @@ public class MessageController {
 
   // send a message from one user to another.
 
-  public static void sendMessages(String from_User, String to_User, String recipe_Id, String body,
+  public static void sendMessage(String from_User, String to_User, String recipe_Id, String body,
       Timestamp created_at) throws SQLException {
 
     Connection conn = DriverManager
@@ -44,7 +44,7 @@ public class MessageController {
   }
 
   // Get Messages by user from one user to other user.
-  public static List<MessageObject> getMessages(String from_User, String to_User) throws SQLException {
+  public static List<MessageObject> getMessage(String from_User, String to_User) throws SQLException {
 
     List<MessageObject> messages = new ArrayList<>();
     String query = "SELECT * FROM message WHERE from_user = ? AND to_user = ?";
@@ -81,7 +81,7 @@ public class MessageController {
 
   // display the name of the user.
   public static String getName(String user_id) throws SQLException {
-    String query = "SELECT name FROM users WHERE user_id = ?";
+    String query = "SELECT name FROM user WHERE user_id = ?";
 
     Connection conn = DriverManager
         .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");

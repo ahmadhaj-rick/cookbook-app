@@ -51,19 +51,6 @@ public class recipemainmenu implements Initializable {
 
   @FXML
   public Button addTag;
-
-  @FXML
-  private TextField fromUser;
-
-  @FXML
-  private TextField toUser;
-
-  @FXML
-  private TextArea messageBody;
-
-  @FXML
-  private Button messagebutton;
-
   @FXML
   public TextField ingredientName;
 
