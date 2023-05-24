@@ -85,5 +85,27 @@ import java.util.Scanner;
 
     }
 
+    public void selectQe(QuanitityIngredients quantity) {
+      if (quantity != null){
+        amount_text.setText(String.valueOf(quantity.getAmount()));
+        currentIng.setText(quantity.getName());
+      } else {
+        return;
+      }
+    }
+
+    @FXML
+    public void onModifyBtn(ActionEvent event) {
+      QuanitityIngredients quantity = ingView.getSelectionModel().getSelectedItem();
+      if (quantity == null) {
+        return;
+      } else {
+        qe.setAmount(Float.valueOf(amount_text.getText()));
+        ingView.setItems(x);
+        ingView.setItems(ingredients);
+        save();
+      }
+    }
+
 
   }
