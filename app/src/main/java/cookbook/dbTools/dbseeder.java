@@ -169,7 +169,6 @@ public class dbseeder {
             if (rowObj instanceof Map) {
               Map<?, ?> row = (Map<?, ?>) rowObj;
               String sql = "INSERT INTO message (message_id, from_user, to_user, recipe_id, body, created_at) VALUES (?, ?, ?, ?, ?, ?)";
-              
               try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
                 stmt.setString(1, (String) row.get("message_id"));
                 stmt.setString(2, (String) row.get("from_user"));
@@ -177,6 +176,26 @@ public class dbseeder {
                 stmt.setString(4, (String) row.get("recipe_id"));
                 stmt.setString(5, (String) row.get("body"));
                 stmt.setTimestamp(6,(Timestamp) row.get(" created_at "));
+                stmt.executeUpdate();
+              }
+            }
+          }
+        }
+      }
+
+      // Insert the weekly list into the database
+      Object weeklyListObj = data.get("weekly_list");
+      if (weeklyListObj instanceof List) {
+        List<?> weeklyList = (List<?>) weeklyListObj;
+        try (Connection cnn = DriverManager.getConnection(dbUrl)) {
+          for (Object rowObj : weeklyList) {
+            if (rowObj instanceof Map) {
+              Map<?, ?> row = (Map<?, ?>) rowObj;
+              String sql = "INSERT INTO weekly_list (user_id, recipe_id, week_date) VALUES (?, ?, ?)";
+              try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
+                stmt.setString(1, (String) row.get("user_id"));
+                stmt.setString(2, (String) row.get("recipe_id"));
+                stmt.setTimestamp(3, Timestamp.valueOf((String) row.get("week_date")));
                 stmt.executeUpdate();
               }
             }

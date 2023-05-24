@@ -17,12 +17,14 @@ public class ScheduledRecipeController {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     
     // Perform join and create SchedRecipeEntity
+
+    //Ahmed can you check this?
     try (PreparedStatement preparedStmnt = conn.prepareStatement("""
     SELECT 
-    w.date, w.recipe_id, w.user_id, r.name FROM week_list w 
-    INNER JOIN recipe r ON r.id = w.recipe_id
-    WHERE user_id = (?) AND date = (?);
-    ;
+    w.week_date, w.recipe_id, w.user_id, r.name FROM weekly_list w 
+    INNER JOIN recipe r ON r.recipe_id = w.recipe_id
+    WHERE user_id = (?) AND week_date = (?); 
+    ; 
     """)) {
       preparedStmnt.setString(1, currUser.getId());
       preparedStmnt.setDate(2, date);
@@ -32,7 +34,7 @@ public class ScheduledRecipeController {
       while (result.next()) {
         String userId = result.getString("user_id");
         String recipeId = result.getString("recipe_id");
-        date = result.getDate("date");
+        date = result.getDate("week_date");
         ScheduledRecipeObject schedRec = new ScheduledRecipeObject(
         recipeId,
         result.getString("name"),
@@ -42,7 +44,7 @@ public class ScheduledRecipeController {
         // Get all Quantified ingredients for the recipe
         PreparedStatement ingredientsStmnt = conn.prepareStatement(
         """
-        SELECT * FROM ingredient i inner join recipe_ingredient ri on ri.ingredient_id = i.id where ri.recipe_id = (?);
+        SELECT * FROM ingredients i inner join recipe_ingredients ri on ri.ingredient_id = i.ingredient_id where ri.recipe_id = (?);
         """);
         ingredientsStmnt.setString(1, recipeId);
         ResultSet ingredientResult = ingredientsStmnt.executeQuery();
@@ -51,7 +53,7 @@ public class ScheduledRecipeController {
           // Add all Quantified ingredients to the Scheduled Recipe Entity
           schedRec.addIngredient(new QuanitityIngredients(ingredientResult.getString("unit"),
           ingredientResult.getFloat("amount"), new ingredientObject(
-          ingredientResult.getString("id"), ingredientResult.getString("name"))));
+          ingredientResult.getString("ingredient_id"), ingredientResult.getString("ingredient_name"))));
           
         }
         
@@ -59,7 +61,7 @@ public class ScheduledRecipeController {
         
       }
     } catch (SQLException e) {
-      System.out.println(e);
+      System.out.println(e + "Sechdule error here 1111");
     }
     
     return schedRecs;

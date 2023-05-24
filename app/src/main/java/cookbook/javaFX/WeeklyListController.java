@@ -32,9 +32,6 @@ import java.util.stream.IntStream;
 
 public class WeeklyListController implements Initializable {
   @FXML
-  private Label Weeklabel;
-
-  @FXML
   private ListView<String> fridayListView;
   @FXML
   private ListView<String> mondayListView;
@@ -161,7 +158,6 @@ public class WeeklyListController implements Initializable {
         } catch (SQLException e) {
           throw new RuntimeException(e);
         }
-        Weeklabel.setText(newvalue);
       }
     });
   }
