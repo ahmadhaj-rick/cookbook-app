@@ -19,11 +19,13 @@ public class ScheduledRecipeController {
     // Perform join and create SchedRecipeEntity
 
     //Ahmed can you check this?
-    try (PreparedStatement preparedStmnt = conn.prepareStatement(
-            "SELECT w.week_date, w.recipe_id, w.user_id, r.name " +
-                    "FROM weekly_list w " +
-                    "INNER JOIN recipe r ON r.recipe_id = w.recipe_id " +
-                    "WHERE user_id = ? AND date = ?")) {
+    try (PreparedStatement preparedStmnt = conn.prepareStatement("""
+    SELECT 
+    w.week_date, w.recipe_id, w.user_id, r.name FROM weekly_list w 
+    INNER JOIN recipe r ON r.recipe_id = w.recipe_id
+    WHERE user_id = (?) AND date = (?); 
+    ; 
+    """)) {
       preparedStmnt.setString(1, currUser.getId());
       preparedStmnt.setDate(2, date);
       ResultSet result = preparedStmnt.executeQuery();
