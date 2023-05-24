@@ -16,21 +16,20 @@ public class MessageController {
 
   // send a message from one user to another.
 
-  public static void sendMessage(String message_id, String from_User, String to_User, String recipe_Id, String body,
-      Timestamp created_at) throws SQLException {
+  public static void sendMessage(String from_User, String to_User, String recipe_Id, String body,String time, Timestamp created_at) throws SQLException {
 
     Connection conn = DriverManager
         .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
     // Insert message into db.
-    String query = "INSERT INTO message (message_id, from_user, to_user, recipe_id, body, created_at) VALUES (?, ?, ?, ?, ?, ?)";
+    String query = "INSERT INTO message  VALUES (?, ?, ?, ?, ?, ?)";
 
     // Generate a unique ID for the message.
     UUID uniqueID = UUID.randomUUID();
     String messageID = uniqueID.toString();
 
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
-      sqlStatement.setString(1, message_id);
+      sqlStatement.setString(1, messageID);
       sqlStatement.setString(2, from_User);
       sqlStatement.setString(3, to_User);
       sqlStatement.setString(4, recipe_Id);
@@ -59,9 +58,9 @@ public class MessageController {
       ResultSet result = sqlStatement.executeQuery();
 
       while (result.next()) {
-        String message_id = result.getString("message_id");
+        String Id = result.getString("message_id");
         MessageObject message = new MessageObject(
-          message_id,
+          Id,
             result.getString("from_User"),
             result.getString("to_User"),
             result.getString("recipe_Id"),
@@ -117,9 +116,9 @@ public class MessageController {
       ResultSet result = sqlStatement.executeQuery();
 
       while (result.next()) {
-        String message_id = result.getString("message_id");
+        String Id = result.getString("message_id");
         MessageObject message = new MessageObject(
-          message_id,
+          Id,
             result.getString("from_User"),
             result.getString("to_User"),
             result.getString("recipe_Id"),
@@ -139,7 +138,7 @@ public class MessageController {
 
   // Get the name of a recipe based on its ID.
   public static String getRecipeName(String user_id) throws SQLException {
-    String query = "SELECT name FROM recipes WHERE id = ?";
+    String query = "SELECT name FROM recipes WHERE user_id = ?";
 
     Connection conn = DriverManager
         .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
@@ -162,7 +161,7 @@ public class MessageController {
   }
 
   // Retrieve all messages sent to or from a user based on their ID.
-  public static List<MessageObject> getAllMessagesByUserId(String userId) throws SQLException {
+  public static List<MessageObject> getAllMessagesByUserId(String userID) throws SQLException {
     List<MessageObject> messages = new ArrayList<>();
     String query = "SELECT * FROM message WHERE from_user = ? OR to_user = ?";
 
@@ -170,15 +169,15 @@ public class MessageController {
         .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
-      sqlStatement.setString(1, userId);
-      sqlStatement.setString(2, userId);
+      sqlStatement.setString(1, userID);
+      sqlStatement.setString(2, userID);
 
       ResultSet result = sqlStatement.executeQuery();
 
       while (result.next()) {
-        String message_id = result.getString("message_id");
+        String Id = result.getString("message_id");
         MessageObject message = new MessageObject(
-          message_id,
+          Id,
             result.getString("from_user"),
             result.getString("to_user"),
             result.getString("recipe_id"),
