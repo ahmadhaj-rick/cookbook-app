@@ -185,5 +185,61 @@ import java.util.Scanner;
       }
     }
 
+    public  List<QuanitityIngredients> read() {
+      // Try to read Shopping list data.
+      String date_path = startDateglobal.toString();
+      userObject user = userController.loggedInUser;
+      String userId = user.getId();
+      String basePath = "src\\main\\resources\\cookbook\\shopping";
+      String fullPath = basePath + "\\" + userId + "\\" + date_path + ".data";
 
+      //Shopping list
+      List<QuanitityIngredients> x = new ArrayList<>();
+
+      try {
+        //does file exist?
+        if (new File(fullPath).exists()) {
+          File file = new File(fullPath);
+          Scanner scanner = new Scanner(file, "utf-8");
+
+          // is file empty?
+          if ((scanner.hasNextLine()) == false) {
+
+            scanner.close();
+            return null;
+
+            // if file exists
+          } else {
+            //read the file
+            String line = scanner.nextLine();
+            String[] data = line.split(":");
+            if (data[0].equals("INGREDIENT") == false) {
+              scanner.close();
+              return null;
+            }
+
+            // Add the ingredients to the list
+            QuanitityIngredients ingredient = new QuanitityIngredients(data[2], Float.valueOf(data[1]), data[3]);
+            x.add(ingredient);
+
+            // File exists and is not corrupted
+            while(scanner.hasNext()) {
+              String ingredientLine = scanner.nextLine();
+              data = ingredientLine.split(":");
+
+              if (data[0].equals("INGREDIENT")) {
+                ingredient = new QuanitityIngredients(data[2], Float.valueOf(data[1]), data[3]);
+                x.add(ingredient);
+              }
+            }
+            scanner.close();
+            return x;
+          }
+        } else {
+          return null;
+        }
+      } catch (FileNotFoundException e) {
+        return null;
+      }
+    }
   }
