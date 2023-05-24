@@ -145,6 +145,25 @@ public class databasemn {
       System.out.println("Error Creating recipe_tag table: " + e);
     }
   }
+
+  public void createComment() {
+    String comm = "CREATE TABLE IF NOT EXISTS comment ("
+    +"comment_id varchar(60) NOT NULL,"
+    +"text varchar(255) NOT NULL,"
+    +"user_id varchar(60) NOT NULL,"
+    +"recipe_id varchar(60) NOT NULL,"
+    +"FOREIGN KEY (user_id) REFERENCES user(user_id) ON UPDATE CASCADE ON DELETE CASCADE,"
+    +"FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id) ON UPDATE CASCADE ON DELETE CASCADE)";
+    try {
+      Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
+      Statement stm = cnn.createStatement();
+      stm.executeUpdate(comm);
+      System.out.println("comment table created");
+    } catch (Exception e) {
+      System.out.println("Error Creating comment table: " + e);
+    }
+  }
+
   
   public void createMessage() {
     String message = "CREATE TABLE IF NOT EXISTS message ("
@@ -201,6 +220,7 @@ public class databasemn {
       createStarred();
       createtag();
       createRecipe_tag();
+      createComment();
       createMessage();
       createTableWeeklyList();
     }
