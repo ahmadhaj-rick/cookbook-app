@@ -328,11 +328,50 @@ public class homePage implements Initializable {
       alert.show();
     }
   }
-  
-  public void sendMessage() {
 
-    
+  public void sendMessage(ActionEvent event) throws SQLException, IOException {
+    recipeObject recp = recipeLists.getSelectionModel().getSelectedItem();
+    if (recipeLists.getSelectionModel().getSelectedItem() != null){
+
+      URL url = new File("src/main/java/cookbook/resources/sendMessage.fxml").toURI().toURL();
+      FXMLLoader loader = new FXMLLoader(url);
+      Parent root = loader.load();
+      Scene sendMessage = new Scene(root);
+
+      // pass the id
+      SendMessages setController = loader.getController();
+      setController.passInformation(recp.getId());
+
+      // pass the name
+      SendMessages setControllerTwo = loader.getController();
+      setControllerTwo.passNameInformation(recp.getName());
+
+      Stage newStage = new Stage();
+      newStage.setScene(sendMessage);
+
+      // Get the reference to the existing stage
+      Stage existingStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+      // Set the existing stage as the owner of the new stage
+      newStage.initOwner(existingStage);
+      newStage.getIcons().add(new Image(new FileInputStream("src/main/java/cookbook/resources/images/sendMessage.png")));
+
+      userController user = new userController();
+      String name = user.loggedInUser.getName();
+      newStage.setTitle("You want to share something what a great idea " + name );
+
+      // Show the new stage
+      newStage.show();
+
+    } else {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Error");
+      alert.setContentText("Please select a recipe");
+      alert.show();
+    }
+
   }
-  
+
+
 }
 
