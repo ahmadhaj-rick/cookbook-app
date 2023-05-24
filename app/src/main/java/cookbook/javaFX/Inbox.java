@@ -60,7 +60,6 @@ public class Inbox implements Initializable {
     void DisplaySelected(MouseEvent event) throws SQLException {
         inboxlist.getItems().clear();
         Label lbl = new Label("No messages from this user");
-        lbl.setStyle("-fx-font-weight: bold; -fx-font-size:20");
         inboxlist.setPlaceholder(lbl);
 
         messageBox.setText("");
@@ -72,13 +71,17 @@ public class Inbox implements Initializable {
         var message = MessageController.getMessagesByUserId(userSelected.getId());
         for (var item : message) {
             String msg = item.getBody();
-            String recipe = item.getId();
+            String recipe = item.getMessage_id();
             var RecipeName = MessageController.getName(recipe);
-            String allMessages = (String.format("%s\n%s\n\n", RecipeName.toUpperCase(), msg));
-            inboxlist.getItems().addAll(allMessages);
-            inboxlist.setStyle(" -fx-font-size: 16;");
+            if (RecipeName != null) {
+                String allMessages = (String.format("%s\n%s\n\n", RecipeName.toUpperCase(), msg));
+                inboxlist.getItems().addAll(allMessages);
+            } else {
+                // Handle the case when RecipeName is null
+                String allMessages = (String.format("%s\n%s\n\n", "Unknown Recipe", msg));
+                inboxlist.getItems().addAll(allMessages);
+            }
         }
-
     }
 
     // display the message in the label
@@ -111,16 +114,6 @@ public class Inbox implements Initializable {
         usersNames.getColumns().add(nameColumn);
         usersNames.getItems().clear();
         usersNames.setItems(userList);
-
-        /**usersNames.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-         if (newValue != null) {
-         txtUserName.setText(newValue.getName());
-         txtUserName.setText(newValue.getUser_name());
-         } else {
-         // Clear the text fields if no user is selected
-         txtUserName.setText("");
-         }
-         });*/
 
     }
 }
