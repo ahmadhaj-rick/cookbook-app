@@ -180,6 +180,28 @@ public class dbseeder {
         }
       }
 
+      // Insert the weekly list into the database
+      Object weeklyListObj = data.get("weekly_list");
+      if (weeklyListObj instanceof List) {
+        List<?> weeklyList = (List<?>) weeklyListObj;
+        try (Connection cnn = DriverManager.getConnection(dbUrl)) {
+          for (Object rowObj : weeklyList) {
+            if (rowObj instanceof Map) {
+              Map<?, ?> row = (Map<?, ?>) rowObj;
+              String sql = "INSERT INTO weekly_list (weekly_list_id, user_id, recipe_id, week_date, week_number) VALUES (?, ?, ?, ?, ?)";
+              try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
+                stmt.setString(1, (String) row.get("weekly_list_id"));
+                stmt.setString(2, (String) row.get("user_id"));
+                stmt.setString(3, (String) row.get("recipe_id"));
+                stmt.setTimestamp(4, Timestamp.valueOf((String) row.get("week_date")));
+                stmt.setInt(5, (int) row.get("week_number"));
+                stmt.executeUpdate();
+              }
+            }
+          }
+        }
+      }
+
     } catch (IOException | SQLException e) {
       // Handle the exception here
       e.printStackTrace();
