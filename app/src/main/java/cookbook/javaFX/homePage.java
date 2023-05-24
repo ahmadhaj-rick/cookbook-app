@@ -278,8 +278,8 @@ public class homePage implements Initializable {
     mainStage.setWidth(1000);
     mainStage.setResizable(true);
     mainStage.centerOnScreen();
-    userController user = new userController();
-    String name = user.loggedInUser.getName();
+    userObject user = userController.loggedInUser;
+    String name = user.getName();
     mainStage.setTitle("Welcome back to the main menu dear " + name );
     
   }

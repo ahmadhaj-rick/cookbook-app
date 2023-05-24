@@ -53,8 +53,8 @@ public class mainMenu {
     Stage homeStage = (Stage) homebtn.getScene().getWindow();
     homeStage.setScene(homeScene);
     homeStage.show();
-    userController user = new userController();
-    String name = user.loggedInUser.getName();
+    userObject user = userController.loggedInUser;
+    String name = user.getName();
     homeStage.setTitle("Welcome to the recipes menu Dear " + name);
     homeStage.setHeight(737);
     homeStage.setWidth(1015);
@@ -89,8 +89,8 @@ public class mainMenu {
     Stage weeklistStage = (Stage) weeklistbutton.getScene().getWindow();
     weeklistStage.setScene(weeklistScene);
     weeklistStage.show();
-    userController user = new userController();
-    String name = user.loggedInUser.getName();
+    userObject user = userController.loggedInUser;
+    String name = user.getName();
     weeklistStage.setTitle("Welcome to your Weekly List Dear " + name);
     weeklistStage.setHeight(740);
     weeklistStage.setWidth(1010);

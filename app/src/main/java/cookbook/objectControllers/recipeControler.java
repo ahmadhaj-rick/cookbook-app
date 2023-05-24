@@ -197,7 +197,7 @@ public class recipeControler {
     return favoriteRecipies;
   }
 
-  public static void adddate(String recipeId, Timestamp created_at , String userId, int weekly_list) throws SQLException {
+  public static void adddate(String recipeId, Timestamp created_at , String userId, int week_date) throws SQLException {
 
 
     String query = "INSERT into weekly_list values ((?),(?),(?),(?))";
@@ -207,7 +207,7 @@ public class recipeControler {
       preparedStmnt.setString(1, String.valueOf(created_at));
       preparedStmnt.setString(2, recipeId);
       preparedStmnt.setString(3, userId);
-      preparedStmnt.setInt(4, weekly_list);
+      preparedStmnt.setInt(4, week_date);
       preparedStmnt.executeUpdate();
 
 
