@@ -63,8 +63,7 @@ public class SendMessages implements Initializable {
       date.setText("Message sent successfully at :  " + timestamp);
 
       sendMessageText.setWrapText(true);
-      MessageController.sendMessage(selectedUser.getId(), user.getId(), recipeId.getText(), sendMessageText.getText(),
-          time, timestamp);
+      MessageController.sendMessage(user.getId(), selectedUser.getId(), recipeId.getText(), sendMessageText.getText(),time, timestamp );
 
     } catch (Exception e) { // this generic but you can control another types of exception
       System.out.println("error");
@@ -72,13 +71,6 @@ public class SendMessages implements Initializable {
     txtUserName.clear();
     sendMessageText.clear();
 
-  }
-
-  private void loadData() throws SQLException {
-    users = userController.getUsers();
-    ObservableList<userObject> user = FXCollections.observableArrayList(users);
-    namelst.getItems().clear();
-    namelst.getItems().addAll(user);
   }
 
   // receive information about the recipe id
