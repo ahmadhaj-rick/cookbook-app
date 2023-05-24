@@ -26,6 +26,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import cookbook.objects.tagObject;
+import cookbook.objectControllers.ScheduledRecipeController;
+import cookbook.objectControllers.userController;
+import cookbook.objects.*;
+import javafx.scene.control.*;
+
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -60,8 +69,11 @@ public class homePage implements Initializable {
   public Text Shortdesc;
   @FXML
   public Text Longdesc;
-  
-  
+
+  @FXML
+  private DatePicker myDatePicker;
+
+
   public List<recipeObject> recipes;
   
   int portions = 1;
@@ -279,53 +291,45 @@ public class homePage implements Initializable {
     mainStage.setWidth(1000);
     mainStage.setResizable(true);
     mainStage.centerOnScreen();
-    userController user = new userController();
-    String name = user.loggedInUser.getName();
+    userObject user = userController.loggedInUser;
+    String name = user.getName();
     mainStage.setTitle("Welcome back to the main menu dear " + name );
     
   }
 
-  public void sendMessage(ActionEvent event) throws SQLException, IOException {
-    recipeObject recp = recipeLists.getSelectionModel().getSelectedItem();
-    if (recipeLists.getSelectionModel().getSelectedItem() != null){
-
-      URL url = new File("src/main/java/cookbook/resources/sendMessage.fxml").toURI().toURL();
-      FXMLLoader loader = new FXMLLoader(url);
-      Parent root = loader.load();
-      Scene sendMessage = new Scene(root);
-
-      // pass the id
-      SendMessages setController = loader.getController();
-      setController.passInformation(recp.getId());
-
-      // pass the name
-      SendMessages setControllerTwo = loader.getController();
-      setControllerTwo.passNameInformation(recp.getName());
-
-      Stage newStage = new Stage();
-      newStage.setScene(sendMessage);
-
-      // Get the reference to the existing stage
-      Stage existingStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-      // Set the existing stage as the owner of the new stage
-      newStage.initOwner(existingStage);
-      newStage.getIcons().add(new Image(new FileInputStream("src/main/java/cookbook/resources/images/sendMessage.png")));
-
-      userController user = new userController();
-      String name = user.loggedInUser.getName();
-      newStage.setTitle("You want to share something what a great idea " + name );
-
-      // Show the new stage
-      newStage.show();
-
-    } else {
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setTitle("Error");
-      alert.setContentText("Please select a recipe");
-      alert.show();
-    }
-
+  // weeklyList DatePicker
+  @FXML
+  void datePicker(ActionEvent event) {
+    LocalDate localDate = myDatePicker.getValue();
+    localDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
   }
+
+  // Add date to the week-list table
+  @FXML
+  void addToWeekList(ActionEvent event) {
+    recipeObject recipe = recipeLists.getSelectionModel().getSelectedItem();
+
+    try {
+      LocalDate localDate = myDatePicker.getValue();
+
+      Timestamp timestamp = Timestamp.valueOf(localDate.atTime(LocalTime.MIDNIGHT));
+      System.out.println("Me as a button, I function lol"); //2019-05-16 00:00:00.0
+      System.out.println(timestamp);
+
+      userObject loggedInUser = userController.loggedInUser;
+      recipeControler.adddate(recipe.getId(),timestamp, loggedInUser.getId());
+
+
+  }  //this generic but you can control another types of exception
+    catch (Exception e) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Error");
+    alert.setContentText("Please select a recipe");
+    alert.show();
+  }
+}
+
+
+
 }
 

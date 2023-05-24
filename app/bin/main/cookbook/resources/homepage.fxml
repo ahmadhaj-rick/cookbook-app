@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #D7BDE2;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.homePage">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #D7BDE2;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.homePage">
    <children>
       <Separator layoutX="210.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="2.0" />
       <TextField fx:id="search" layoutX="677.0" layoutY="37.0" prefHeight="27.0" prefWidth="131.0" promptText="Search" style="-fx-border-style: solid; -fx-background-color: #FDFEFE; -fx-border-color: #5499C7;" stylesheets="@application.css" />
@@ -80,8 +66,8 @@
                            <font>
                               <Font name="Times New Roman Italic" size="12.0" />
                            </font></Button>
-                        <DatePicker prefHeight="41.0" prefWidth="174.0" />
-                        <Button layoutX="110.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="114.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to dinner list">
+                        <DatePicker fx:id="myDatePicker" onAction="#datePicker" prefHeight="41.0" prefWidth="174.0" />
+                        <Button layoutX="110.0" layoutY="10.0" mnemonicParsing="false" onAction="#addToWeekList" prefHeight="42.0" prefWidth="114.0" style="-fx-border-color: #5499C7; -fx-border-style: solid; -fx-background-color: #F5B7B1;" text="Add to dinner list">
                            <font>
                               <Font name="Times New Roman Italic" size="12.0" />
                            </font></Button>

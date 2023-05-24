@@ -29,17 +29,17 @@ public class mainMenu implements Initializable  {
   
   @FXML 
   public Button homebtn;
-  @FXML 
+  @FXML
   public Button addbutton;
-  @FXML 
+  @FXML
   public Button inboxbutton;
-  @FXML 
+  @FXML
   public Button weeklistbutton;
-  @FXML 
+  @FXML
   public Button helpbutton;
-  @FXML 
+  @FXML
   public Button adminPanel;
-  @FXML 
+  @FXML
   public Button quitbutton;
 
   @FXML
@@ -47,7 +47,7 @@ public class mainMenu implements Initializable  {
   
   
   public void homeClick(ActionEvent event) throws SQLException, IOException {
-    
+
     URL url = new File("src/main/java/cookbook/resources/homepage.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
@@ -56,25 +56,35 @@ public class mainMenu implements Initializable  {
     Stage homeStage = (Stage) homebtn.getScene().getWindow();
     homeStage.setScene(homeScene);
     homeStage.show();
-    userController user = new userController();
-    String name = user.loggedInUser.getName();
-    homeStage.setTitle("Welcome to the recipes menu Dear " + name);
-    homeStage.setHeight(737);
-    homeStage.setWidth(1015);
-    homeStage.setResizable(false);
-    homeStage.centerOnScreen();
-    
+    userObject user = userController.loggedInUser;
+    if (user != null) {
+      String name = user.getName();
+      homeStage.setTitle("Welcome to the recipes menu Dear " + name);
+      homeStage.setHeight(737);
+      homeStage.setWidth(1015);
+      homeStage.setResizable(false);
+      homeStage.centerOnScreen();
+    } else {
+
+      // show an alert message
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Error");
+      alert.setHeaderText("No user logged in");
+      alert.setContentText("Please log in to access the recipes menu");
+      alert.showAndWait();
+
+    }
+
   }
- 
 
   public void inboxClick(ActionEvent event) throws SQLException, IOException {
-    
+
     // Go to the inbox screen
     URL url = new File("src/main/java/cookbook/resources/inbox.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
     Parent root = loader.load();
     Scene inboxScene = new Scene(root);
-    
+
     Stage inboxStage = (Stage) inboxbutton.getScene().getWindow();
     inboxStage.setScene(inboxScene);
     inboxStage.show();
@@ -88,9 +98,9 @@ public class mainMenu implements Initializable  {
     inboxStage.centerOnScreen();
     
   }
-  
+
   public void weeklistClick(ActionEvent event) throws SQLException, IOException {
-    
+
     // Go to the week list screen
     URL url = new File("src/main/java/cookbook/resources/weeklyList.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
@@ -100,16 +110,22 @@ public class mainMenu implements Initializable  {
     Stage weeklistStage = (Stage) weeklistbutton.getScene().getWindow();
     weeklistStage.setScene(weeklistScene);
     weeklistStage.show();
-    userController user = new userController();
-    String name = user.loggedInUser.getName();
+    userObject user = userController.loggedInUser;
+    if (user != null){
+      String name = user.getName();
     weeklistStage.setTitle("Welcome to your Weekly List Dear " + name);
     weeklistStage.setHeight(740);
     weeklistStage.setWidth(1010);
     weeklistStage.setResizable(false);
     weeklistStage.centerOnScreen();
-    
+
+    }
+    else {
+    System.out.println("dddddddddddddddddduhfefheiufh error rrrrorr");
   }
-  
+
+  }
+
   public void helpClick(ActionEvent event) throws SQLException, IOException {
     // Go to the week list screen
     URL url = new File("src/main/java/cookbook/resources/help.fxml").toURI().toURL();
@@ -128,11 +144,10 @@ public class mainMenu implements Initializable  {
     helpStage.centerOnScreen();
     helpStage.setResizable(false);
 
-
   }
-  
+
   public void adminPanelClick(ActionEvent event) throws SQLException, IOException {
-    
+
     userObject loggedUser = userController.loggedInUser;
 
     if (loggedUser.getAdminPrivelages().equals(false)) {
@@ -140,7 +155,7 @@ public class mainMenu implements Initializable  {
       error.setTitle("Big NoNo");
       error.setContentText("You are a peasent <3.");
       error.show();
-    }else {
+    } else {
       URL url = new File("src/main/java/cookbook/resources/adminpanel.fxml").toURI().toURL();
       FXMLLoader loader = new FXMLLoader(url);
       Parent root = loader.load();
@@ -176,7 +191,7 @@ public class mainMenu implements Initializable  {
     addStage.centerOnScreen();
     addStage.setResizable(false);
   }
-  
+
   public void exitClick(ActionEvent event) throws SQLException, IOException {
     URL url = new File("src/main/java/cookbook/resources/login.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
