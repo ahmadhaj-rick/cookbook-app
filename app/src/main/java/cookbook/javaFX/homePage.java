@@ -69,11 +69,11 @@ public class homePage implements Initializable {
   public Text Shortdesc;
   @FXML
   public Text Longdesc;
-
+  
   @FXML
   private DatePicker myDatePicker;
-
-
+  
+  
   public List<recipeObject> recipes;
   
   int portions = 1;
@@ -86,22 +86,22 @@ public class homePage implements Initializable {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
+    
     ObservableList<recipeObject> recipeList = FXCollections.observableArrayList(recipes);
-
+    
     recipeLists.getColumns().clear();
-
+    
     TableColumn<recipeObject, String> recipeNameColumn = new TableColumn<>("Name");
     recipeNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-
+    
     recipeLists.getColumns().add(recipeNameColumn);
     recipeLists.getItems().clear();
     recipeLists.setItems(recipeList);
-
+    
     recipeLists.setRowFactory(tv -> {
       TableRow<recipeObject> row = new TableRow<>();
       Tooltip tooltip = new Tooltip();
-
+      
       row.hoverProperty().addListener((observable, oldValue, newValue) -> {
         if (newValue && !row.isEmpty()) {
           recipeObject recipe = row.getItem();
@@ -109,10 +109,10 @@ public class homePage implements Initializable {
           Tooltip.install(row, tooltip);
         }
       });
-
+      
       return row;
     });
-
+    
     recipeLists.setOnMouseClicked(event -> {
       if (event.getClickCount() > 0) {
         recipeObject selectedRecipeObject = recipeLists.getSelectionModel().getSelectedItem();
@@ -137,25 +137,25 @@ public class homePage implements Initializable {
             sb2.append(tag.getTag_name()).append(", ");
           }
           tagField.setText(sb2.toString());
-
+          
           IngField.setText(sb.toString());
-
+          
           Shortdesc.setText(selectedRecipeObject.getDescription());
           Longdesc.setText(selectedRecipeObject.getInstructions());
-
+          
           recipeName.setText(selectedRecipeObject.getName());
-
+          
         }
       }
     });
-
+    
     // Add a listener to the TableView selection model
     recipeLists.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
       portions = 1; // Set the portions back to 1
       updateIngredientsText(); // Update the displayed ingredients
     });
   }
-
+  
   
   
   public void searchMethod() throws SQLException, IOException {
@@ -296,40 +296,43 @@ public class homePage implements Initializable {
     mainStage.setTitle("Welcome back to the main menu dear " + name );
     
   }
-
+  
   // weeklyList DatePicker
   @FXML
   void datePicker(ActionEvent event) {
     LocalDate localDate = myDatePicker.getValue();
     localDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
   }
-
+  
   // Add date to the week-list table
   @FXML
   void addToWeekList(ActionEvent event) {
     recipeObject recipe = recipeLists.getSelectionModel().getSelectedItem();
-
+    
     try {
       LocalDate localDate = myDatePicker.getValue();
-
+      
       Timestamp timestamp = Timestamp.valueOf(localDate.atTime(LocalTime.MIDNIGHT));
       System.out.println("Me as a button, I function lol"); //2019-05-16 00:00:00.0
       System.out.println(timestamp);
-
+      
       userObject loggedInUser = userController.loggedInUser;
       recipeControler.adddate(recipe.getId(),timestamp, loggedInUser.getId());
-
-
-  }  //this generic but you can control another types of exception
+      
+      
+    }  //this generic but you can control another types of exception
     catch (Exception e) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Error");
-    alert.setContentText("Please select a recipe");
-    alert.show();
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Error");
+      alert.setContentText("Please select a recipe");
+      alert.show();
+    }
   }
-}
+  
+  public void sendMessage() {
 
-
-
+    
+  }
+  
 }
 
