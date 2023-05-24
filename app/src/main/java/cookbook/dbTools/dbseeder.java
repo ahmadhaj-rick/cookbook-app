@@ -166,7 +166,7 @@ public class dbseeder {
           for (Object rowObj : messagesList) {
             if (rowObj instanceof Map) {
               Map<?, ?> row = (Map<?, ?>) rowObj;
-              String sql = "INSERT INTO message (message_id, from_user, to_user, recipe_id, body, created_at) VALUES (?, ?, ?, ?, ?)";
+              String sql = "INSERT INTO message (message_id, from_user, to_user, recipe_id, body, created_at) VALUES (?, ?, ?, ?, ?, ?)";
               try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
                 stmt.setString(1, (String) row.get("message_id"));
                 stmt.setString(2, (String) row.get("from_user"));
