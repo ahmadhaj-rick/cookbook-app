@@ -51,4 +51,27 @@ import java.util.Scanner;
       ingredients.clear();
     }
 
+    public String stringRep() {
+      StringBuilder s = new StringBuilder();
+      for (QuanitityIngredients Quantity : ingView.getItems()) {
+        s.append(Quantity.toData() + "\n");
+      }
+      String outstring = s.toString();
+      return outstring;
+    }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+      clear();
+      ingView.setCellFactory(ingr -> new ShoppingListViewCell());
+      ingView.setItems(ingredients);
+
+      ingView.getSelectionModel().selectedItemProperty().addListener(
+              new ChangeListener<QuanitityIngredients>() {
+                @Override
+                public void changed(ObservableValue<? extends QuanitityIngredients> ob, QuanitityIngredients oldQe, QuanitityIngredients newQe) {
+                  selectQe(newQe);
+                }
+              });
+    }
+
   }
