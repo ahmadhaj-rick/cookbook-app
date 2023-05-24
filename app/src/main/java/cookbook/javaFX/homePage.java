@@ -300,7 +300,7 @@ public class homePage implements Initializable {
       LocalDate localDate = myDatePicker.getValue();
 
       Timestamp timestamp = Timestamp.valueOf(localDate.atTime(LocalTime.MIDNIGHT));
-      //System.out.println(timestamp); //2019-05-16 00:00:00.0
+      System.out.println("Me as a button, I function lol"); //2019-05-16 00:00:00.0
 
       userObject loggedInUser = userController.loggedInUser;
       recipeControler.adddate(recipe.getId(),timestamp, loggedInUser.getId(), 5);
@@ -317,5 +317,5 @@ public class homePage implements Initializable {
 
 
 
-        }
+}
 

@@ -19,8 +19,8 @@ public class ScheduledRecipeController {
     // Perform join and create SchedRecipeEntity
     try (PreparedStatement preparedStmnt = conn.prepareStatement("""
     SELECT 
-    w.date, w.recipe_id, w.user_id, r.name FROM week_list w 
-    INNER JOIN recipe r ON r.id = w.recipe_id
+    w.week_date, w.recipe_id, w.user_id, r.name FROM weekly_list w 
+    INNER JOIN recipe r ON r.recipe_id = w.recipe_id
     WHERE user_id = (?) AND date = (?);
     ;
     """)) {
