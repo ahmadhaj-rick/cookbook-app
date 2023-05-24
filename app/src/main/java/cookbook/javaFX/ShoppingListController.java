@@ -148,5 +148,42 @@ import java.util.Scanner;
       }
     }
 
+    public void save () {
+      // Try to read Shopping list data.
+      String pathdate = startDateglobal.toString();
+      userObject user = userController.loggedInUser;
+      String userId = user.getId();
+      String basePath = "src\\main\\resources\\cookbook\\shopping";
+      String folderPath = basePath + "\\" + userId;
+      String fullPath = folderPath + "\\" + pathdate + ".data";
+
+      try{
+        //create the folder
+        if (!new File(folderPath).exists()) {
+          new File(folderPath).mkdir();
+
+          File file = new File(fullPath);
+          file.createNewFile();
+
+        } else {
+          //If folder existed, but file didn't
+          if (!new File(fullPath).exists()) {
+            // in case it doesnt exist
+            File file = new File(fullPath);
+            file.createNewFile();
+
+          }
+          //in case file exists
+          OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(fullPath), StandardCharsets.UTF_8);
+          BufferedWriter bwriter =  new BufferedWriter(out);
+          bwriter.write(stringRep());
+          bwriter.close();
+
+        }
+      } catch (IOException e) {
+        return;
+      }
+    }
+
 
   }
