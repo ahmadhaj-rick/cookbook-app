@@ -80,7 +80,7 @@ public class MessageController {
 
   // display the name of the user.
   public static String getName(String user_id) throws SQLException {
-    String query = "SELECT name FROM users WHERE id = ?";
+    String query = "SELECT name FROM user WHERE id = ?";
 
     Connection conn = DriverManager
         .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
@@ -137,14 +137,14 @@ public class MessageController {
   }
 
   // Get the name of a recipe based on its ID.
-  public static String getRecipeName(String user_id) throws SQLException {
-    String query = "SELECT name FROM recipes WHERE user_id = ?";
-
+  public static String getRecipeName(String userId) throws SQLException {
+    String query = "SELECT name FROM recipe WHERE recipe_id = ?";
+    String RecipeName = null;
     Connection conn = DriverManager
         .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
-      sqlStatement.setString(1, user_id);
+      sqlStatement.setString(1, userId);
 
       ResultSet result = sqlStatement.executeQuery();
 
@@ -157,11 +157,11 @@ public class MessageController {
       System.out.println(e);
     }
 
-    return null;
+    return RecipeName;
   }
 
   // Retrieve all messages sent to or from a user based on their ID.
-  public static List<MessageObject> getAllMessagesByUserId(String userID) throws SQLException {
+  public static List<MessageObject> getAllMessagesByUserId(String from_user_ID, String to_user_Id) throws SQLException {
     List<MessageObject> messages = new ArrayList<>();
     String query = "SELECT * FROM message WHERE from_user = ? OR to_user = ?";
 
@@ -169,8 +169,8 @@ public class MessageController {
         .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
 
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
-      sqlStatement.setString(1, userID);
-      sqlStatement.setString(2, userID);
+      sqlStatement.setString(1, from_user_ID);
+      sqlStatement.setString(2, to_user_Id);
 
       ResultSet result = sqlStatement.executeQuery();
 
