@@ -25,9 +25,9 @@ import javafx.stage.Stage;
 import cookbook.objects.recipeObject;
 import cookbook.objectControllers.recipeControler;
 
-public class mainMenu {
-
-  @FXML
+public class mainMenu implements Initializable  {
+  
+  @FXML 
   public Button homebtn;
   @FXML
   public Button addbutton;
@@ -42,6 +42,10 @@ public class mainMenu {
   @FXML
   public Button quitbutton;
 
+  @FXML
+  public Label UserNameMain;
+  
+  
   public void homeClick(ActionEvent event) throws SQLException, IOException {
 
     URL url = new File("src/main/java/cookbook/resources/homepage.fxml").toURI().toURL();
@@ -85,6 +89,14 @@ public class mainMenu {
     inboxStage.setScene(inboxScene);
     inboxStage.show();
 
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    inboxStage.setTitle("Did you got a new message " + name + " FABULOUS!");
+    inboxStage.setHeight(740);
+    inboxStage.setWidth(1010);
+    inboxStage.setResizable(false);
+    inboxStage.centerOnScreen();
+    
   }
 
   public void weeklistClick(ActionEvent event) throws SQLException, IOException {
@@ -104,7 +116,7 @@ public class mainMenu {
     weeklistStage.setTitle("Welcome to your Weekly List Dear " + name);
     weeklistStage.setHeight(740);
     weeklistStage.setWidth(1010);
-    weeklistStage.setResizable(true);
+    weeklistStage.setResizable(false);
     weeklistStage.centerOnScreen();
 
     }
@@ -189,12 +201,24 @@ public class mainMenu {
     Stage appStage = (Stage) quitbutton.getScene().getWindow();
     appStage.setScene(loginScene);
     appStage.show();
-    appStage.setHeight(500);
-    appStage.setWidth(650);
-    appStage.setResizable(true);
+    appStage.setHeight(350);
+    appStage.setWidth(568);
+    appStage.setResizable(false);
     appStage.centerOnScreen();
     appStage.setTitle("Sign In");
 
   }
 
+  public void userNameUser() {
+    //Display the logged in user name
+    userController user = new userController();
+    String name = user.loggedInUser.getName();
+    UserNameMain.setText("Welcome to our lovely app " + name);
+  }
+
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    userNameUser();
+  }
 }

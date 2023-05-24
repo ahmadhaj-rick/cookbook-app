@@ -30,7 +30,7 @@ public class Login implements Initializable {
   public void userLogin(ActionEvent event) throws SQLException, IOException {
     String username = user.getText();
     String pass = passwordtxt.getText();
-    String shown_password = passtext.getText();
+    //String shown_password = passtext.getText();
 
     userObject realUser = userController.searchForUser(username, pass);
 
@@ -43,12 +43,12 @@ public class Login implements Initializable {
 
       Stage mainMenuStage = (Stage) loginButton.getScene().getWindow();
       mainMenuStage.setScene(mainMenu);
-      mainMenuStage.setHeight(737);
+      mainMenuStage.setHeight(740);
       mainMenuStage.setWidth(1000);
       mainMenuStage.centerOnScreen();
       mainMenuStage.setResizable(false);
       mainMenuStage.show();
-    } else if (shown_password != null ) {
+    } /**else if (shown_password != null ) {
       URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
       FXMLLoader loader = new FXMLLoader(url);
       Parent root = loader.load();
@@ -61,7 +61,7 @@ public class Login implements Initializable {
       mainMenuStage.centerOnScreen();
       mainMenuStage.setResizable(false);
       mainMenuStage.show();
-    } else {
+    }*/ else {
       Alert error = new Alert(Alert.AlertType.INFORMATION);
       error.setTitle("Error");
       error.setContentText("Invalid login credentials, please try again. Sincerely, Bread.");

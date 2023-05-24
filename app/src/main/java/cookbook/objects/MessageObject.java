@@ -3,17 +3,17 @@ package cookbook.objects;
 import java.sql.Timestamp;
 
 public class MessageObject {
-  private String id;
+  private String message_id;
   private String from_User;
   private String to_User;
   private String recipe_Id;
   private String body;
   private Timestamp created_at;
 
-  public MessageObject(String id, String from_User, String to_User, String recipe_Id, String body,
+  public MessageObject(String message_id, String from_User, String to_User, String recipe_Id, String body,
       Timestamp created_at) {
 
-    setId(id);
+    setMessage_id(message_id);
     setFrom_User(from_User);
     setTo_User(to_User);
     setRecipe_Id(recipe_Id);
@@ -21,12 +21,12 @@ public class MessageObject {
     setCreated_at(created_at);
   }
 
-  public String getId() {
-    return id;
+  public String getMessage_id() {
+    return message_id;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setMessage_id(String message_id) {
+    this.message_id = message_id;
   }
 
   public String getFrom_User() {

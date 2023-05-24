@@ -15,11 +15,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -35,6 +37,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -83,66 +86,76 @@ public class homePage implements Initializable {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    System.out.println(recipes.size() + "Size of elements");
+
     ObservableList<recipeObject> recipeList = FXCollections.observableArrayList(recipes);
-    
+
     recipeLists.getColumns().clear();
-    
+
     TableColumn<recipeObject, String> recipeNameColumn = new TableColumn<>("Name");
     recipeNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-    
+
     recipeLists.getColumns().add(recipeNameColumn);
     recipeLists.getItems().clear();
     recipeLists.setItems(recipeList);
-    
-    recipeLists.setOnMouseClicked(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        if (event.getClickCount() > 0) {
-          recipeObject selectedRecipeObject = recipeLists.getSelectionModel().getSelectedItem();
-          System.out.println("We out here ");
-          System.out.println(selectedRecipeObject.getName());
-          if (selectedRecipeObject != null) {
-            System.out.println("We inside ");
-            List<QuanitityIngredients> ingredientObjects = selectedRecipeObject.getIngredientsList();
-            List<tagObject> tagObjects = selectedRecipeObject.getTagList();
-            System.out.println(ingredientObjects.size() + "inggg");
-            System.out.println("We inside 3");
-            StringBuilder sb = new StringBuilder(); // ingredients
-            StringBuilder sb2 = new StringBuilder(); // tags
-            for (QuanitityIngredients ingredient : ingredientObjects) {
-              sb.append(ingredient.getAmount() + ingredient.getUnit() + " " + ingredient.getName()).append(", \n");
-              System.out.println(sb);
-            }
-            if (sb.length() > 2) {
-              sb.setLength(sb.length() - 2);
-            }
-            for (tagObject tag : tagObjects) {
-              sb2.append(tag.getTag_name()).append(", ");
-            }
-            tagField.setText(sb2.toString());
-            
-            IngField.setText(sb.toString());
 
-            Shortdesc.setText(selectedRecipeObject.getDescription());
-            Longdesc.setText(selectedRecipeObject.getInstructions());
+    recipeLists.setRowFactory(tv -> {
+      TableRow<recipeObject> row = new TableRow<>();
+      Tooltip tooltip = new Tooltip();
 
+      row.hoverProperty().addListener((observable, oldValue, newValue) -> {
+        if (newValue && !row.isEmpty()) {
+          recipeObject recipe = row.getItem();
+          tooltip.setText(recipe.getDescription()); // Set the tooltip text to the recipe's description
+          Tooltip.install(row, tooltip);
+        }
+      });
+
+      return row;
+    });
+
+    recipeLists.setOnMouseClicked(event -> {
+      if (event.getClickCount() > 0) {
+        recipeObject selectedRecipeObject = recipeLists.getSelectionModel().getSelectedItem();
+        System.out.println("We out here ");
+        System.out.println(selectedRecipeObject.getName());
+        if (selectedRecipeObject != null) {
+          System.out.println("We inside ");
+          List<QuanitityIngredients> ingredientObjects = selectedRecipeObject.getIngredientsList();
+          List<tagObject> tagObjects = selectedRecipeObject.getTagList();
+          System.out.println(ingredientObjects.size() + "inggg");
+          System.out.println("We inside 3");
+          StringBuilder sb = new StringBuilder(); // ingredients
+          StringBuilder sb2 = new StringBuilder(); // tags
+          for (QuanitityIngredients ingredient : ingredientObjects) {
+            sb.append(ingredient.getAmount() + ingredient.getUnit() + " " + ingredient.getName()).append(", \n");
+            System.out.println(sb);
           }
+          if (sb.length() > 2) {
+            sb.setLength(sb.length() - 2);
+          }
+          for (tagObject tag : tagObjects) {
+            sb2.append(tag.getTag_name()).append(", ");
+          }
+          tagField.setText(sb2.toString());
+
+          IngField.setText(sb.toString());
+
+          Shortdesc.setText(selectedRecipeObject.getDescription());
+          Longdesc.setText(selectedRecipeObject.getInstructions());
+
+          recipeName.setText(selectedRecipeObject.getName());
+
         }
       }
     });
-    
+
     // Add a listener to the TableView selection model
-    recipeLists.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<recipeObject>() {
-      @Override
-      public void changed(ObservableValue<? extends recipeObject> observable, recipeObject oldValue, recipeObject newValue) {
-        portions = 1; // Set the portions back to 1
-        updateIngredientsText(); // Update the displayed ingredients
-      }
+    recipeLists.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+      portions = 1; // Set the portions back to 1
+      updateIngredientsText(); // Update the displayed ingredients
     });
-    
-    
   }
+
   
   
   public void searchMethod() throws SQLException, IOException {

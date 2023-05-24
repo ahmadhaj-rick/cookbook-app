@@ -153,7 +153,7 @@ public class databasemn {
     +"from_user varchar(60) NOT NULL,"
     +"recipe_id varchar(60) NOT NULL,"
     +"body varchar(255),"
-    +"created_at DATETIME DEFAULT NOW(),"
+    +"created_at DATETIME DEFAULT CURRENT_TIMESTAMP,"
     +"PRIMARY KEY (message_id),"
     +"CONSTRAINT fk_to_user FOREIGN KEY (to_user) REFERENCES user(user_id) ON UPDATE CASCADE ON DELETE CASCADE,"
     +"CONSTRAINT fk_from_user FOREIGN KEY (from_user) REFERENCES user(user_id) ON UPDATE CASCADE ON DELETE CASCADE,"

@@ -108,10 +108,12 @@ public class dbseeder {
           for (Object rowObj : tagList) {
             if (rowObj instanceof Map) {
               Map<?, ?> row = (Map<?, ?>) rowObj;
-              String sql = "INSERT IGNORE INTO recipe_ingredients (recipe_id, ingredient_id) VALUES (?, ?)";
+              String sql = "INSERT IGNORE INTO recipe_ingredients (recipe_id, ingredient_id, unit, amount) VALUES (?, ?, ?, ?)";
               try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
                 stmt.setString(1, (String) row.get("recipe_id"));
                 stmt.setString(2, (String) row.get("ingredient_id"));
+                stmt.setString(3, (String) row.get("unit"));
+                stmt.setString(4, (String) row.get("amount"));
                 stmt.executeUpdate();
               }
             }
