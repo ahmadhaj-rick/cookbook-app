@@ -21,7 +21,7 @@ public class ScheduledRecipeController {
     //Ahmed can you check this?
     try (PreparedStatement preparedStmnt = conn.prepareStatement("""
     SELECT 
-    w.week_date, w.recipe_id, w.user_id, r.name FROM weekly_list w 
+    w.week_date, w.id, w.user_id, r.name FROM weekly_list w 
     INNER JOIN recipe r ON r.recipe_id = w.recipe_id
     WHERE user_id = (?) AND date = (?); 
     ; 
