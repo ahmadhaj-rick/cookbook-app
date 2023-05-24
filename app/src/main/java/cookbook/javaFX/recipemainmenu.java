@@ -28,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -81,6 +82,12 @@ public class recipemainmenu implements Initializable {
 
   @FXML
   public ComboBox<String> unit;
+
+  @FXML
+  public Label tagsLabel;
+
+  @FXML
+  public Label ingredientLabel;
 
   public List<recipeObject> recipes;
 
@@ -175,6 +182,8 @@ public class recipemainmenu implements Initializable {
         
       }
 
+
+
       //If something is selected, use that one. 
     } else if (tagsDropdown.getSelectionModel().getSelectedItem() != null) {
       String tag_name = tagsDropdown.getSelectionModel().getSelectedItem();
@@ -188,8 +197,10 @@ public class recipemainmenu implements Initializable {
         success.show(); 
       }
     }
+    
     tagsDropdown.setValue(null);
     tagName.setText("");
+    updateTagsLabel();
   }
 
   /**
@@ -261,10 +272,18 @@ public class recipemainmenu implements Initializable {
       updateTagBox();
       unit.setItems(FXCollections.observableArrayList("g", "kg", "ml", "L", "mg", "tea spoon", "pinch"));
 
+
     } catch (SQLException err) {
       err.printStackTrace();
     }
     System.out.println(recipes.size());
 
   }
+
+  private void updateTagsLabel() {
+    List<String> tagNames = selectedTags.stream().map(tagObject::getTag_name).collect(Collectors.toList());
+    tagsLabel.setText(String.join(", ", tagNames));
+  }
+
+
 }
