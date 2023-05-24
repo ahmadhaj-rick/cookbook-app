@@ -226,6 +226,14 @@ public class recipemainmenu implements Initializable {
           newIngredientObject);
       selectedIngredients.add(newQuanitityIngredients);
 
+      // Append the ingredient name to the ingredientLabel
+      String currentLabelText = ingredientLabel.getText();
+      if (currentLabelText.isEmpty()) {
+        ingredientLabel.setText(ingredient_Name);
+      } else {
+        ingredientLabel.setText(currentLabelText + ", " + ingredient_Name);
+      }
+
       Alert success = new Alert(Alert.AlertType.INFORMATION);
       success.setTitle("Success!");
       success.setContentText("You successfully created a new ingredient!");
@@ -284,6 +292,4 @@ public class recipemainmenu implements Initializable {
     List<String> tagNames = selectedTags.stream().map(tagObject::getTag_name).collect(Collectors.toList());
     tagsLabel.setText(String.join(", ", tagNames));
   }
-
-
 }
