@@ -290,6 +290,24 @@
             "body": "Hi Jane, I tried your Margherita Pizza recipe and it was delicious!"            
         }
         
+    ],
+    "weekly_list": [
+        {
+            "weekly_list_id": "1",
+            "user_id": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+            "recipe_id": "d9a16c85-6a2a-4f12-b8c3-5bbd95a43774",
+            "week_date": "2023-05-01 00:00:00",
+            "week_number": 1 
+        },
+        {
+            "weekly_list_id": "2",
+            "user_id": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+            "recipe_id": "3f0ef254-7b39-4b5c-b8d9-b1dfcb6a1d5f",
+            "week_date": "2023-05-02 00:00:00",
+            "week_number": 2 
+        }
+        
     ]
+
 
 }
