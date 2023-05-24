@@ -67,6 +67,35 @@ public class userController {
     return user;
   }
 
+  public static userObject searchFromId(String userId) throws SQLException {
+    String queryString = "SELECT * FROM user WHERE id=(?) LIMIT 1;";
+
+    // If no user is found, return null.
+    userObject user = null;
+
+    Connection conn = DriverManager
+    .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
+    try (PreparedStatement preparedStmnt = conn.prepareStatement(queryString)) {
+        preparedStmnt.setString(1, userId);
+        ResultSet result = preparedStmnt.executeQuery();
+        if (result.next()) {
+          user = new userObject(
+              result.getString("user_id"),
+              result.getString("fname"),
+              result.getString("username"),
+              result.getString("password"),
+              result.getBoolean("admin_id"));
+        }
+
+        result.close();
+    } catch (SQLException e) {
+        System.out.println("Error retrieving user" + e);
+    }
+
+    return user;
+}
+
+
   public static userObject searchForUser(String username, String password) throws SQLException {
 
     String query = "SELECT * FROM user WHERE username=(?) AND password=(?) LIMIT 1;";
