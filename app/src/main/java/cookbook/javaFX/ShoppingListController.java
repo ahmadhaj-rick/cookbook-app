@@ -107,5 +107,18 @@ import java.util.Scanner;
       }
     }
 
+    @FXML
+    public void onDeleteBtn (ActionEvent event) {
+      QuanitityIngredients qe = ingView.getSelectionModel().getSelectedItem();
+      if (qe == null) {
+        return;
+      } else {
+        ingredients.remove(qe);
+        ingView.setItems(x);
+        ingView.setItems(ingredients);
+        save();
+      }
+    }
+
 
   }
