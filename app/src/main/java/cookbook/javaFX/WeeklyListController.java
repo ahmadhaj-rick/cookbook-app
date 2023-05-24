@@ -4,6 +4,7 @@ import cookbook.objectControllers.WeekCalendar;
 import cookbook.objectControllers.userController;
 import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ScheduledRecipeObject;
+import cookbook.objects.userObject;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -92,8 +93,8 @@ public class WeeklyListController implements Initializable {
     mainStage.setWidth(1000);
     mainStage.setResizable(true);
     mainStage.centerOnScreen();
-    userController user = new userController();
-    String name = user.loggedInUser.getName();
+    userObject user = userController.loggedInUser;
+    String name = user.getName();
     mainStage.setTitle("Welcome back to the main menu dear " + name );
 
   }
@@ -165,16 +166,14 @@ public class WeeklyListController implements Initializable {
   
   @FXML
   void openShoppingList(ActionEvent event) throws IOException {
-    /* if (!shoppingList.isEmpty() && startingDateGlobal!=null) {
+   if (!shoppingList.isEmpty() && startingDateGlobal!=null) {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(getClass().getResource("shoppingList.fxml"));
       loader.load();
       Parent p = loader.getRoot();
 
-      // Pass the shopping list to next controller
-       shoppingController = loader.getController();
-      shoppingController.getShoppingList(shoppingList, startingDateGlobal);
-
+     ShoppingListController shoppingController= loader.getController();
+      shoppingController.getShoppingList(shoppingList, initialDateGlobal);
       Stage stage = new Stage();
       stage.setScene(new Scene(p));
       stage.setTitle("Shopping List");
@@ -193,7 +192,7 @@ public class WeeklyListController implements Initializable {
         alert.setContentText("No shopping list for this Week.");
         alert.show();
       }
-    } */
+    }
   }
 
 }
