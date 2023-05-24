@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #D7BDE2;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cookbook.javaFX.WeeklyListController">
    <children>
@@ -90,7 +86,7 @@
             <Font name="Times New Roman Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="openShopp" layoutX="783.0" layoutY="595.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="127.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="GENERATE" textFill="#171616">
+      <Button fx:id="openShopp" layoutX="783.0" layoutY="595.0" mnemonicParsing="false" onAction="#openShoppingList" prefHeight="35.0" prefWidth="127.0" style="-fx-background-color: #F5B7B1; -fx-border-color: #5499C7;" text="GENERATE" textFill="#171616">
          <font>
             <Font name="Times New Roman Italic" size="14.0" />
          </font>
