@@ -40,7 +40,7 @@
          </font>
       </Label>
       <TextArea fx:id="recipeLongDesc" layoutX="244.0" layoutY="232.0" prefHeight="32.0" prefWidth="685.0" style="-fx-border-color: #5499C7;" AnchorPane.leftAnchor="244.0" AnchorPane.topAnchor="232.0" />
-      <Label fx:id="tagsLabel" layoutX="26.0" layoutY="322.0" prefHeight="27.0" prefWidth="948.0" style="-fx-border-color: #5499C7; -fx-background-color: #FDFEFE;" text="Tagsfield" AnchorPane.leftAnchor="26.0" />
+      <Label fx:id="tagsLabel" layoutX="26.0" layoutY="322.0" prefHeight="27.0" prefWidth="948.0" style="-fx-border-color: #5499C7; -fx-background-color: #FDFEFE;" AnchorPane.leftAnchor="26.0" />
       <ComboBox fx:id="tagsDropdown" layoutX="26.0" layoutY="374.0" prefHeight="30.0" prefWidth="164.0" promptText="Select an existing tag" style="-fx-border-color: #5499C7; -fx-background-color: F5B7B1;" stylesheets="@application.css" />
       <Label layoutX="205.0" layoutY="372.0" prefHeight="32.0" prefWidth="28.0" text="Or">
          <padding>
@@ -97,6 +97,6 @@
             <Image url="@images/download.png" />
          </image>
       </ImageView>
-      <Label fx:id="ingredientLabel" layoutX="26.0" layoutY="487.0" prefHeight="144.0" prefWidth="678.0" style="-fx-border-color: #5499C7; -fx-background-color: #FDFEFE;" text="ingredient field" />
+      <Label fx:id="ingredientLabel" layoutX="26.0" layoutY="487.0" prefHeight="144.0" prefWidth="678.0" style="-fx-border-color: #5499C7; -fx-background-color: #FDFEFE;" />
    </children>
 </AnchorPane>
