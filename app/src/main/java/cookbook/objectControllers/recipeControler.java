@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 import java.sql.*;
 
+import cookbook.objects.CommentObject;
 import cookbook.objects.QuanitityIngredients;
 import cookbook.objects.ingredientObject;
 import cookbook.objects.recipeObject;
@@ -64,6 +65,29 @@ public class recipeControler {
               new ingredientObject(ingResultSet.getString("ingredient_id"), ingResultSet.getString("ingredient_name")))
             );
           }
+
+          String commentQuery = "SELECT * " + 
+              "FROM comment " +
+              "JOIN recipe r ON r.recipe_id = comment.recipe_id " +
+              "WHERE r.recipe_id = ?";
+          try (PreparedStatement commentStatement = conn.prepareStatement(commentQuery)) {
+            commentStatement.setString(1, id);
+            ResultSet commentResult = commentStatement.executeQuery();
+            while (commentResult.next()) {
+              System.out.println("commentID: " + commentResult.getString("comment_id"));
+              System.out.println("commentText: " + commentResult.getString("text"));
+              CommentObject comment = new CommentObject(
+                commentResult.getString("comment_id"),
+                commentResult.getString("text"),
+                commentResult.getString("user_id"),
+                commentResult.getString(id));
+              recipeObject.addComment(comment);
+              
+            }
+          } catch (SQLException e) {
+            System.out.println("Error adding comment to recipe via recipeController" + e);
+          }
+
 
           // we can add tag to the object here.
 
