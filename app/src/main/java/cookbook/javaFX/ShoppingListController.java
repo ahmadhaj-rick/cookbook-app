@@ -120,5 +120,33 @@ import java.util.Scanner;
       }
     }
 
+    @FXML
+    public void onUpButton(ActionEvent event) {
+      QuanitityIngredients qe = ingView.getSelectionModel().getSelectedItem();
+      if (qe == null) {
+        return;
+      } else {
+        Float currentAmt = Float.valueOf(amount_text.getText());
+        String newAmt = String.valueOf(currentAmt+1);
+        amount_text.setText(newAmt);
+      }
+    }
+
+    @FXML
+    public void onDownButton(ActionEvent event) {
+      QuanitityIngredients qe = ingView.getSelectionModel().getSelectedItem();
+      if (qe == null) {
+        return;
+      } else {
+        Float currentAmt = Float.valueOf(amount_text.getText());
+        if (currentAmt > 0) {
+          String newAmt = String.valueOf(currentAmt-1);
+          amount_text.setText(newAmt);
+        } else {
+          amount_text.setText("0");
+        }
+      }
+    }
+
 
   }
