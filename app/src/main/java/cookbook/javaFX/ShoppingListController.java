@@ -74,4 +74,16 @@ import java.util.Scanner;
               });
     }
 
+    public void getShoppingList(ObservableList<QuanitityIngredients> shoppingList, LocalDate ld) {
+      startDateglobal = ld;
+      List<QuanitityIngredients> shp = read();
+      if ( shp == null) {
+        ingredients.addAll(shoppingList);
+      } else {
+        ingredients.addAll(shp);
+      }
+
+    }
+
+
   }
