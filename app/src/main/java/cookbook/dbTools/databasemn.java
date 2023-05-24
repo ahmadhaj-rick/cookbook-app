@@ -172,14 +172,14 @@ public class databasemn {
 
   private void createTableWeeklyList() {
     String weeklyListTbName = "CREATE TABLE IF NOT EXISTS weekly_list ("
-            + "weekly_list_id VARCHAR(60) NOT NULL,"
-            + "user_id VARCHAR(60) NOT NULL,"
-            + "recipe_id VARCHAR(60) NOT NULL,"
-            + "week_date DATE NOT NULL,"
-            + "week_number INT NOT NULL,"
-            + "PRIMARY KEY (weekly_list_id),"
-            + "FOREIGN KEY (user_id) REFERENCES user(user_id),"
-            + "FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id))";
+    + "user_id VARCHAR(60) NOT NULL,"
+    + "recipe_id VARCHAR(60) NOT NULL,"
+    + "week_date DATE NOT NULL,"
+    + "PRIMARY KEY (user_id, recipe_id, week_date),"
+    + "FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE,"
+    + "FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id) ON DELETE CASCADE ON UPDATE CASCADE,"
+    + "CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES user(user_id),"
+    + "CONSTRAINT FK_recipe FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id))";
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + dbna + creds);
       Statement stm = cnn.createStatement();

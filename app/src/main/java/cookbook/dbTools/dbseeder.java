@@ -189,13 +189,11 @@ public class dbseeder {
           for (Object rowObj : weeklyList) {
             if (rowObj instanceof Map) {
               Map<?, ?> row = (Map<?, ?>) rowObj;
-              String sql = "INSERT INTO weekly_list (weekly_list_id, user_id, recipe_id, week_date, week_number) VALUES (?, ?, ?, ?, ?)";
+              String sql = "INSERT INTO weekly_list (user_id, recipe_id, week_date) VALUES (?, ?, ?)";
               try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
-                stmt.setString(1, (String) row.get("weekly_list_id"));
-                stmt.setString(2, (String) row.get("user_id"));
-                stmt.setString(3, (String) row.get("recipe_id"));
-                stmt.setTimestamp(4, Timestamp.valueOf((String) row.get("week_date")));
-                stmt.setInt(5, (int) row.get("week_number"));
+                stmt.setString(1, (String) row.get("user_id"));
+                stmt.setString(2, (String) row.get("recipe_id"));
+                stmt.setTimestamp(3, Timestamp.valueOf((String) row.get("week_date")));
                 stmt.executeUpdate();
               }
             }
