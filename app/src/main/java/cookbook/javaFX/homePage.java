@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import cookbook.objects.tagObject;
+import cookbook.objectControllers.CommentController;
 import cookbook.objectControllers.ScheduledRecipeController;
 import cookbook.objectControllers.userController;
 import cookbook.objects.*;
@@ -44,6 +45,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class homePage implements Initializable {
   
@@ -69,6 +71,11 @@ public class homePage implements Initializable {
   public Text Shortdesc;
   @FXML
   public Text Longdesc;
+  @FXML
+  public TextField commentField;
+  @FXML
+  public ListView<CommentObject> allComments;
+
   
   @FXML
   private DatePicker myDatePicker;
@@ -78,6 +85,9 @@ public class homePage implements Initializable {
   
   int portions = 1;
   
+  ObservableList<CommentObject> recipeCommentObjects = FXCollections.observableArrayList();
+
+
   
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -155,6 +165,35 @@ public class homePage implements Initializable {
       updateIngredientsText(); // Update the displayed ingredients
     });
   }
+
+  public void addComment(ActionEvent event) throws SQLException {
+    if (recipeLists.getSelectionModel().getSelectedItem() != null) {
+      recipeObject recipe = recipeLists.getSelectionModel().getSelectedItem();
+      UUID id = UUID.randomUUID();
+      String commentID = id.toString();
+
+      //Add to database and create objects.
+      CommentObject comment = new CommentObject(commentID, commentField.getText(), userController.loggedInUser.getId(), recipe.getId());
+      recipeCommentObjects.add(comment);
+      recipe.addComment(comment);
+      CommentController.addComment(commentID, commentField.getText(), userController.loggedInUser.getId(), recipeLists.getSelectionModel().getSelectedItem().getId());
+      commentField.clear();
+
+      Alert success = new Alert(Alert.AlertType.INFORMATION);
+      success.setTitle("Success!");
+      success.setContentText("You added a new comment.");
+      success.show();
+
+    } else if (recipeLists.getSelectionModel().getSelectedItem() == null) {
+      commentField.clear();
+      Alert failure = new Alert(Alert.AlertType.INFORMATION);
+      failure.setTitle("Failure");
+      failure.setContentText("Select a recipe first.");
+      failure.show();
+    }
+  }
+
+
   
   
   
