@@ -76,15 +76,28 @@ import java.util.Scanner;
 
     public void getShoppingList(ObservableList<QuanitityIngredients> shoppingList, LocalDate ld) {
       startDateglobal = ld;
-      List<QuanitityIngredients> shp = read();
-      if ( shp == null) {
-        ingredients.addAll(shoppingList);
-      } else {
-        ingredients.addAll(shp);
+
+      // Clear the ingredients list
+      ingredients.clear();
+
+      // Iterate over the shoppingList and add ingredients to the ingredients list,
+      // checking for duplicates and keeping only one occurrence
+      for (QuanitityIngredients ingredient : shoppingList) {
+        boolean isDuplicate = false;
+        for (QuanitityIngredients existingIngredient : ingredients) {
+          if (ingredient.getName().equals(existingIngredient.getName())) {
+            isDuplicate = true;
+            break;
+          }
+        }
+        if (!isDuplicate) {
+          ingredients.add(ingredient);
+        }
       }
 
+      // Update the ingView with the updated ingredients list
+      ingView.setItems(ingredients);
     }
-
     public void selectQe(QuanitityIngredients quantity) {
       if (quantity != null){
         amount_text.setText(String.valueOf(quantity.getAmount()));
@@ -148,97 +161,77 @@ import java.util.Scanner;
       }
     }
 
-    public void save () {
-      // Try to read Shopping list data.
+    public void save() {
       String pathdate = startDateglobal.toString();
       userObject user = userController.loggedInUser;
       String userId = user.getId();
-      String basePath = "src\\main\\resources\\cookbook\\shopping";
-      String folderPath = basePath + "\\" + userId;
-      String fullPath = folderPath + "\\" + pathdate + ".data";
+      String basePath = "generatedDinnerList";
+      String folderPath = basePath + "/" + userId;
+      String fullPath = folderPath + "/" + pathdate + ".data";
 
-      try{
-        //create the folder
-        if (!new File(folderPath).exists()) {
-          new File(folderPath).mkdir();
-
-          File file = new File(fullPath);
-          file.createNewFile();
-
-        } else {
-          //If folder existed, but file didn't
-          if (!new File(fullPath).exists()) {
-            // in case it doesnt exist
-            File file = new File(fullPath);
-            file.createNewFile();
-
-          }
-          //in case file exists
-          OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(fullPath), StandardCharsets.UTF_8);
-          BufferedWriter bwriter =  new BufferedWriter(out);
-          bwriter.write(stringRep());
-          bwriter.close();
-
+      try {
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+          folder.mkdirs();
         }
+
+        File file = new File(fullPath);
+        file.createNewFile();
+
+        OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
+        BufferedWriter bwriter = new BufferedWriter(out);
+        bwriter.write(stringRep());
+        bwriter.close();
       } catch (IOException e) {
-        return;
+        e.printStackTrace();
       }
     }
 
-    public  List<QuanitityIngredients> read() {
-      // Try to read Shopping list data.
-      String date_path = startDateglobal.toString();
+    public List<QuanitityIngredients> read() {
+      String datePath = startDateglobal.toString();
       userObject user = userController.loggedInUser;
       String userId = user.getId();
-      String basePath = "src\\main\\resources\\cookbook\\shopping";
-      String fullPath = basePath + "\\" + userId + "\\" + date_path + ".data";
+      String basePath = "generatedDinnerList";
+      String fullPath = basePath + "/" + userId + "/" + datePath + ".data";
 
-      //Shopping list
       List<QuanitityIngredients> x = new ArrayList<>();
 
       try {
-        //does file exist?
-        if (new File(fullPath).exists()) {
-          File file = new File(fullPath);
-          Scanner scanner = new Scanner(file, "utf-8");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fullPath);
+        if (inputStream != null) {
+          Scanner scanner = new Scanner(inputStream, "utf-8");
 
-          // is file empty?
-          if ((scanner.hasNextLine()) == false) {
-
+          if (!scanner.hasNextLine()) {
             scanner.close();
             return null;
-
-            // if file exists
-          } else {
-            //read the file
-            String line = scanner.nextLine();
-            String[] data = line.split(":");
-            if (data[0].equals("INGREDIENT") == false) {
-              scanner.close();
-              return null;
-            }
-
-            // Add the ingredients to the list
-            QuanitityIngredients ingredient = new QuanitityIngredients(data[2], Float.valueOf(data[1]), data[3]);
-            x.add(ingredient);
-
-            // File exists and is not corrupted
-            while(scanner.hasNext()) {
-              String ingredientLine = scanner.nextLine();
-              data = ingredientLine.split(":");
-
-              if (data[0].equals("INGREDIENT")) {
-                ingredient = new QuanitityIngredients(data[2], Float.valueOf(data[1]), data[3]);
-                x.add(ingredient);
-              }
-            }
-            scanner.close();
-            return x;
           }
+
+          String line = scanner.nextLine();
+          String[] data = line.split(":");
+          if (!data[0].equals("INGREDIENT")) {
+            scanner.close();
+            return null;
+          }
+
+          QuanitityIngredients ingredient = new QuanitityIngredients(data[2], Float.valueOf(data[1]), data[3]);
+          x.add(ingredient);
+
+          while (scanner.hasNext()) {
+            String ingredientLine = scanner.nextLine();
+            data = ingredientLine.split(":");
+
+            if (data[0].equals("INGREDIENT")) {
+              ingredient = new QuanitityIngredients(data[2], Float.valueOf(data[1]), data[3]);
+              x.add(ingredient);
+            }
+          }
+          scanner.close();
+          return x;
         } else {
           return null;
         }
-      } catch (FileNotFoundException e) {
+      } catch (Exception e) {
+        e.printStackTrace();
         return null;
       }
     }
