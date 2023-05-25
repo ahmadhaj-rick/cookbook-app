@@ -160,6 +160,10 @@ public class homePage implements Initializable {
           allComments.setCellFactory(commentList -> new CommentCell());
           allComments.setItems(recipeCommentObjects);
           recipeCommentObjects.addAll(selectedRecipeObject.getComments());
+          for (CommentObject comments : selectedRecipeObject.getComments()) {
+            System.out.println(comments.getText());
+          }
+          
           
         }
       }
@@ -199,8 +203,23 @@ public class homePage implements Initializable {
     }
   }
 
-  public void deleteComment() {
-
+  public void deleteComment() throws SQLException {
+    if (recipeLists.getSelectionModel().getSelectedItem() != null) {
+      recipeObject selectedRecipe = recipeLists.getSelectionModel().getSelectedItem();
+      CommentObject comment = allComments.getSelectionModel().getSelectedItem();
+      userObject currUser = userController.loggedInUser;
+      if (comment != null) {
+        if (currUser.getId().equals(comment.getUserId()) || currUser.getAdminPrivelages().equals(true)) {
+          CommentController.deleteComment(comment.getID());
+          recipeCommentObjects.remove(comment);
+          selectedRecipe.getComments().remove(comment);
+          Alert success = new Alert(Alert.AlertType.INFORMATION);
+          success.setTitle("Success!");
+          success.setContentText("You deleted a comment.");
+          success.show();
+        }
+      }
+    }
   }
 
   public void editComment() {

@@ -22,8 +22,8 @@ public class CommentController {
   }
   
   
-  public void deleteComment(String id) throws SQLException{
-    String query = "DELETE FROM comment WHERE id=(?)";
+  public static void deleteComment(String id) throws SQLException{
+    String query = "DELETE FROM comment WHERE user_id=(?)";
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
       sqlStatement.setString(1, id);
