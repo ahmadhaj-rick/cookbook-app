@@ -156,13 +156,11 @@ public class homePage implements Initializable {
           
           recipeName.setText(selectedRecipeObject.getName());
 
-          recipeCommentObjects.clear();
-          allComments.setCellFactory(commentList -> new CommentCell());
-          allComments.setItems(recipeCommentObjects);
-          recipeCommentObjects.addAll(selectedRecipeObject.getComments());
-          for (CommentObject comments : selectedRecipeObject.getComments()) {
-            System.out.println(comments.getText());
-          }
+          refreshData(selectedRecipeObject);
+        /*recipeCommentObjects.clear();
+        allComments.setCellFactory(commentList -> new CommentCell());
+        allComments.setItems(recipeCommentObjects);
+        recipeCommentObjects.addAll(selectedRecipeObject.getComments());*/
           
           
         }
@@ -174,6 +172,13 @@ public class homePage implements Initializable {
       portions = 1; // Set the portions back to 1
       updateIngredientsText(); // Update the displayed ingredients
     });
+  }
+
+  public void refreshData(recipeObject selectedRecipeObject) {
+    recipeCommentObjects.clear();
+      allComments.setCellFactory(commentList -> new CommentCell());
+      allComments.setItems(recipeCommentObjects);
+      recipeCommentObjects.addAll(selectedRecipeObject.getComments());
   }
   
    @FXML
@@ -194,6 +199,7 @@ public class homePage implements Initializable {
       success.setTitle("Success!");
       success.setContentText("You added a new comment.");
       success.show();
+      refreshData(recipe);
 
     } else if (recipeLists.getSelectionModel().getSelectedItem() == null) {
       commentField.clear();
@@ -220,6 +226,7 @@ public class homePage implements Initializable {
           success.setTitle("Success!");
           success.setContentText("You deleted a comment.");
           success.show();
+          refreshData(selectedRecipe);
         }
       }
     }
@@ -238,6 +245,7 @@ public class homePage implements Initializable {
           success.setTitle("Success!");
           success.setContentText("You edited a comment.");
           success.show();
+          refreshData(recipeLists.getSelectionModel().getSelectedItem());
         }
       }
     }
