@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import cookbook.objects.tagObject;
+import cookbook.objectControllers.CommentController;
 import cookbook.objectControllers.ScheduledRecipeController;
 import cookbook.objectControllers.userController;
 import cookbook.objects.*;
@@ -44,6 +45,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class homePage implements Initializable {
   
@@ -69,6 +71,11 @@ public class homePage implements Initializable {
   public Text Shortdesc;
   @FXML
   public Text Longdesc;
+  @FXML
+  public TextField commentField;
+  @FXML
+  public ListView<CommentObject> allComments;
+
   
   @FXML
   private DatePicker myDatePicker;
@@ -78,6 +85,10 @@ public class homePage implements Initializable {
   
   int portions = 1;
   
+  ObservableList<CommentObject> recipeCommentObjects = FXCollections.observableArrayList();
+
+
+
   
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -144,6 +155,12 @@ public class homePage implements Initializable {
           Longdesc.setText(selectedRecipeObject.getInstructions());
           
           recipeName.setText(selectedRecipeObject.getName());
+
+        recipeCommentObjects.clear();
+        allComments.setCellFactory(commentList -> new CommentCell());
+        allComments.setItems(recipeCommentObjects);
+        recipeCommentObjects.addAll(selectedRecipeObject.getComments());
+          
           
         }
       }
@@ -155,6 +172,84 @@ public class homePage implements Initializable {
       updateIngredientsText(); // Update the displayed ingredients
     });
   }
+  
+   @FXML
+  public void addComment(ActionEvent event) throws SQLException {
+    if (recipeLists.getSelectionModel().getSelectedItem() != null) {
+      recipeObject recipe = recipeLists.getSelectionModel().getSelectedItem();
+      UUID id = UUID.randomUUID();
+      String commentID = id.toString();
+
+      //Add to database and create objects.
+      CommentObject comment = new CommentObject(commentID, commentField.getText(), userController.loggedInUser.getId(), recipe.getId());
+      recipeCommentObjects.add(comment);
+      recipe.addComment(comment);
+      CommentController.addComment(commentID, commentField.getText(), userController.loggedInUser.getId(), recipeLists.getSelectionModel().getSelectedItem().getId());
+      commentField.clear();
+
+      Alert success = new Alert(Alert.AlertType.INFORMATION);
+      success.setTitle("Success!");
+      success.setContentText("You added a new comment.");
+      success.show();
+    } else if (recipeLists.getSelectionModel().getSelectedItem() == null) {
+      commentField.clear();
+      Alert failure = new Alert(Alert.AlertType.INFORMATION);
+      failure.setTitle("Failure");
+      failure.setContentText("Select a recipe first.");
+      failure.show();
+    }
+  }
+
+   @FXML
+  public void deleteComment() throws SQLException {
+    if (recipeLists.getSelectionModel().getSelectedItem() != null) {
+      recipeObject selectedRecipe = recipeLists.getSelectionModel().getSelectedItem();
+      userObject currUser = userController.loggedInUser;
+      if (allComments.getSelectionModel().getSelectedItem() != null) {
+        CommentObject comment = allComments.getSelectionModel().getSelectedItem();
+        if (currUser.getId().equals(comment.getUserId()) || currUser.getAdminPrivelages().equals(true)) {
+          CommentController.deleteComment(comment.getUserId(), comment.getID());
+          recipeCommentObjects.remove(comment);
+          selectedRecipe.getComments().remove(comment);
+
+          Alert success = new Alert(Alert.AlertType.INFORMATION);
+          success.setTitle("Success!");
+          success.setContentText("You deleted a comment.");
+          success.show();
+        } else {
+          Alert fail = new Alert(Alert.AlertType.INFORMATION);
+          fail.setTitle("Error!");
+          fail.setContentText("You cannot delete a comment which isnt yours.");
+          fail.show();
+        }
+      }
+    }
+  }
+
+  @FXML
+  public void editComment() throws SQLException {
+    if (recipeLists.getSelectionModel().getSelectedItem() != null) {
+      CommentObject comment = allComments.getSelectionModel().getSelectedItem();
+      userObject currUser = userController.loggedInUser;
+      if (comment != null) {
+        if (currUser.getId().equals(comment.getUserId()) || currUser.getAdminPrivelages().equals(true)) {
+          CommentController.editComment(comment.getID(), commentField.getText());
+          comment.updateText(commentField.getText());
+          Alert success = new Alert(Alert.AlertType.INFORMATION);
+          success.setTitle("Success!");
+          success.setContentText("You edited a comment.");
+          success.show();
+        } else {
+          Alert fail = new Alert(Alert.AlertType.INFORMATION);
+          fail.setTitle("Error!");
+          fail.setContentText("You cannot edit a comment which isnt yours.");
+          fail.show();
+        }
+      }
+    }
+  }
+
+
   
   
   

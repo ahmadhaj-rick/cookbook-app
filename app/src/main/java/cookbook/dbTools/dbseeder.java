@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -16,10 +17,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class dbseeder {
-
+  
   public void seed() {
     String dbUrl = "jdbc:mysql://localhost:3306/cookbook?user=root&password=root";
-
+    
     try {
       // Read the JSON file
       File file = new File("src/main/java/cookbook/dbTools/seeding.json");
@@ -30,14 +31,14 @@ public class dbseeder {
       } else {
         System.out.println("No");
       }
-
+      
       String json = new String(Files.readAllBytes(Paths.get("src/main/java/cookbook/dbTools/seeding.json")));
-
+      
       // Parse the JSON file
       ObjectMapper mapper = new ObjectMapper();
       Map<String, Object> data = mapper.readValue(json, new TypeReference<Map<String, Object>>() {
       });
-
+      
       // Insert the users into the database
       Object userObj = data.get("user");
       if (userObj instanceof List) {
@@ -59,7 +60,7 @@ public class dbseeder {
           }
         }
       }
-
+      
       // Insert the recipes into the database.
       Object recipeObj = data.get("recipe");
       if (recipeObj instanceof List) {
@@ -80,7 +81,7 @@ public class dbseeder {
           }
         }
       }
-
+      
       // Insert the ingredients into the database
       Object ingredientsObj = data.get("ingredients");
       if (ingredientsObj instanceof List) {
@@ -99,7 +100,7 @@ public class dbseeder {
           }
         }
       }
-
+      
       // Insert the recipe ingredients into the database
       Object recipeIngredientsObj = data.get("recipe_ingredients");
       if (recipeIngredientsObj instanceof List) {
@@ -120,7 +121,7 @@ public class dbseeder {
           }
         }
       }
-
+      
       // Insert the tags for each recipe into the database.
       Object tagObj = data.get("tag");
       if (tagObj instanceof List) {
@@ -135,12 +136,12 @@ public class dbseeder {
                 stmt.setString(2, (String) row.get("name"));
                 stmt.executeUpdate();
               }
-
+              
             }
           }
         }
       }
-
+      
       // Insert the recipe tags into the database
       Object recipeTagsObj = data.get("recipe_tag");
       if (recipeTagsObj instanceof List) {
@@ -159,7 +160,7 @@ public class dbseeder {
           }
         }
       }
-
+      
       // Insert the messages into the database
       Object messagesObj = data.get("message");
       if (messagesObj instanceof List) {
@@ -182,7 +183,41 @@ public class dbseeder {
           }
         }
       }
-
+      
+      // Insert the comments into the database.
+      Object commentObject = data.get("comment");
+      if (commentObject instanceof List) {
+        List<?> commentList = (List<?>) commentObject;
+        try (Connection cnn = DriverManager.getConnection(dbUrl)) {
+          for (Object rowComment : commentList) {
+            if (rowComment instanceof Map) {
+              Map<?, ?> row = (Map<?, ?>) rowComment;
+              String commentId = (String) row.get("comment_id");
+              String selectSql = "SELECT comment_id FROM comment WHERE comment_id = ?";
+              
+              try (PreparedStatement selectStmt = cnn.prepareStatement(selectSql)) {
+                selectStmt.setString(1, commentId);
+                ResultSet resultSet = selectStmt.executeQuery();
+                
+                // If a row is returned, the comment already exists, so skip insertion
+                if (resultSet.next()) {
+                  continue;
+                }
+              }
+              String sql = "INSERT INTO comment (comment_id, text, user_id, recipe_id) VALUES (?,?,?,?)";
+              try (PreparedStatement stmt = cnn.prepareStatement(sql)) {
+                stmt.setString(1, commentId);
+                stmt.setString(2, (String) row.get("text"));
+                stmt.setString(3, (String) row.get("user_id"));
+                stmt.setString(4, (String) row.get("recipe_id"));
+                stmt.executeUpdate();
+              }
+            }
+          }
+        }
+      }
+      
+      
       // Insert the weekly list into the database
       Object weeklyListObj = data.get("weekly_list");
       if (weeklyListObj instanceof List) {
@@ -202,11 +237,11 @@ public class dbseeder {
           }
         }
       }
-
+      
     } catch (IOException | SQLException e) {
       // Handle the exception here
       e.printStackTrace();
     }
   }
-
+  
 }
