@@ -76,15 +76,28 @@ import java.util.Scanner;
 
     public void getShoppingList(ObservableList<QuanitityIngredients> shoppingList, LocalDate ld) {
       startDateglobal = ld;
-      List<QuanitityIngredients> shp = read();
-      if ( shp == null) {
-        ingredients.addAll(shoppingList);
-      } else {
-        ingredients.addAll(shp);
+
+      // Clear the ingredients list
+      ingredients.clear();
+
+      // Iterate over the shoppingList and add ingredients to the ingredients list,
+      // checking for duplicates and keeping only one occurrence
+      for (QuanitityIngredients ingredient : shoppingList) {
+        boolean isDuplicate = false;
+        for (QuanitityIngredients existingIngredient : ingredients) {
+          if (ingredient.getName().equals(existingIngredient.getName())) {
+            isDuplicate = true;
+            break;
+          }
+        }
+        if (!isDuplicate) {
+          ingredients.add(ingredient);
+        }
       }
 
+      // Update the ingView with the updated ingredients list
+      ingView.setItems(ingredients);
     }
-
     public void selectQe(QuanitityIngredients quantity) {
       if (quantity != null){
         amount_text.setText(String.valueOf(quantity.getAmount()));
