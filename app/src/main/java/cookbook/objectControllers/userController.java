@@ -68,7 +68,7 @@ public class userController {
   }
 
   public static userObject searchFromId(String userId) throws SQLException {
-    String queryString = "SELECT * FROM user WHERE id=(?) LIMIT 1;";
+    String queryString = "SELECT * FROM user WHERE user_id=(?) LIMIT 1;";
 
     // If no user is found, return null.
     userObject user = null;

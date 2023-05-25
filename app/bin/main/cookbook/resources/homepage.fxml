@@ -172,7 +172,7 @@
                   </HBox>
                   <HBox prefHeight="137.0" prefWidth="655.0">
                      <children>
-                        <ListView fx:id="allComments" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="111.0" prefWidth="600.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;">
+                        <ListView fx:id="allComments" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="600.0" style="-fx-border-color: #5499C7; -fx-border-style: solid;">
                            <HBox.margin>
                               <Insets bottom="5.0" top="10.0" />
                            </HBox.margin>

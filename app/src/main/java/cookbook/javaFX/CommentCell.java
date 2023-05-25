@@ -1,6 +1,9 @@
 package cookbook.javaFX;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 
 import cookbook.objectControllers.userController;
@@ -32,7 +35,12 @@ public class CommentCell extends ListCell<CommentObject> {
       ;
     } else {
       if (loader == null) {
-        loader = new FXMLLoader(getClass().getResource("listcell.fxml"));
+        try {
+          URL url = new File("src/main/java/cookbook/resources/commentCell.fxml").toURI().toURL();
+          loader = new FXMLLoader(url);
+        } catch (MalformedURLException e) {
+          System.out.println("Error lol" + e);
+        }
         loader.setController(this);
         
         try {

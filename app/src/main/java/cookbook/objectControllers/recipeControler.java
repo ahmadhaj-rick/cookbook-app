@@ -80,8 +80,8 @@ public class recipeControler {
                 commentResult.getString("comment_id"),
                 commentResult.getString("text"),
                 commentResult.getString("user_id"),
-                commentResult.getString(id));
-              recipeObject.addComment(comment);
+                commentResult.getString("recipe_id"));
+                recipeObject.addComment(comment);
               
             }
           } catch (SQLException e) {

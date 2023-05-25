@@ -88,6 +88,7 @@ public class homePage implements Initializable {
   ObservableList<CommentObject> recipeCommentObjects = FXCollections.observableArrayList();
 
 
+
   
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -154,6 +155,11 @@ public class homePage implements Initializable {
           Longdesc.setText(selectedRecipeObject.getInstructions());
           
           recipeName.setText(selectedRecipeObject.getName());
+
+          recipeCommentObjects.clear();
+          allComments.setCellFactory(commentList -> new CommentCell());
+          allComments.setItems(recipeCommentObjects);
+          recipeCommentObjects.addAll(selectedRecipeObject.getComments());
           
         }
       }
@@ -191,6 +197,14 @@ public class homePage implements Initializable {
       failure.setContentText("Select a recipe first.");
       failure.show();
     }
+  }
+
+  public void deleteComment() {
+
+  }
+
+  public void editComment() {
+
   }
 
 
