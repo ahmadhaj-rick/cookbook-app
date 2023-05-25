@@ -156,11 +156,10 @@ public class homePage implements Initializable {
           
           recipeName.setText(selectedRecipeObject.getName());
 
-          refreshData(selectedRecipeObject);
-        /*recipeCommentObjects.clear();
+        recipeCommentObjects.clear();
         allComments.setCellFactory(commentList -> new CommentCell());
         allComments.setItems(recipeCommentObjects);
-        recipeCommentObjects.addAll(selectedRecipeObject.getComments());*/
+        recipeCommentObjects.addAll(selectedRecipeObject.getComments());
           
           
         }
@@ -172,13 +171,6 @@ public class homePage implements Initializable {
       portions = 1; // Set the portions back to 1
       updateIngredientsText(); // Update the displayed ingredients
     });
-  }
-
-  public void refreshData(recipeObject selectedRecipeObject) {
-    recipeCommentObjects.clear();
-      allComments.setCellFactory(commentList -> new CommentCell());
-      allComments.setItems(recipeCommentObjects);
-      recipeCommentObjects.addAll(selectedRecipeObject.getComments());
   }
   
    @FXML
@@ -199,8 +191,6 @@ public class homePage implements Initializable {
       success.setTitle("Success!");
       success.setContentText("You added a new comment.");
       success.show();
-      refreshData(recipe);
-
     } else if (recipeLists.getSelectionModel().getSelectedItem() == null) {
       commentField.clear();
       Alert failure = new Alert(Alert.AlertType.INFORMATION);
@@ -226,7 +216,11 @@ public class homePage implements Initializable {
           success.setTitle("Success!");
           success.setContentText("You deleted a comment.");
           success.show();
-          refreshData(selectedRecipe);
+        } else {
+          Alert fail = new Alert(Alert.AlertType.INFORMATION);
+          fail.setTitle("Error!");
+          fail.setContentText("You cannot delete a comment which isnt yours.");
+          fail.show();
         }
       }
     }
@@ -245,7 +239,11 @@ public class homePage implements Initializable {
           success.setTitle("Success!");
           success.setContentText("You edited a comment.");
           success.show();
-          refreshData(recipeLists.getSelectionModel().getSelectedItem());
+        } else {
+          Alert fail = new Alert(Alert.AlertType.INFORMATION);
+          fail.setTitle("Error!");
+          fail.setContentText("You cannot edit a comment which isnt yours.");
+          fail.show();
         }
       }
     }

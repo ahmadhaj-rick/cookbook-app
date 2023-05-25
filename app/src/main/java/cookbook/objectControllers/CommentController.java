@@ -27,7 +27,7 @@ public class CommentController {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
       sqlStatement.setString(1, userID);
-      sqlStatement.setString(1, commentID);
+      sqlStatement.setString(2, commentID);
 
       sqlStatement.executeUpdate();
     } catch (SQLException e) {
