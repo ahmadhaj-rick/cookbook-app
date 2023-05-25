@@ -7,7 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class ShoppingListViewCell extends ListCell<QuanitityIngredients> {
   @FXML
@@ -26,8 +29,14 @@ public class ShoppingListViewCell extends ListCell<QuanitityIngredients> {
       ;
     } else {
       if (loader == null) {
-        loader = new FXMLLoader(getClass().getResource("shoppingListCell.fxml"));
-        loader.setController(this);
+        URL url;
+        try {
+          url = new File("src/main/java/cookbook/resources/shoppingListCell.fxml").toURI().toURL();
+          loader = new FXMLLoader(url);
+          loader.setController(this);
+        } catch (MalformedURLException e) {
+          e.printStackTrace();
+        }
 
         try {
           loader.load();

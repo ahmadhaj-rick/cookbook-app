@@ -167,13 +167,16 @@ public class WeeklyListController implements Initializable {
   @FXML
   void openShoppingList(ActionEvent event) throws IOException {
    if (!shoppingList.isEmpty() && initialDateGlobal!=null) {
+      URL url = new File("src/main/java/cookbook/resources/shoppingList.fxml").toURI().toURL();
       FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("shoppingList.fxml"));
+      loader.setLocation(url);
       loader.load();
       Parent p = loader.getRoot();
 
-     ShoppingListController shoppingController= loader.getController();
+      // Pass the shopping list to next controller
+      ShoppingListController shoppingController = loader.getController();
       shoppingController.getShoppingList(shoppingList, initialDateGlobal);
+
       Stage stage = new Stage();
       stage.setScene(new Scene(p));
       stage.setTitle("Shopping List");
