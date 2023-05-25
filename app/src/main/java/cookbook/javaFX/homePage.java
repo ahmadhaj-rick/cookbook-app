@@ -200,7 +200,7 @@ public class homePage implements Initializable {
     }
   }
 
-   @FXML
+  @FXML
   public void deleteComment() throws SQLException {
     if (recipeLists.getSelectionModel().getSelectedItem() != null) {
       recipeObject selectedRecipe = recipeLists.getSelectionModel().getSelectedItem();
@@ -211,7 +211,8 @@ public class homePage implements Initializable {
           CommentController.deleteComment(comment.getUserId(), comment.getID());
           recipeCommentObjects.remove(comment);
           selectedRecipe.getComments().remove(comment);
-
+          // Update the ListView here
+          allComments.setItems(recipeCommentObjects);
           Alert success = new Alert(Alert.AlertType.INFORMATION);
           success.setTitle("Success!");
           success.setContentText("You deleted a comment.");
