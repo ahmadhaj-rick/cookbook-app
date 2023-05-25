@@ -403,26 +403,41 @@ public class homePage implements Initializable {
   @FXML
   void addToWeekList(ActionEvent event) {
     recipeObject recipe = recipeLists.getSelectionModel().getSelectedItem();
-    
+
     try {
+      if (recipe == null) {
+        throw new NullPointerException(); // Throw exception if no recipe is selected
+      }
+
       LocalDate localDate = myDatePicker.getValue();
-      
       Timestamp timestamp = Timestamp.valueOf(localDate.atTime(LocalTime.MIDNIGHT));
       System.out.println("Me as a button, I function lol"); //2019-05-16 00:00:00.0
       System.out.println(timestamp);
-      
+
       userObject loggedInUser = userController.loggedInUser;
-      recipeControler.adddate(recipe.getId(),timestamp, loggedInUser.getId());
-      
-      
-    }  //this generic but you can control another types of exception
-    catch (Exception e) {
+      recipeControler.adddate(recipe.getId(), timestamp, loggedInUser.getId());
+
+      // Show success message
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Success");
+      alert.setContentText("The recipe has been added to your weekly list.");
+      alert.show();
+
+    } catch (NullPointerException e) {
+      // Show error message for no recipe selected
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
       alert.setTitle("Error");
-      alert.setContentText("Please select a recipe");
+      alert.setContentText("Please select a recipe.");
+      alert.show();
+    } catch (Exception e) {
+      // Show generic error message
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Error");
+      alert.setContentText("An error occurred while adding the recipe to your weekly list.");
       alert.show();
     }
   }
+
 
   public void sendMessage(ActionEvent event) throws SQLException, IOException {
     recipeObject recp = recipeLists.getSelectionModel().getSelectedItem();
