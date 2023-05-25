@@ -14,7 +14,6 @@ public class CommentObject {
     setRecipeId(recipeID);
   }
 
-
   private void setId(String ID) {
     this.id = ID;
   }
@@ -45,6 +44,10 @@ public class CommentObject {
 
   public String getRecipeID() {
     return recipeID;
+  }
+
+  public void updateText(String text) {
+    setText(text);
   }
 
 

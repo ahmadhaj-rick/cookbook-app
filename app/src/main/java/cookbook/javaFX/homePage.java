@@ -175,7 +175,8 @@ public class homePage implements Initializable {
       updateIngredientsText(); // Update the displayed ingredients
     });
   }
-
+  
+   @FXML
   public void addComment(ActionEvent event) throws SQLException {
     if (recipeLists.getSelectionModel().getSelectedItem() != null) {
       recipeObject recipe = recipeLists.getSelectionModel().getSelectedItem();
@@ -203,16 +204,18 @@ public class homePage implements Initializable {
     }
   }
 
+   @FXML
   public void deleteComment() throws SQLException {
     if (recipeLists.getSelectionModel().getSelectedItem() != null) {
       recipeObject selectedRecipe = recipeLists.getSelectionModel().getSelectedItem();
-      CommentObject comment = allComments.getSelectionModel().getSelectedItem();
       userObject currUser = userController.loggedInUser;
-      if (comment != null) {
+      if (allComments.getSelectionModel().getSelectedItem() != null) {
+        CommentObject comment = allComments.getSelectionModel().getSelectedItem();
         if (currUser.getId().equals(comment.getUserId()) || currUser.getAdminPrivelages().equals(true)) {
-          CommentController.deleteComment(comment.getID());
+          CommentController.deleteComment(comment.getUserId(), comment.getID());
           recipeCommentObjects.remove(comment);
           selectedRecipe.getComments().remove(comment);
+
           Alert success = new Alert(Alert.AlertType.INFORMATION);
           success.setTitle("Success!");
           success.setContentText("You deleted a comment.");
@@ -222,8 +225,22 @@ public class homePage implements Initializable {
     }
   }
 
-  public void editComment() {
-
+  @FXML
+  public void editComment() throws SQLException {
+    if (recipeLists.getSelectionModel().getSelectedItem() != null) {
+      CommentObject comment = allComments.getSelectionModel().getSelectedItem();
+      userObject currUser = userController.loggedInUser;
+      if (comment != null) {
+        if (currUser.getId().equals(comment.getUserId()) || currUser.getAdminPrivelages().equals(true)) {
+          CommentController.editComment(comment.getID(), commentField.getText());
+          comment.updateText(commentField.getText());
+          Alert success = new Alert(Alert.AlertType.INFORMATION);
+          success.setTitle("Success!");
+          success.setContentText("You edited a comment.");
+          success.show();
+        }
+      }
+    }
   }
 
 
