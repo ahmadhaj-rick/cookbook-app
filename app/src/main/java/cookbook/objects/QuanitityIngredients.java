@@ -18,7 +18,10 @@ public class QuanitityIngredients {
     this.ingredient = ingredient;
     this.name = ingredient.getName();
   }
-  
+
+  public QuanitityIngredients(String value, Float amount, String value1) {
+  }
+
   public void QuanitityIngredients(String unit, float amount, String name) {
     this.unit= unit;
     if(unit == null) {
