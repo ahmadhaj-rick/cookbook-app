@@ -7,9 +7,7 @@ import java.sql.SQLException;
 
 
 public class CommentController {
-  /**
-   * method to create add comment and it saves to the database.
-   */
+  
   public static void addComment(String ID, String text, String userID, String recipeID) throws SQLException {
     //method implementation
     String query = "INSERT INTO comment VALUES (?,?,?,?)";
@@ -25,9 +23,6 @@ public class CommentController {
     }
   }
   
-  /**
-   * method that delets comments.
-   */
   public static void deleteComment(String userID, String commentID) throws SQLException{
     String query = "DELETE FROM comment WHERE user_id=(?) AND comment_id=(?)";
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
@@ -41,9 +36,6 @@ public class CommentController {
     }
   }
   
-  /**
-   * method to modify comments made.
-   */
   public static void editComment(String id, String text) throws SQLException {
     String query = "UPDATE comment SET text=(?) WHERE comment_id=(?)";
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");

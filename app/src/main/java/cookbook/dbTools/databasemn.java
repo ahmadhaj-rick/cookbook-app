@@ -11,7 +11,9 @@ public class databasemn {
   private String creds = "?user=root&password=root";
   private static String dbna = "cookbook";
   
-  
+  /**
+   * method to create db.
+   */
   public void createDb() {
     try {
       Connection cnn = DriverManager.getConnection(dbUrl + creds);
@@ -23,6 +25,9 @@ public class databasemn {
     }
   }
   
+  /**
+   * creates the user table
+   */
   private void createTableuser() {
     String usertbname = "CREATE TABLE IF NOT EXISTS user ("
     + "user_id VARCHAR(60) NOT NULL," 
@@ -43,6 +48,9 @@ public class databasemn {
     }
   }
   
+  /**
+   * creates recipe table.
+   */
   private void createTablerecipe() {
     String recipetbname = "CREATE TABLE IF NOT EXISTS recipe ("
     + "recipe_id VARCHAR(60) NOT NULL," 
@@ -62,6 +70,9 @@ public class databasemn {
     } 
   }
   
+  /**
+   * creates ingredients table.
+   */
   private void createTableingredients() {
     String ingredientstbname = "CREATE TABLE IF NOT EXISTS ingredients ("
     + "ingredient_id VARCHAR(60) NOT NULL," 
@@ -78,6 +89,9 @@ public class databasemn {
     }
   }
   
+  /**
+   * creates ingredients recipe table.
+   */
   private void createTableRecipeIngredients () {
     String recipeIngredientsTbName =    "CREATE TABLE IF NOT EXISTS recipe_ingredients ("
     + "recipe_id varchar(60) not null,"
@@ -97,6 +111,9 @@ public class databasemn {
     }
   }
   
+  /**
+   * creates starred table.
+   */
   public void createStarred() {
     String starred = "CREATE TABLE IF NOT EXISTS starred ("
     +"user_id varchar(60) NOT NULL,"
@@ -114,6 +131,9 @@ public class databasemn {
     }
   }
   
+  /**
+   * creates tag table.
+   */
   public void createtag() {
     String tag = "CREATE TABLE IF NOT EXISTS tag ("
     +"tag_id varchar(60) NOT NULL,"
@@ -129,6 +149,9 @@ public class databasemn {
     }
   }
   
+  /**
+   * creates recipetag table.
+   */
   public void createRecipe_tag() {
     String recipe_tag = "CREATE TABLE IF NOT EXISTS recipe_tag ("
     +"tag_id varchar(60) NOT NULL,"
@@ -146,6 +169,9 @@ public class databasemn {
     }
   }
 
+  /**
+   * creates comment table.
+   */
   public void createComment() {
     String comm = "CREATE TABLE IF NOT EXISTS comment ("
     +"comment_id varchar(60) NOT NULL,"
@@ -164,7 +190,9 @@ public class databasemn {
     }
   }
 
-  
+  /**
+   * creates message table.
+   */
   public void createMessage() {
     String message = "CREATE TABLE IF NOT EXISTS message ("
     +"message_id varchar(60) NOT NULL,"
@@ -189,6 +217,9 @@ public class databasemn {
 
    // add a weekly list table to the database.
 
+   /**
+    * weekly list table.
+    */
   private void createTableWeeklyList() {
     String weeklyListTbName = "CREATE TABLE IF NOT EXISTS weekly_list ("
     + "user_id VARCHAR(60) NOT NULL,"
@@ -210,6 +241,9 @@ public class databasemn {
   }
 
 
+  /**
+   * calls the main method.
+   */
   public void database_mn() {
     try {
       createDb();
