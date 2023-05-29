@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * The CommentController class provides methods for adding comments to a database.
+ */
+
 public class CommentController {
   
   public static void addComment(String ID, String text, String userID, String recipeID) throws SQLException {
