@@ -1,10 +1,20 @@
 package cookbook.objects;
 
+/**
+ * The CommentObject class represents a comment object with its associated properties.
+ */
+
 public class CommentObject {
   private String id;
   private String text;
   private String userID;
   private String recipeID;
+
+    /**
+   * Updates the text of the comment.
+   *
+   * @param text the new text of the comment
+   */
   
 
   public CommentObject(String id, String text, String userID, String recipeID) {

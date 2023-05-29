@@ -11,7 +11,18 @@ import java.sql.ResultSet;
 
 import cookbook.objects.ingredientObject;
 
+/**
+ * The ingredientControler class provides methods for retrieving ingredients from a database.
+ */
+
 public class ingredientControler {
+
+/**
+  * Retrieves a list of ingredients from the database.
+  *
+  * @return a list of ingredientObject representing the ingredients
+  * @throws SQLException if a database error occurs
+  */
   
   public static List<ingredientObject> getIngredients() throws SQLException {
     ArrayList<ingredientObject> currentIngredients = new ArrayList<>();
@@ -33,6 +44,14 @@ public class ingredientControler {
     return currentIngredients;
   }
   
+  /**
+   * Adds an ingredient to the database.
+   *
+   * @param uniqueID the unique ID of the ingredient
+   * @param name     the name of the ingredient
+   * @throws SQLException if a database error occurs
+   */
+
   public static void addIngredient(String uniqueID, String name) throws SQLException{
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String query = "INSERT INTO ingredients VALUES(?,?)";
@@ -45,6 +64,16 @@ public class ingredientControler {
       System.out.println(e);
     }
   }
+
+  /**
+   * Adds an ingredient to a recipe in the database.
+   *
+   * @param recipeID     the ID of the recipe
+   * @param ingredientID the ID of the ingredient
+   * @param unit         the unit of measurement for the ingredient
+   * @param amount       the amount of the ingredient
+   * @throws SQLException if a database error occurs
+   */
  
   
   public static void addIngredientToRecipe(String recipeID, String ingredientID, String unit, Float amount) throws SQLException {

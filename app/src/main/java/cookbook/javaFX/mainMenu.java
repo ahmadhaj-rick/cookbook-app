@@ -45,7 +45,18 @@ public class mainMenu implements Initializable  {
   @FXML
   public Label UserNameMain;
   
-  
+  /**
+ * Handles the action when the home button is clicked.
+ * Loads the homepage.fxml file, sets it as the root of the scene, and displays the scene in the home stage.
+ * Retrieves the logged-in user from the userController.
+ * If a user is logged in, it sets the stage title with a personalized welcome message and adjusts the stage dimensions.
+ * If no user is logged in, it displays an error message using an alert dialog.
+ *
+ * @param event The action event that triggered the method.
+ * @throws SQLException If there is an SQL-related error.
+ * @throws IOException  If there is an I/O error.
+ */
+
   public void homeClick(ActionEvent event) throws SQLException, IOException {
 
     URL url = new File("src/main/java/cookbook/resources/homepage.fxml").toURI().toURL();
@@ -77,6 +88,17 @@ public class mainMenu implements Initializable  {
 
   }
 
+/**
+ * Handles the action when the inbox button is clicked.
+ * Loads the inbox.fxml file, sets it as the root of the scene, and displays the scene in the inbox stage.
+ * Retrieves the name of the logged-in user from the userController.
+ * Sets the stage title with a personalized message and adjusts the stage dimensions.
+ *
+ * @param event The action event that triggered the method.
+ * @throws SQLException If there is an SQL-related error.
+ * @throws IOException  If there is an I/O error.
+ */
+
   public void inboxClick(ActionEvent event) throws SQLException, IOException {
 
     // Go to the inbox screen
@@ -98,6 +120,18 @@ public class mainMenu implements Initializable  {
     inboxStage.centerOnScreen();
     
   }
+
+/**
+ * Handles the action when the week list button is clicked.
+ * Loads the weeklyList.fxml file, sets it as the root of the scene, and displays the scene in the weeklist stage.
+ * Retrieves the logged-in user from the userController.
+ * If a user is logged in, it sets the stage title with a personalized welcome message and adjusts the stage dimensions.
+ * If no user is logged in, it prints an error message to the console.
+ *
+ * @param event The action event that triggered the method.
+ * @throws SQLException If there is an SQL-related error.
+ * @throws IOException  If there is an I/O error.
+ */
 
   public void weeklistClick(ActionEvent event) throws SQLException, IOException {
 
@@ -126,6 +160,18 @@ public class mainMenu implements Initializable  {
 
   }
 
+/**
+ * Handles the action when the help button is clicked.
+ * Loads the help.fxml file, sets it as the root of the scene, and displays the scene in the help stage.
+ * Retrieves the name of the logged-in user from the userController.
+ * Sets the stage title with a personalized message and adjusts the stage dimensions.
+ *
+ * @param event The action event that triggered the method.
+ * @throws SQLException If there is an SQL-related error.
+ * @throws IOException  If there is an I/O error.
+ */
+
+
   public void helpClick(ActionEvent event) throws SQLException, IOException {
     // Go to the week list screen
     URL url = new File("src/main/java/cookbook/resources/help.fxml").toURI().toURL();
@@ -145,6 +191,19 @@ public class mainMenu implements Initializable  {
     helpStage.setResizable(false);
 
   }
+
+/**
+ * Handles the action when the admin panel button is clicked.
+ * Checks if the logged-in user has admin privileges.
+ * If the user is not an admin, displays an alert message.
+ * If the user is an admin, loads the adminpanel.fxml file, sets it as the root of the scene, and displays the scene in the admin stage.
+ * Retrieves the name of the logged-in user from the userController.
+ * Sets the stage title with a personalized message and adjusts the stage dimensions.
+ *
+ * @param event The action event that triggered the method.
+ * @throws SQLException If there is an SQL-related error.
+ * @throws IOException  If there is an I/O error.
+ */
 
   public void adminPanelClick(ActionEvent event) throws SQLException, IOException {
 
@@ -174,6 +233,17 @@ public class mainMenu implements Initializable  {
     }
   }
 
+/**
+ * Handles the action when the add button is clicked.
+ * Loads the addNewRecipe.fxml file, sets it as the root of the scene, and displays the scene in the add stage.
+ * Retrieves the name of the logged-in user from the userController.
+ * Sets the stage title with a personalized message and adjusts the stage dimensions.
+ *
+ * @param event The action event that triggered the method.
+ * @throws SQLException If there is an SQL-related error.
+ * @throws IOException  If there is an I/O error.
+ */
+
   public void addClick(ActionEvent event) throws SQLException, IOException {
     URL url = new File("src/main/java/cookbook/resources/addNewRecipe.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
@@ -192,6 +262,16 @@ public class mainMenu implements Initializable  {
     addStage.setResizable(false);
   }
 
+/**
+ * Handles the action when the exit button is clicked.
+ * Loads the login.fxml file, sets it as the root of the scene, and displays the scene in the app stage.
+ * Adjusts the stage dimensions, title, and makes it non-resizable.
+ *
+ * @param event The action event that triggered the method.
+ * @throws SQLException If there is an SQL-related error.
+ * @throws IOException  If there is an I/O error.
+ */
+
   public void exitClick(ActionEvent event) throws SQLException, IOException {
     URL url = new File("src/main/java/cookbook/resources/login.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
@@ -209,6 +289,10 @@ public class mainMenu implements Initializable  {
 
   }
 
+/**
+ * Displays the name of the logged-in user.
+ * Retrieves the name from the userController and sets it as the text for the UserNameMain label.
+ */
   public void userNameUser() {
     //Display the logged in user name
     userController user = new userController();
@@ -216,6 +300,13 @@ public class mainMenu implements Initializable  {
     UserNameMain.setText("Welcome to our lovely app " + name);
   }
 
+/**
+ * Initializes the controller after its root element has been completely processed.
+ * Calls the userNameUser() method to display the logged-in user's name.
+ *
+ * @param location  The location used to resolve relative paths for the root object, or null if the location is not known.
+ * @param resources The resources used to localize the root object, or null if the root object was not localized.
+ */  
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {

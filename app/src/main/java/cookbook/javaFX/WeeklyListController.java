@@ -31,6 +31,10 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * Controller for the weekly list view.
+ */
+
 public class WeeklyListController implements Initializable {
   @FXML
   private ListView<String> fridayListView;
@@ -80,6 +84,14 @@ public class WeeklyListController implements Initializable {
     shoppingList.clear();
   }
 
+    /**
+     * Handles the back button action.
+     *
+     * @param event the action event
+     * @throws SQLException if an SQL exception occurs
+     * @throws IOException  if an I/O exception occurs
+     */
+
   public void backButton(ActionEvent event) throws SQLException, IOException {
     URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
@@ -98,6 +110,13 @@ public class WeeklyListController implements Initializable {
     mainStage.setTitle("Welcome back to the main menu dear " + name );
 
   }
+
+/**
+ * Updates the view and performs actions when the week is changed.
+ *
+ * @param newValue the new value representing the selected week
+ * @throws SQLException if an error occurs while accessing the database
+ */
   
   public void weekChanged(String newValue) throws SQLException {
     clearAll();
@@ -146,6 +165,12 @@ public class WeeklyListController implements Initializable {
     }
   }
 
+/**
+ * Initializes the controller class.
+ *
+ * @param location  the location used to resolve relative paths for the root object, or null if the location is not known
+ * @param resources the resources used to localize the root object, or null if the root object was not localized
+ */
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -163,6 +188,12 @@ public class WeeklyListController implements Initializable {
     });
   }
 
+/**
+ * Opens the shopping list.
+ *
+ * @param event the action event triggering the method
+ * @throws IOException if an error occurs while loading the FXML file
+ */
   
   @FXML
   void openShoppingList(ActionEvent event) throws IOException {
