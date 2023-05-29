@@ -14,6 +14,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
+/**
+ * A custom ListCell implementation for displaying comment objects.
+ */
 
 public class CommentCell extends ListCell<CommentObject> {
   
@@ -26,7 +29,16 @@ public class CommentCell extends ListCell<CommentObject> {
   @FXML
   private GridPane gridPane;
   private FXMLLoader loader;
-  
+
+    /**
+   * {@inheritDoc}
+   * 
+   * <p>This method is called whenever the item in the cell is updated. It is responsible for updating the
+   * visual representation of the cell based on the new item.</p>
+   * 
+   * @param commentObject The new comment object to be displayed in the cell.
+   * @param empty         A flag indicating whether the cell is empty or not.
+   */
   
   @Override
   protected void updateItem(CommentObject commentObject, boolean empty) {
