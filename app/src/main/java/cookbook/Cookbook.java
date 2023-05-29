@@ -21,6 +21,10 @@ import cookbook.dbTools.dbseeder;
 import javafx.scene.Parent;
 
 public class Cookbook extends Application {
+
+  /**
+   * start the app.
+   */
   
   @Override
   public void start(Stage primaryStage) throws Exception {
