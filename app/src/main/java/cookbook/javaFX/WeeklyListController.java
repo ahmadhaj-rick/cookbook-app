@@ -31,6 +31,10 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * Controller for the weekly list view.
+ */
+
 public class WeeklyListController implements Initializable {
   @FXML
   private ListView<String> fridayListView;
@@ -80,6 +84,14 @@ public class WeeklyListController implements Initializable {
     shoppingList.clear();
   }
 
+    /**
+     * Handles the back button action.
+     *
+     * @param event the action event
+     * @throws SQLException if an SQL exception occurs
+     * @throws IOException  if an I/O exception occurs
+     */
+    
   public void backButton(ActionEvent event) throws SQLException, IOException {
     URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
