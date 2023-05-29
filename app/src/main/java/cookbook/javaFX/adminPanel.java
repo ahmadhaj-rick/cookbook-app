@@ -23,6 +23,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+/**
+ * The adminPanel class implements the Initializable interface and represents
+ * the admin panel in the application.
+ */
+
 public class adminPanel implements Initializable {
   @FXML
   public Button modifyuser;
@@ -44,6 +49,9 @@ public class adminPanel implements Initializable {
   public List<userObject> users;
   
   
+  /**
+   * Refreshes the data in the admin panel.
+   */
   
   public void refreshData() {
     initialize(null, null);
