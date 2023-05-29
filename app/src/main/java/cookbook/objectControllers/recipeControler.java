@@ -22,6 +22,9 @@ public class recipeControler {
   // ArrayList with the current recipes
   public ArrayList<recipeObject> allRecipes = new ArrayList<>();
 
+  /**
+   * returns a list of all recipes.
+   */
   public static List<recipeObject> getRecpies() throws SQLException {
     ArrayList<recipeObject> currentRecipeObjects = new ArrayList<>();
     String query = "SELECT * FROM recipe";
@@ -121,6 +124,9 @@ public class recipeControler {
     return currentRecipeObjects;
   }
 
+  /**
+   * updates favorite recipe of the logged in user.
+   */
   public boolean updateFavoriteStatus(recipeObject selectedRecipeObject) throws SQLException {
     userObject loggedUser = userController.loggedInUser;
     Connection conn = DriverManager
@@ -162,6 +168,11 @@ public class recipeControler {
     return false;
   }
 
+  /**
+   * returns list of favorite recipes of the logged user.
+   * @return
+   * @throws SQLException
+   */
   public static List<recipeObject> favoriteObjects() throws SQLException {
     List<recipeObject> favoriteRecipies = new ArrayList<>();
     Connection conn = DriverManager
@@ -221,6 +232,9 @@ public class recipeControler {
     return favoriteRecipies;
   }
 
+  /**
+   * adds the date to the recipe for weekly list.
+   */
   public static void adddate(String recipeId, Timestamp created_at , String userId) throws SQLException {
 
 
@@ -243,7 +257,9 @@ public class recipeControler {
 
   }
 
-
+/**
+ * adds new recipe.
+ */
   public static void addRecipe(String recipeId, String recipeName, String shortDesc, String longDesc) throws SQLException{
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String query = "INSERT INTO recipe VALUES(?,?,?,?,?)";
