@@ -30,7 +30,7 @@ public class CommentCell extends ListCell<CommentObject> {
   private GridPane gridPane;
   private FXMLLoader loader;
 
-    /**
+  /**
    * {@inheritDoc}
    * 
    * <p>This method is called whenever the item in the cell is updated. It is responsible for updating the

@@ -27,6 +27,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+/**
+ * A controller class for the help view.
+ */
+
 public class helpController implements Initializable {
   @FXML
   private VBox helpContainer;
@@ -66,6 +70,10 @@ public class helpController implements Initializable {
   "ADMIN ONLY:\nAs an admin, click on the Admin Menu from the Home page. There, you are allowed to select users and modify them as you wish.")
   
   );
+
+  /**
+  * Shows the search results based on the entered search terms.
+  */
   
   private void showSearchresults() {
     String[] searchTerms = searchField.getText().split(" ");
@@ -127,6 +135,13 @@ public class helpController implements Initializable {
     }
     
   }
+
+  /**
+    * Handles the action when the back button is clicked.
+    * @param event The ActionEvent triggered by the back button.
+    * @throws SQLException If an SQL exception occurs.
+    * @throws IOException If an I/O exception occurs.
+    */
   
   public void backButton(ActionEvent event) throws SQLException, IOException {
     URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
@@ -146,12 +161,23 @@ public class helpController implements Initializable {
     mainStage.setTitle("Welcome back to the main menu dear " + name );
     
   }
+
+/**
+ * Handles the action when the search button is clicked.
+ * @param event The ActionEvent triggered by the search button.
+ */
   
   @FXML
   void searchAction(ActionEvent event) {
     showSearchresults();
     System.out.println("We r here");
   }
+
+/**
+ * Initializes the controller.
+ * @param location The location used to resolve relative paths.
+ * @param resources The resources used to localize the root object.
+ */
   
   @Override
   public void initialize(URL location, ResourceBundle resources) {

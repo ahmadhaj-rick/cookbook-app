@@ -117,7 +117,7 @@ public class adminPanel implements Initializable {
     }
   }
 
-  /**
+/**
  * Modifies a user in the admin panel.
  *
  * @param event The action event triggered by the modifyuser Button.
