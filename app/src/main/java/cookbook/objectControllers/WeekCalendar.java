@@ -17,6 +17,10 @@ import java.util.stream.Collectors;
 
 public class WeekCalendar {
 
+
+  /**
+   * retrieves the alendar object that is the first week.
+   */
   public static Calendar getFirstWeek(){
     Calendar c = Calendar.getInstance();
       int numDay = c.get(Calendar.DAY_OF_WEEK);
@@ -28,6 +32,11 @@ public class WeekCalendar {
 
   }
 
+  /**
+   * gets a list of strings that represent the weeks.
+   * @param numOfWeeks
+   * @return
+   */
   public static List<String> getFollowingWeeks(int numOfWeeks) {
     List<String> stringList = new ArrayList<>();
     final ZonedDateTime in = ZonedDateTime.now();
@@ -43,6 +52,9 @@ public class WeekCalendar {
     return stringList;
   }
 
+  /**
+   * returns list of scheduled recipes for the specified number of weeks.
+   */
   public static List<List<ScheduledRecipeObject>> getListOfWeeks (int numOfWeek) throws SQLException {
     List<List<ScheduledRecipeObject>> week = new ArrayList<>();
 
@@ -72,7 +84,9 @@ public class WeekCalendar {
 
   // Insert a scheduled Recipe record
 
-
+  /**
+   * adds the scheduled recipe.
+   */
   public static void addScheduledRecipe(String user_id, String recipe_id, java.sql.Date week_date) throws SQLException {
 
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
@@ -95,6 +109,10 @@ public class WeekCalendar {
 
   // Delete a scheduled recipe from the db
   //Ahmed fix this class ------------------------------------------------------------------------
+
+  /**
+   * deletes a scheduled recipe.
+   */
   public static void deleteScheduledRecipe(ScheduledRecipeObject schedRec) throws SQLException {
     String recipeId = schedRec.getRecipeId();
     java.sql.Date date = schedRec.getDate();
@@ -114,6 +132,11 @@ public class WeekCalendar {
     }
   }
 
+  /**
+   * generates the shopping list with the given weeks scheduled recipes.
+   * @param week
+   * @return
+   */
   public static List<QuanitityIngredients> generateShoppingList(List<List<ScheduledRecipeObject>> week) {
 
     List<QuanitityIngredients> weekIngredients = new ArrayList<>();
