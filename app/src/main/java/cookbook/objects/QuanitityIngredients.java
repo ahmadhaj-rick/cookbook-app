@@ -1,10 +1,22 @@
 package cookbook.objects;
 
+/**
+ * The QuanitityIngredients class represents the quantity of an ingredient, including its unit, amount, and name.
+ */
+
 public class QuanitityIngredients {
   private String unit;
   private float amount;
   private ingredientObject ingredient;
   private String name;
+
+  /**
+   * Constructs a new QuanitityIngredients object with the specified unit, amount, and ingredient.
+   *
+   * @param unit       the unit of measurement for the ingredient (e.g., "g", "ml")
+   * @param amount     the amount of the ingredient
+   * @param ingredient the ingredient object
+   */
   
   public QuanitityIngredients(String unit, float amount, ingredientObject ingredient) {
     this.unit= unit;
