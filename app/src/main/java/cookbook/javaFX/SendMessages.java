@@ -31,6 +31,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the Send Messages view. Initializes the view components and handles sending messages.
+ */
 public class SendMessages implements Initializable {
 
   @FXML
@@ -51,6 +54,14 @@ public class SendMessages implements Initializable {
   public List<userObject> users;
 
   // send message button
+
+    /**
+   * Action event handler for the send message button. Sends a message to the selected user.
+   *
+   * @param event The action event triggered by clicking the send message button.
+   * @throws ParseException If an error occurs while parsing the timestamp.
+   */
+
   @FXML
   void sendMessageAction(ActionEvent event) throws ParseException {
 
@@ -74,15 +85,38 @@ public class SendMessages implements Initializable {
   }
 
   // receive information about the recipe id
+
+    /**
+   * Receives the recipe ID information and displays it on the view.
+   *
+   * @param id The recipe ID to be displayed.
+   */
+
   public void passInformation(String id) {
     recipeId.setText(id);
 
   }
 
+    /**
+   * Receives the recipe name information and displays it on the view.
+   *
+   * @param name The recipe name to be displayed.
+   */
+
   public void passNameInformation(String name) {
     recipeName.setText(name);
 
   }
+
+    /**
+   * Initializes the controller when the corresponding view is loaded.
+   * Retrieves the list of users, configures the user table, and sets up the event listener for user selection.
+   *
+   * @param location  The location used to resolve relative paths for the root object,
+   *                  or null if the location is not known.
+   * @param resources The resources used to localize the root object,
+   *                  or null if the root object was not localized.
+   */
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
