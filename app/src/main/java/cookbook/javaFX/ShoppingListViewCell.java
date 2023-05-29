@@ -12,6 +12,10 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Custom ListCell for displaying QuanitityIngredients in a ListView.
+ */
+
 public class ShoppingListViewCell extends ListCell<QuanitityIngredients> {
   @FXML
   private Label ingrString;
