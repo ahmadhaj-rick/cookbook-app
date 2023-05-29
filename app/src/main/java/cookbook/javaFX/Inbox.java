@@ -35,6 +35,17 @@ public class Inbox implements Initializable {
 
     public List<userObject> users;
 
+/**
+ * Handles the action when the back button is clicked.
+ * Loads the mainmenu.fxml file, sets it as the root of the scene, and displays the scene in the main stage.
+ * Sets the stage dimensions, title, and centers it on the screen.
+ * Retrieves the logged-in user's name and includes it in the title.
+ *
+ * @param event The action event that triggered the method.
+ * @throws SQLException If there is an SQL-related error.
+ * @throws IOException  If there is an I/O error.
+ */
+
     public void backButton(ActionEvent event) throws SQLException, IOException {
         URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
@@ -95,7 +106,18 @@ public class Inbox implements Initializable {
 
     }
 
-
+/**
+ * Initializes the Inbox controller after its root element has been completely processed.
+ * Retrieves a list of users using the userController's getUsers() method and populates the 'users' list.
+ * Displays the number of users in the console.
+ * Converts the 'users' list to an ObservableList and assigns it to 'userList'.
+ * Configures the TableView 'usersNames' to display the 'name' property of userObject in a single column.
+ * Clears existing columns and items in the TableView.
+ * Sets the 'userList' as the items in the TableView.
+ *
+ * @param location  The location used to resolve relative paths for the root object, or null if the location is not known.
+ * @param resources The resources used to localize the root object, or null if the root object was not localized.
+ */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
