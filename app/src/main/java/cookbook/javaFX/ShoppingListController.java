@@ -23,6 +23,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+/**
+ * Controller class for the Shopping List view. Handles the functionality of the shopping list.
+ */
+
   public class ShoppingListController implements Initializable {
 
     @FXML
@@ -45,11 +49,20 @@ import java.util.Scanner;
     private ObservableList<QuanitityIngredients> ingredients = FXCollections.observableArrayList();
     private ObservableList<QuanitityIngredients> x = FXCollections.observableArrayList();
 
-    //Clearing everything
+    /**
+     * Clears the shopping list by removing all items from the list view and ingredients list.
+     */
+
     private void clear() {
       ingView.getItems().clear();
       ingredients.clear();
     }
+
+    /**
+     * Returns a string representation of the shopping list.
+     *
+     * @return The string representation of the shopping list.
+     */
 
     public String stringRep() {
       StringBuilder s = new StringBuilder();
@@ -59,6 +72,17 @@ import java.util.Scanner;
       String outstring = s.toString();
       return outstring;
     }
+
+    /**
+     * Initializes the controller when the corresponding view is loaded.
+     * Clears the shopping list, sets up the list view cell factory, and adds a listener for item selection.
+     *
+     * @param location  The location used to resolve relative paths for the root object,
+     *                  or null if the location is not known.
+     * @param resources The resources used to localize the root object,
+     *                  or null if the root object was not localized.
+     */
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
       clear();
@@ -73,6 +97,17 @@ import java.util.Scanner;
                 }
               });
     }
+
+
+        /**
+     * Retrieves the shopping list and updates the view.
+     * Clears the ingredients list and adds ingredients from the shopping list,
+     * removing any duplicates.
+     *
+     * @param shoppingList The shopping list to display.
+     * @param ld           The start date for the shopping list.
+     */
+
 
     public void getShoppingList(ObservableList<QuanitityIngredients> shoppingList, LocalDate ld) {
       startDateglobal = ld;
@@ -98,6 +133,13 @@ import java.util.Scanner;
       // Update the ingView with the updated ingredients list
       ingView.setItems(ingredients);
     }
+
+        /**
+     * Selects a quantity ingredient and updates the displayed information.
+     *
+     * @param quantity The selected quantity ingredient.
+     */
+
     public void selectQe(QuanitityIngredients quantity) {
       if (quantity != null){
         amount_text.setText(String.valueOf(quantity.getAmount()));
@@ -106,6 +148,11 @@ import java.util.Scanner;
         return;
       }
     }
+
+    /**
+     * Handles the action when the Modify button is clicked.
+     * Modifies the selected quantity ingredient's amount and updates the view.
+     */
 
     @FXML
     public void onModifyBtn(ActionEvent event) {
@@ -120,6 +167,12 @@ import java.util.Scanner;
       }
     }
 
+        /**
+     * Handles the action when the Delete button is clicked.
+     * Deletes the selected quantity ingredient from the list and updates the view.
+     */
+
+
     @FXML
     public void onDeleteBtn (ActionEvent event) {
       QuanitityIngredients qe = ingView.getSelectionModel().getSelectedItem();
@@ -133,6 +186,11 @@ import java.util.Scanner;
       }
     }
 
+    /**
+     * Handles the action when the Up button is clicked.
+     * Increases the amount of the selected quantity ingredient by 1 and updates the view.
+     */
+
     @FXML
     public void onUpButton(ActionEvent event) {
       QuanitityIngredients qe = ingView.getSelectionModel().getSelectedItem();
@@ -144,6 +202,12 @@ import java.util.Scanner;
         amount_text.setText(newAmt);
       }
     }
+
+    /**
+     * Handles the action when the Down button is clicked.
+     * Decreases the amount of the selected quantity ingredient by 1 and updates the view.
+     * The amount cannot be negative.
+     */
 
     @FXML
     public void onDownButton(ActionEvent event) {
@@ -160,6 +224,11 @@ import java.util.Scanner;
         }
       }
     }
+
+    /**
+     * Saves the shopping list to a file.
+     * The file is named based on the start date and user ID.
+     */
 
     public void save() {
       String pathdate = startDateglobal.toString();
@@ -186,6 +255,13 @@ import java.util.Scanner;
         e.printStackTrace();
       }
     }
+
+    /**
+     * Reads the shopping list from a file.
+     * The file is located based on the start date and user ID.
+     * Returns the list of quantity ingredients read from the file.
+     * Returns null if the file does not exist or an error occurs.
+     */
 
     public List<QuanitityIngredients> read() {
       String datePath = startDateglobal.toString();
