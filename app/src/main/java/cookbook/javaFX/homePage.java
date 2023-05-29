@@ -47,6 +47,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
+/**
+ * Represents the home page controller.
+ */
+
 public class homePage implements Initializable {
   
   @FXML
