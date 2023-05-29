@@ -14,7 +14,18 @@ import cookbook.objects.MessageObject;
 
 public class MessageController {
 
-  // send a message from one user to another.
+
+  /**
+   * Sends a message from one user to another.
+   *
+   * @param from_User   the ID of the user sending the message
+   * @param to_User     the ID of the user receiving the message
+   * @param recipe_Id   the ID of the associated recipe (optional)
+   * @param body        the content of the message
+   * @param time        the time of the message (optional)
+   * @param created_at  the creation timestamp of the message
+   * @throws SQLException if a database error occurs
+   */
 
   public static void sendMessage(String from_User, String to_User, String recipe_Id, String body,String time, Timestamp created_at) throws SQLException {
 
@@ -43,6 +54,16 @@ public class MessageController {
   }
 
   // Get Messages by user from one user to other user.
+
+  /**
+   * Retrieves a list of messages between two users from the database.
+   *
+   * @param from_User the ID of the user sending the messages
+   * @param to_User   the ID of the user receiving the messages
+   * @return a list of MessageObject representing the messages
+   * @throws SQLException if a database error occurs
+   */
+  
   public static List<MessageObject> getMessages(String from_User, String to_User) throws SQLException {
 
     List<MessageObject> messages = new ArrayList<>();
