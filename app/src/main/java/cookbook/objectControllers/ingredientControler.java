@@ -75,6 +75,7 @@ public class ingredientControler {
    * @throws SQLException if a database error occurs
    */
  
+  
   public static void addIngredientToRecipe(String recipeID, String ingredientID, String unit, Float amount) throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String query = "INSERT INTO recipe_ingredients VALUES (?,?,?,?)";

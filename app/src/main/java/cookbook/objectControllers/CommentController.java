@@ -22,6 +22,7 @@ public class CommentController {
    */
   
   public static void addComment(String ID, String text, String userID, String recipeID) throws SQLException {
+    //method implementation
     String query = "INSERT INTO comment VALUES (?,?,?,?)";
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
@@ -68,7 +69,7 @@ public class CommentController {
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
       sqlStatement.setString(1, text);
       sqlStatement.setString(2, id);
-      sqlStatement.executeUpdate();
+      sqlStatement.executeUpdate(); //so it shows
     } catch (SQLException e) {
       System.out.println("Error editing comment," + e);
     }

@@ -18,6 +18,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class dbseeder {
   
+  /**
+   * seeder to populate databse.
+   */
   public void seed() {
     String dbUrl = "jdbc:mysql://localhost:3306/cookbook?user=root&password=root";
     

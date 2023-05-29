@@ -12,6 +12,10 @@ public class ScheduledRecipeController {
   static userObject currUser = userController.loggedInUser;
   
   // perform a join and get a new Scheduled recipe entity instance for a given
+
+  /**
+   * returns list of scheduled recipes for a given date.
+   */
   public static List<ScheduledRecipeObject> getDateSchedule(Date date) throws SQLException {
     List<ScheduledRecipeObject> schedRecs = new ArrayList<>();
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");

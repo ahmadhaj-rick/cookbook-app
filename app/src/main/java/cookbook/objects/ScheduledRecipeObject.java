@@ -11,6 +11,9 @@ public class ScheduledRecipeObject {
   private Date date;
   private List<QuanitityIngredients> Quanitityingredients = new ArrayList<>();
 
+  /**
+   * scheduled recipe constructor.
+   */
   public ScheduledRecipeObject(String recipeId, String recipeName, String userId, Date date) {
     this.recipeId = recipeId;
     this.recipeName = recipeName;
@@ -34,6 +37,9 @@ public class ScheduledRecipeObject {
     return date;
   }
 
+  /**
+   * adds ingredient to the lsit of ingredients.
+   */
   public void addIngredient(QuanitityIngredients ingredient) {
     this.Quanitityingredients.add(ingredient);
   }
@@ -42,6 +48,9 @@ public class ScheduledRecipeObject {
     return Quanitityingredients;
   }
 
+  /**
+   * to string method.
+   */
   @Override
   public String toString() {
     return "ScheduledRecipeEntity{" +
