@@ -13,6 +13,9 @@ import cookbook.objects.ingredientObject;
 
 public class ingredientControler {
   
+  /**
+   * returns list of all ingredients.
+   */
   public static List<ingredientObject> getIngredients() throws SQLException {
     ArrayList<ingredientObject> currentIngredients = new ArrayList<>();
     String query = "SELECT * FROM ingredients";
@@ -33,7 +36,9 @@ public class ingredientControler {
     return currentIngredients;
   }
   
-  
+  /**
+   * create new ingredient for a recipe.
+   */
   public static void addIngredient(String uniqueID, String name) throws SQLException{
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String query = "INSERT INTO ingredients VALUES(?,?)";
@@ -47,6 +52,9 @@ public class ingredientControler {
     }
   }
  
+  /**
+   * adds the ingredients to the recipe.
+   */
   public static void addIngredientToRecipe(String recipeID, String ingredientID, String unit, Float amount) throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String query = "INSERT INTO recipe_ingredients VALUES (?,?,?,?)";
