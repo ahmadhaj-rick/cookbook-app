@@ -16,7 +16,9 @@ public class recipeObject {
   private ArrayList<tagObject> tagList = new ArrayList<>();
   private Boolean star;
   
-  
+  /**
+   * recipe constructor
+   */
   public recipeObject(String id, String name, String description, String instructions, Boolean Star) {
     setId(id);
     setName(name);
@@ -26,19 +28,32 @@ public class recipeObject {
     
   }
 
-
+  /**
+   * returns the id.
+   * @return
+   */
   public String getId() {
     return id;
   }
   
+  /**
+   * sets the id.
+   */
   public void setId(String id) {
     this.id = id;
   }
   
+  /**
+   * gets the name.
+   */
   public String getName() {
     return name;
   }
   
+  /**
+   * sets name.
+   * @param name
+   */
   public void setName(String name) {
     this.name = name;
   }
@@ -68,15 +83,25 @@ public class recipeObject {
     return star;
   }
   
+  /**
+   * returns list of comments.
+   * @return
+   */
   public ArrayList<CommentObject> getComments() {
     return new ArrayList<>(CommentList);
   }
 
+  /**
+   * adds coment to recipe.
+   */
   public void addComment(CommentObject comment) {
     CommentList.add(comment);
   }
 
-
+/**
+ * adds ingredient to the list of ingredients.
+ * @return
+ */
   public ArrayList<QuanitityIngredients> getIngredientsList() {
     return new ArrayList<>(QuantityIngredientList);
   }
@@ -85,10 +110,16 @@ public class recipeObject {
     QuantityIngredientList.add(ingredient);
   }
 
+  /**
+   * gets a list of tags.
+   */
   public ArrayList<tagObject> getTagList() {
     return new ArrayList<>(tagList);
   }
 
+  /**
+   * adds tag to the list of tags for the recipe.
+   */
   public void addTag(tagObject tag) {
     tagList.add(tag);
   }
