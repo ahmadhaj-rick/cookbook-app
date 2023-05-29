@@ -41,7 +41,7 @@ public class CommentController {
     try (PreparedStatement sqlStatement = conn.prepareStatement(query)) {
       sqlStatement.setString(1, text);
       sqlStatement.setString(2, id);
-      sqlStatement.executeUpdate();
+      sqlStatement.executeUpdate(); //so it shows
     } catch (SQLException e) {
       System.out.println("Error editing comment," + e);
     }
