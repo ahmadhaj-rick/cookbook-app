@@ -10,6 +10,9 @@ public class userObject {
   private Boolean admin;
 
   // making the constructor for the user project
+  /**
+   * user constructor.
+   */
   public userObject(String i, String name, String username, String pass, Boolean isAdmin) {
     setUserId(i);
     setName(name);
@@ -50,6 +53,9 @@ public class userObject {
     this.pass = pass;
   }
 
+  /**
+   * sets admin privileges to a user.
+   */
   private void setAdminPrivelages(Boolean isAdmin) {
     if(isAdmin == true) {
       this.admin = isAdmin;
