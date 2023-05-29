@@ -17,6 +17,9 @@ public class userController {
   // users information.
   public static userObject loggedInUser;
 
+  /**
+   * returns list of all users.
+   */
   public static List<userObject> getUsers() throws SQLException {
     String query = "SELECT * FROM user;";
     List<userObject> allUsers = new ArrayList<>();
@@ -41,6 +44,9 @@ public class userController {
     return allUsers;
   }
 
+  /**
+   * to search a user by their username.
+   */
   public static userObject searchByUsername(String username) throws SQLException {
     String query = "SELECT * FROM user WHERE username=(?) LIMIT 1;";
 
@@ -67,6 +73,10 @@ public class userController {
     return user;
   }
 
+
+  /**
+   * searches for a user using their id.
+   */
   public static userObject searchFromId(String userId) throws SQLException {
     String queryString = "SELECT * FROM user WHERE user_id=(?) LIMIT 1;";
 
@@ -96,6 +106,9 @@ public class userController {
 }
 
 
+/**
+ * searches for a user using their username and password.
+ */
   public static userObject searchForUser(String username, String password) throws SQLException {
 
     String query = "SELECT * FROM user WHERE username=(?) AND password=(?) LIMIT 1;";
@@ -124,6 +137,9 @@ public class userController {
     return loggedInUser;
   }
 
+  /**
+   * adds a new user.
+   */
   public static void addUser(String name, String username, String password, Boolean isAdmin) throws SQLException {
 
     Connection conn = DriverManager
@@ -168,6 +184,9 @@ public class userController {
     }
   }*/
 
+  /**
+   * edits the information of a user.
+   */
   public static void editUser(String name, String username, String password, String userID) throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String updateQuery = "UPDATE user SET fname=(?), username=(?), password=(?) WHERE user_id=(?)";
@@ -183,6 +202,9 @@ public class userController {
     }
   }
 
+  /**
+   * deletes a user.
+   */
   public static void deleteUser(String name, String username, String password) throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false");
     String deleteString = "DELETE FROM user WHERE fname=(?) AND username=(?) AND password=(?);";
