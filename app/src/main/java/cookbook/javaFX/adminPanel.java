@@ -23,6 +23,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+/**
+ * The adminPanel class implements the Initializable interface and represents
+ * the admin panel in the application.
+ */
+
 public class adminPanel implements Initializable {
   @FXML
   public Button modifyuser;
@@ -44,10 +49,21 @@ public class adminPanel implements Initializable {
   public List<userObject> users;
   
   
-  
+  /**
+   * Refreshes the data in the admin panel.
+   */
+
   public void refreshData() {
     initialize(null, null);
   }
+
+  /**
+   * Handles the action event for creating a new user in the admin panel.
+   *
+   * @param event The action event triggered by the createuser Button.
+   * @throws SQLException If an SQL exception occurs while creating the user.
+   * @throws IOException  If an IO exception occurs while creating the user.
+   */
   
   public void adminCreateUser(ActionEvent event) throws SQLException, IOException {
     String name = txtDisplayName.getText();
@@ -67,6 +83,14 @@ public class adminPanel implements Initializable {
       failure.show();
     }
   }
+
+  /**
+ * Deletes a user in the admin panel.
+ *
+ * @param event The action event triggered by the deleteuser Button.
+ * @throws SQLException If an SQL exception occurs while deleting the user.
+ * @throws IOException  If an IO exception occurs while deleting the user.
+ */
   
   public void adminDeleteUser(ActionEvent event) throws SQLException, IOException{
     userObject user = userlst.getSelectionModel().getSelectedItem();
@@ -92,6 +116,14 @@ public class adminPanel implements Initializable {
       }
     }
   }
+
+/**
+ * Modifies a user in the admin panel.
+ *
+ * @param event The action event triggered by the modifyuser Button.
+ * @throws SQLException If an SQL exception occurs while modifying the user.
+ * @throws IOException  If an IO exception occurs while modifying the user.
+ */
   
   public void modifyUser(ActionEvent event) throws SQLException, IOException {
     userObject user = userlst.getSelectionModel().getSelectedItem();
@@ -106,6 +138,14 @@ public class adminPanel implements Initializable {
     loadData();
     
   }
+
+/**
+ * Handles the action event for the back Button to navigate back to the main menu.
+ *
+ * @param event The action event triggered by the back Button.
+ * @throws SQLException If an SQL exception occurs while navigating back to the main menu.
+ * @throws IOException  If an IO exception occurs while navigating back to the main menu.
+ */
 
   public void backButton(ActionEvent event) throws SQLException, IOException {
     URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
@@ -168,13 +208,25 @@ public class adminPanel implements Initializable {
       
     }*/
 
+  /**
+    * Loads the user data into the admin panel.
+    *
+    * @throws SQLException If an SQL exception occurs while loading the user data.
+    */
+
     private void loadData() throws SQLException {
       users = userController.getUsers();
       ObservableList<userObject> user = FXCollections.observableArrayList(users);
       userlst.getItems().clear();
       userlst.getItems().addAll(user);
     }
-    
+
+  /**
+    * Initializes the admin panel.
+    *
+    * @param location  The location used to resolve relative paths for the root object.
+    * @param resources The resources used to localize the root object.
+    */
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -91,6 +91,21 @@ public class recipemainmenu implements Initializable {
   public List<tagObject> tags;
   public List<tagObject> selectedTags;
 
+/**
+ * Creates a new recipe based on the input provided by the user.
+ * Retrieves the recipe name, short description, and long description from the corresponding text fields.
+ * Generates a unique recipe ID using UUID.randomUUID().
+ * Adds the recipe to the recipeController and creates a new recipeObject.
+ * Iterates over the selected ingredients and adds them to the created recipe.
+ * Iterates over the selected tags and adds them to the created recipe.
+ * Displays a success message if the recipe is successfully created.
+ * Displays an error message if an SQLException occurs.
+ *
+ * @param event The ActionEvent that triggered the method.
+ * @throws SQLException If an error occurs while accessing the database.
+ * @throws IOException  If an error occurs during I/O operations.
+ */
+
   public void createRecipe(ActionEvent event) throws SQLException, IOException {
     // For Recipe
     String recipe_Name = recipeName.getText();
@@ -129,6 +144,17 @@ public class recipemainmenu implements Initializable {
     }
   }
 
+/**
+ * Returns to the main menu screen when the back button is clicked.
+ * Loads the main menu scene and sets it as the current scene.
+ * Displays the main menu stage.
+ * Sets the dimensions and properties of the main menu stage.
+ *
+ * @param event The ActionEvent that triggered the method.
+ * @throws SQLException If an error occurs while accessing the database.
+ * @throws IOException  If an error occurs during I/O operations.
+ */
+
   public void backButton(ActionEvent event) throws SQLException, IOException {
     URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
     FXMLLoader loader = new FXMLLoader(url);
@@ -149,6 +175,19 @@ public class recipemainmenu implements Initializable {
    * We will add all the tags within that list to the recipe later on.
    */
   
+  /**
+ * Adds the selected tag to the temporary list of tags.
+ * Retrieves the tag name from the text field or the dropdown menu.
+ * Generates a unique tag ID using UUID.randomUUID().
+ * Checks if the tag already exists in the list, and displays an error message if it does.
+ * Adds the new tag to the tagController and creates a new tagObject.
+ * Displays a success message if the tag is successfully created.
+ *
+ * @param event The ActionEvent that triggered the method.
+ * @throws SQLException If an error occurs while accessing the database.
+ * @throws IOException  If an error occurs during I/O operations.
+ */
+
   public void addTagToList(ActionEvent event) throws SQLException, IOException {
     if (tagsDropdown.getSelectionModel().getSelectedItem() == null) {
       String tag_Name = tagName.getText();
@@ -263,6 +302,19 @@ public class recipemainmenu implements Initializable {
   /**
    * Recipe stuff.
    */
+
+  /**
+ * Initializes the controller when the corresponding view is loaded.
+ * Retrieves the recipes, initializes the lists for selected tags and ingredients,
+ * and initializes the tags list. Updates the tag box and sets the items for the unit ComboBox.
+ * Prints the size of the recipes list.
+ *
+ * @param location  The location used to resolve relative paths for the root object,
+ *                  or null if the location is not known.
+ * @param resources The resources used to localize the root object,
+ *                  or null if the root object was not localized.
+ */
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     try {
@@ -281,6 +333,13 @@ public class recipemainmenu implements Initializable {
     System.out.println(recipes.size());
 
   }
+
+/**
+ * Updates the tags label to display the names of the selected tags.
+ * Retrieves the tag names from the selectedTags list using stream and map operations.
+ * Concatenates the tag names into a comma-separated string.
+ * Sets the resulting string as the text of the tagsLabel.
+ */
 
   private void updateTagsLabel() {
     List<String> tagNames = selectedTags.stream().map(tagObject::getTag_name).collect(Collectors.toList());

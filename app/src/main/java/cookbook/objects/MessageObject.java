@@ -1,7 +1,9 @@
 package cookbook.objects;
 
 import java.sql.Timestamp;
-
+/**
+ * The MessageObject class represents a message with its properties such as message ID, sender, receiver, recipe ID, message body, and creation timestamp.
+ */
 public class MessageObject {
   private String message_id;
   private String from_User;
@@ -9,6 +11,17 @@ public class MessageObject {
   private String recipe_Id;
   private String body;
   private Timestamp created_at;
+
+   /**
+   * Constructs a new MessageObject with the specified message properties.
+   *
+   * @param message_id   the ID of the message
+   * @param from_User    the sender of the message
+   * @param to_User      the receiver of the message
+   * @param recipe_Id    the ID of the associated recipe
+   * @param body         the body content of the message
+   * @param created_at   the timestamp when the message was created
+   */
 
   public MessageObject(String message_id, String from_User, String to_User, String recipe_Id, String body,
       Timestamp created_at) {

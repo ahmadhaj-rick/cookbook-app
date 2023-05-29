@@ -47,6 +47,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
+/**
+ * Represents the home page controller.
+ */
+
 public class homePage implements Initializable {
   
   @FXML
@@ -87,8 +91,12 @@ public class homePage implements Initializable {
   
   ObservableList<CommentObject> recipeCommentObjects = FXCollections.observableArrayList();
 
-
-
+/**
+ * Initializes the controller and sets up the initial state of the home page.
+ * Retrieves recipes and populates the recipe list view.
+ * @param location The location used to resolve relative paths.
+ * @param resources The resources used to localize the root object.
+ */
   
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -123,6 +131,13 @@ public class homePage implements Initializable {
       
       return row;
     });
+
+/**
+ * Sets an event handler for mouse clicks on the recipe list view.
+ * When a recipe is selected, it retrieves and displays detailed information about the selected recipe,
+ * including ingredients, tags, descriptions, instructions, and comments.
+ * @param event The mouse click event.
+ */
     
     recipeLists.setOnMouseClicked(event -> {
       if (event.getClickCount() > 0) {
@@ -172,6 +187,15 @@ public class homePage implements Initializable {
       updateIngredientsText(); // Update the displayed ingredients
     });
   }
+
+/**
+ * Handles the event when the add comment button is clicked.
+ * If a recipe is selected, it adds a new comment to the selected recipe.
+ * The comment is added to the database and the comment objects are updated.
+ * If no recipe is selected, it displays an error message.
+ * @param event The action event triggered by clicking the add comment button.
+ * @throws SQLException If an SQL exception occurs while adding the comment to the database.
+ */
   
    @FXML
   public void addComment(ActionEvent event) throws SQLException {
@@ -199,6 +223,15 @@ public class homePage implements Initializable {
       failure.show();
     }
   }
+
+/**
+ * Handles the event when the delete comment button is clicked.
+ * If a recipe is selected and a comment is selected in the comment list,
+ * it deletes the selected comment from the database and updates the comment objects.
+ * Only the user who posted the comment or an admin can delete a comment.
+ * If no recipe is selected or no comment is selected, it displays an error message.
+ * @throws SQLException If an SQL exception occurs while deleting the comment from the database.
+ */
 
   @FXML
   public void deleteComment() throws SQLException {
@@ -250,9 +283,14 @@ public class homePage implements Initializable {
     }
   }
 
-
-  
-  
+/**
+ * Performs a search based on the entered search text.
+ * Retrieves the list of recipes and filters them based on the search criteria.
+ * The search criteria are matched against recipe ingredients and tags.
+ * The filtered list of recipes is then set as the items of the TableView.
+ * @throws SQLException If an SQL exception occurs while retrieving recipes.
+ * @throws IOException  If an I/O exception occurs.
+ */
   
   public void searchMethod() throws SQLException, IOException {
     String searchTxt = search.getText();
@@ -298,6 +336,14 @@ public class homePage implements Initializable {
     ObservableList<recipeObject> observableFilteredRecipes = FXCollections.observableArrayList(filteredRecipes);
     recipeLists.setItems(observableFilteredRecipes);
   }
+
+/**
+ * Updates the favorite status of the selected recipe.
+ * Retrieves the selected recipe from the TableView and calls the recipeControler
+ * to update its favorite status. Displays a confirmation message based on
+ * the updated favorite status.
+ * @throws SQLException If an SQL exception occurs while updating the favorite status.
+ */
   
   public void updateFavorite() throws SQLException {
     try {
@@ -332,6 +378,15 @@ public class homePage implements Initializable {
     recipeLists.setItems(observableFavList);
     
   }*/
+
+/**
+ * Retrieves the filtered list of recipes based on the favorite checkbox selection.
+ * If the favorite checkbox is selected, it retrieves the favorite recipes using the recipeControler,
+ * updates the TableView with the favorite recipes. If the checkbox is not selected,
+ * it retrieves the normal recipes using the recipeControler and updates the TableView.
+ * @param event The ActionEvent triggered by the favorite checkbox selection.
+ * @throws SQLException If an SQL exception occurs while retrieving the recipes.
+ */
   
   public void getFilteredRecipes(ActionEvent event) throws SQLException {
     CheckBox favoritecheck = (CheckBox) event.getSource();
@@ -359,7 +414,14 @@ public class homePage implements Initializable {
     IngField.setText(ingredientsString.toString());
     portionsLabel.setText(String.valueOf(portions));
   }
-  
+
+/**
+ * Decreases the number of portions and updates the displayed ingredients.
+ * If the current number of portions is greater than 1, it decrements the 'portions' variable by 1 and calls the 'updateIngredientsText()' method.
+ *
+ * @param event The action event that triggered the method.
+ */
+
   @FXML
   void onDecreasePortions(ActionEvent event) {
     if (portions > 1) {
@@ -367,12 +429,30 @@ public class homePage implements Initializable {
       updateIngredientsText();
     }
   }
+
+/**
+ * Increases the number of portions and updates the displayed ingredients.
+ * It increments the 'portions' variable by 1 and calls the 'updateIngredientsText()' method.
+ *
+ * @param event The action event that triggered the method.
+ */
   
   @FXML
   void onIncreasePortions(ActionEvent event) {
     portions++;
     updateIngredientsText();
   }
+
+/**
+ * Handles the action when the back button is clicked.
+ * It loads the mainmenu.fxml file, sets it as the root of the scene, and displays the scene in the main stage.
+ * It also sets the stage dimensions, title, and centers it on the screen.
+ * Additionally, it retrieves the logged-in user's name and includes it in the title.
+ *
+ * @param event The action event that triggered the method.
+ * @throws SQLException If there is an SQL-related error.
+ * @throws IOException  If there is an I/O error.
+ */
   
   public void backButton(ActionEvent event) throws SQLException, IOException {
     URL url = new File("src/main/java/cookbook/resources/mainmenu.fxml").toURI().toURL();
@@ -439,6 +519,19 @@ public class homePage implements Initializable {
     }
   }
 
+/**
+ * Handles the action when the send message button is clicked.
+ * Retrieves the selected recipe from the recipeLists and performs the following actions if a recipe is selected:
+ * - Loads the sendMessage.fxml file, sets it as the root of a new scene, and displays the scene in a new stage.
+ * - Passes the recipe ID and name to the SendMessages controller using its methods.
+ * - Creates a new stage for the sendMessage scene and sets the existing stage as its owner.
+ * - Sets the title of the new stage based on the logged-in user's name.
+ * - Shows the new stage and displays an error message if no recipe is selected.
+ *
+ * @param event The action event that triggered the method.
+ * @throws SQLException If there is an SQL-related error.
+ * @throws IOException  If there is an I/O error.
+ */
 
   public void sendMessage(ActionEvent event) throws SQLException, IOException {
     recipeObject recp = recipeLists.getSelectionModel().getSelectedItem();

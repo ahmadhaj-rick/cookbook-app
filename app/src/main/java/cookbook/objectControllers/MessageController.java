@@ -14,7 +14,6 @@ import cookbook.objects.MessageObject;
 
 public class MessageController {
 
-  // send a message from one user to another.
 
   public static void sendMessage(String from_User, String to_User, String recipe_Id, String body,String time, Timestamp created_at) throws SQLException {
 
