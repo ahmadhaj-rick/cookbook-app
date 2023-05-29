@@ -4,7 +4,9 @@ public class tagObject {
     private String tag_id;
     private String tag_name;
 
-
+    /**
+     * tag constructor.
+     */
 public tagObject(String tag_id, String tag_name){
     setTag_id(tag_id);
     setTag_name(tag_name);
