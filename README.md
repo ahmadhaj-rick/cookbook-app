@@ -97,7 +97,7 @@ Our team operated with multiple Scrum Masters throughout the project. Here's a s
 
 #### Ahmad AlHaj - Concluding Scrum Master:
 - Encouraged collaborative communication, regardless of the question's complexity.
-- Provided guidance to team members at different skill levels and supported those at almost the same proficiency, contributing to mutual learning and growth within the team.
+- Provided guidance to team members at different skill levels and supported those at par with, contributing to mutual learning and growth within the team.
 
 #### Tareq - Led UI:
 - Led the UI design, contributing to a child-friendly (Simpson inside joke) user interface.
