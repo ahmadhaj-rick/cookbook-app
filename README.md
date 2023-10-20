@@ -87,7 +87,7 @@ Our project was guided by a set of user stories outlined in the project specific
 ## Team Dynamics
 Our team operated with multiple Scrum Masters throughout the project. Here's a summary of their experiences and key contributions from team members:
 
-#### Abdul - Initial Scrum Master:
+#### Abdul - Initial Scrum Master: @EpicBart02
 - He learned Git and effectively distributed work.
 - Played a helpful role in addressing the first major project roadblock with Tsnme, which involved understanding the module-info file in Java.
 
