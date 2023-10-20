@@ -108,7 +108,7 @@ Our team operated with multiple Scrum Masters throughout the project. Here's a s
 - Founded the database manager system.
 - Collaborated on various aspects, including working with Ahmad Alhaj to implement and manage the system.
 
-#### Tsnme:
+#### Tsnme: [@Tsnem-m](https://github.com/Tsnem-m)
 - Played a pivotal role in solving the first major project roadblock related to understanding the module-info file in Java.
 - Worked on messaging and tags.
 
